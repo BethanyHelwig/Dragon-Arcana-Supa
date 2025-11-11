@@ -1,22 +1,26 @@
-import { useState } from 'react'
+import { createContext, useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import Navbar from "/src/components/Navbar"
+import LoginContainer from './routes/LoginContainer'
+import Layout from "/src/components/Layout"
+import ThemeProvider from './components/ThemeProvider'
+import Search from "./routes/Search"
 
 function App() {
 
-    const [ data, setData ] = useState(null)
-
-    function getData(){
-        fetch('http://127.0.0.1:8080/api/data')
-            .then(res => res.json())
-            .then(data => console.log(data))
-    }
-
-    getData()
-
-    return (
-        <>
-            <p>hi</p>
-        </>
-    )
+	return (
+		<ThemeProvider>
+			<BrowserRouter>
+				<Routes>
+					<Route element={<Layout />}>
+						<Route path="/" element={<LoginContainer />} />
+						<Route path="search" element={<Search />} />
+					</Route>
+				</Routes>
+			</BrowserRouter>
+		</ThemeProvider>
+  	)
 }
 
 export default App

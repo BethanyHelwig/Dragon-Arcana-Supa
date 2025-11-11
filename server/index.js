@@ -13,7 +13,21 @@ const __dirname = path.dirname(__filename)
 
 app.use(cors())
 
-app.get('/api/data', async (req, res) => {
+app.get('/api/ability_score/:search', async (req, res) => {
+    console.log("Request in at /api/ability_score/:search")
+    console.log(req.params)
+    try {
+        console.log(req.params)
+        // res.json(await getData())
+    }
+    catch {
+        res.send(err)
+    }
+})
+
+app.get('/api/ability_score', async (req, res) => {
+    console.log("Request in at /api/ability_score")
+    console.log(req.params.type)
     try {
         res.json(await getData())
     }
