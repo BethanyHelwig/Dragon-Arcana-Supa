@@ -89,10 +89,12 @@ nav {
 
 footer {
     min-width: 100%;
-    padding: 1em;
+    padding: 1em 10em;
     text-align: center;
     margin-top: auto;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    font-family: "Roboto", sans-serif;
+    font-size: 0.75rem;
 }
 
 footer p {
@@ -100,7 +102,7 @@ footer p {
 }
 
 footer a {
-    font-size: 1rem;
+    font-size: 0.75rem;
     text-decoration:underline;
 }
 

@@ -4,6 +4,8 @@ import AbilityScore from "./SearchResults/AbilityScore"
 import Alignment from "./SearchResults/Alignment"
 import Background from "./SearchResults/Background"
 import Class from "./SearchResults/Class"
+import Skill from "./SearchResults/Skill"
+import Weapon from "./SearchResults/Weapon"
 
 export default function SearchResult(props) {
 
@@ -11,7 +13,6 @@ export default function SearchResult(props) {
 
     // State values
     const [ expanded, setExpanded ] = useState(false)
-    const [ details, setDetails ] = useState(null)
 
     function toggleExpanded(){
         setExpanded(prev => !prev)
@@ -28,6 +29,10 @@ export default function SearchResult(props) {
                 return <Background details={data} />
             case "class":
                 return <Class details={data} />
+            case "skill":
+                return <Skill details={data} />
+            case "weapon":
+                return <Weapon details={data} />
             default:
                 return (<h4>Loading...</h4>)
         }  
@@ -35,7 +40,7 @@ export default function SearchResult(props) {
 
 
     return (
-        <div className="search-result-item" key={data.index} onClick={toggleExpanded}>
+        <div className="search-result-item" onClick={toggleExpanded}>
             <h3>{data.full_name}</h3>
             {expanded && detailElements()}
         </div>

@@ -45,36 +45,30 @@ export default function Search() {
         const data = Object.fromEntries(formData.entries())
         const { searchText, searchCategory, filter } = data
 
-        console.log(`Fetching: /api/${searchCategory}`)
+        let queryURL = `http://127.0.0.1:8080/api/search/${searchCategory}`
 
-        fetch(`http://127.0.0.1:8080/api/${searchCategory}?type=stuff`)
+        if (searchText || filter){
+
+            if (searchText && !filter) {
+                queryURL += `?term=${searchText}`
+            }
+            else if (filter && !searchText) {
+                queryURL += `?filter=${filter}`
+            }
+            else {
+                queryURL += `?term=${searchText}&filter=${filter}`
+            }
+        }
+
+        console.log(`Fetching: ${queryURL}`)
+
+        fetch(queryURL)
             .then(res => res.json())
             .then(data => {                   
                 setSearchResults(data.map(element => ({...element, searchCategory})))
                 setResultCount(`${data.length} results found for "${searchText}". Click on a result to expand details.`)
             })
             .catch (err => console.error(err))
-
-        // if (filter){
-        //     console.log(`Fetching: https://www.dnd5eapi.co/api/2014/${searchCategory}/?${filter}=${searchText}`)
-        //     fetch(`https://www.dnd5eapi.co/api/2014/${searchCategory}/?${filter}=${searchText}`)
-        //         .then(response => response.json())
-                // .then(data => {                   
-                //     setSearchResults(data.results) 
-                //     setResultCount(`${data.results.length} results found for "${searchText}". Click on a result to expand details.`)
-                // })
-                // .catch (err => console.error(err))
-        // }
-        // else {
-        //     console.log(`Fetching: https://www.dnd5eapi.co/api/2014/${searchCategory}/?${searchText}`)
-        //     fetch(`https://www.dnd5eapi.co/api/2014/${searchCategory}/?${searchText}`)
-        //         .then(response => response.json())
-        //         .then(data => { 
-        //             setSearchResults(data.results.map(element => ({...element, searchCategory}))) 
-        //             setResultCount(`${data.results.length} results found for "${searchText}"`)
-        //         })
-        //         .catch (err => console.error(err))
-        // }
     }
 
     const searchResultsElements = searchResults.map(result => {
