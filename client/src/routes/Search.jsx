@@ -31,8 +31,9 @@ export default function Search() {
         // {value: "subclasses", name: "Subclasses"},
         // {value: "subraces", name: "Subraces"},
         //{value: "traits", name: "Traits"},
-        {value: "weapon_property", name: "Weapon Properties"},
-        {value: "weapon", name: "Weapons"}
+        {value: "weapon", name: "Weapons"},
+        {value: "weapon_mastery_property", name: "Weapon Mastery"},
+        {value: "weapon_property", name: "Weapon Properties"}
     ]
 
     const categoryElements = categories.map((el) => <option key={el.value} value={el.value}>{el.name}</option>)

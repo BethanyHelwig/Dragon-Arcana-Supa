@@ -6,6 +6,8 @@ import Background from "./SearchResults/Background"
 import Class from "./SearchResults/Class"
 import Skill from "./SearchResults/Skill"
 import Weapon from "./SearchResults/Weapon"
+import WeaponProperty from "./SearchResults/WeaponProperty"
+import WeaponMasteryProperty from "./SearchResults/WeaponMasteryProperty"
 
 export default function SearchResult(props) {
 
@@ -33,6 +35,10 @@ export default function SearchResult(props) {
                 return <Skill details={data} />
             case "weapon":
                 return <Weapon details={data} />
+            case "weapon_property":
+                return <WeaponProperty details={data} />
+            case "weapon_mastery_property":
+                return <WeaponMasteryProperty details={data} />
             default:
                 return (<h4>Loading...</h4>)
         }  

@@ -11,7 +11,6 @@ export default function Weapon({details}){
         cost,
         weapon_property_junction
     } = details
-    console.log(details)
 
     const propertyElements = weapon_property.map((el, index) => {
         const correspondingDetails = weapon_property_junction[index]

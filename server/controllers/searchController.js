@@ -185,3 +185,38 @@ export async function getWeaponProperties(req, res) {
     }
     
 }
+
+export async function getMastery(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific mastery
+        if (term){
+            const { data, error } = await supabase
+                .from('weapon_mastery_property')
+                .select()
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+        // GET all mastery
+        else {
+            const { data, error } = await supabase
+                .from('weapon_mastery_property')
+                .select()
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch weapons', details: err.message})
+    }
+    
+}
