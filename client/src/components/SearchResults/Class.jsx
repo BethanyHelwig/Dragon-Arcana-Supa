@@ -1,49 +1,33 @@
 export default function Class({details}){
 
     const { 
-        name, 
-        hit_die, 
-        subclasses, 
-        proficiencies, 
-        proficiency_choices, 
-        saving_throws,
+        full_name, 
+        likes, 
+        primary_ability,
+        complexity,
+        hit_point_die,
+        saving_throw_proficiencies,
+        skill_proficiencies,
+        weapon_proficiencies, 
+        armor_training,
         starting_equipment,
-        starting_equipment_options 
+        tool_proficiencies
         } = details
-
-    const subclassesElements = subclasses.map(el => el.name).join(", ")
-    const proficienciesElements = proficiencies.map(el => <li>{el.name}</li>)
-    const choiceElements = proficiency_choices.map(el => el.desc).join(", ")
-    const savingThrowElements = saving_throws.map(el => el.name).join(", ")
-    const startingEquipmentElements = starting_equipment.map(el => <li>{el.equipment.name}</li>)
-    const startingEquipmentOptionsElements = starting_equipment_options.map(el => <li>{el.desc}</li>)
 
     return (
         <div className="search-result-details">
             <ul>
-                <li><h4>Name: <span>{name}</span></h4></li>
-                <li><h4>Subclasses: <span>{subclassesElements}</span></h4></li>
-                <li><h4>Hit Die: <span>{hit_die}</span></h4></li>
-                <li><h4>Proficiencies:</h4></li>
-                <li>
-                    <ul>
-                        {proficienciesElements}
-                    </ul>
-                </li>
-                <li><h4>Proficiency Choices: <span>{choiceElements}</span></h4></li>
-                <li><h4>Saving Throws: <span>{savingThrowElements}</span></h4></li>
-                <li><h4>Starting Equipment:</h4></li>
-                <li>
-                    <ul>
-                        {startingEquipmentElements}
-                    </ul>
-                </li>
-                <li><h4>Starting Equipment Options:</h4></li>
-                <li>
-                    <ul>
-                        {startingEquipmentOptionsElements}
-                    </ul>
-                </li>
+                <li><h4>Name: <span>{full_name}</span></h4></li>
+                <li><h4>Likes: <span>{likes}</span></h4></li>
+                <li><h4>Primary Ability: <span>{primary_ability}</span></h4></li>
+                <li><h4>Complexity: <span>{complexity}</span></h4></li>
+                <li><h4>Hit Point Die: <span>{hit_point_die}</span></h4></li>
+                <li><h4>Saving Throw Proficiencies: <span>{saving_throw_proficiencies}</span></h4></li>
+                <li><h4>Skill Proficiencies: <span>{skill_proficiencies}</span></h4></li>
+                <li><h4>Weapon Proficiencies: <span>{weapon_proficiencies}</span></h4></li>
+                <li><h4>Armor Proficiencies: <span>{armor_training}</span></h4></li>
+                {tool_proficiencies && <li><h4>Tool Proficiencies: <span>{tool_proficiencies}</span></h4></li>}
+                <li><h4>Starting Equipment: <span>{starting_equipment}</span></h4></li>
             </ul>
         </div> 
     )

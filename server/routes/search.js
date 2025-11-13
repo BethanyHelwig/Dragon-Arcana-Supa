@@ -4,7 +4,8 @@ import {
     getSkills, 
     getWeapons, 
     getWeaponProperties, 
-    getMastery 
+    getMastery,
+    getClass
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
@@ -14,3 +15,4 @@ searchRouter.get('/skill', getSkills)
 searchRouter.get('/weapon', getWeapons)
 searchRouter.get('/weapon_property', getWeaponProperties)
 searchRouter.get('/weapon_mastery_property', getMastery)
+searchRouter.get('/character_class', getClass)

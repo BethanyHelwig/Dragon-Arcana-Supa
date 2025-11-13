@@ -217,6 +217,39 @@ export async function getMastery(req, res) {
     }
     catch(err){
         res.status(500).json({error: 'Failed to fetch weapons', details: err.message})
+    }   
+}
+
+export async function getClass(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('character_class')
+                .select()
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('character_class')
+                .select()
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
     }
-    
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch weapons', details: err.message})
+    }   
 }

@@ -39,6 +39,8 @@ export default function SearchResult(props) {
                 return <WeaponProperty details={data} />
             case "weapon_mastery_property":
                 return <WeaponMasteryProperty details={data} />
+            case "character_class":
+                return <Class details={data} />
             default:
                 return (<h4>Loading...</h4>)
         }  

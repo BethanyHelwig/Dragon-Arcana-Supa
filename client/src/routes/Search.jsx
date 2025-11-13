@@ -12,7 +12,7 @@ export default function Search() {
         {value: "ability_score", name: "Ability Scores"},
         //{value: "alignments", name: "Alignments"},
         // {value: "backgrounds", name: "Backgrounds"},
-        // {value: "classes", name: "Classes"},
+        {value: "character_class", name: "Classes"},
         // {value: "conditions", name: "Conditions"},
         // {value: "damage-types", name: "Damage Types"},
         // {value: "equipment", name: "Equipment"},
