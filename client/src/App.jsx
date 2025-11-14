@@ -6,6 +6,7 @@ import LoginContainer from './routes/LoginContainer'
 import Layout from "/src/components/Layout"
 import ThemeProvider from './components/ThemeProvider'
 import Search from "./routes/Search"
+import NotFound from "./routes/NotFound"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
 					<Route element={<Layout />}>
 						<Route path="/" element={<LoginContainer />} />
 						<Route path="search" element={<Search />} />
+						<Route path="*" element={<NotFound />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

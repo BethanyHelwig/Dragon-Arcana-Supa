@@ -4,7 +4,10 @@ import AbilityScore from "./SearchResults/AbilityScore"
 import Alignment from "./SearchResults/Alignment"
 import Background from "./SearchResults/Background"
 import Class from "./SearchResults/Class"
+import Language from "./SearchResults/Language"
+import SchoolOfMagic from "./SearchResults/SchoolOfMagic"
 import Skill from "./SearchResults/Skill"
+import Spell from "./SearchResults/Spell"
 import Weapon from "./SearchResults/Weapon"
 import WeaponProperty from "./SearchResults/WeaponProperty"
 import WeaponMasteryProperty from "./SearchResults/WeaponMasteryProperty"
@@ -31,6 +34,10 @@ export default function SearchResult(props) {
                 return <Background details={data} />
             case "class":
                 return <Class details={data} />
+            case "language":
+                return <Language details={data} />
+            case "school_of_magic":
+                return <SchoolOfMagic details={data} />
             case "skill":
                 return <Skill details={data} />
             case "weapon":
@@ -41,6 +48,8 @@ export default function SearchResult(props) {
                 return <WeaponMasteryProperty details={data} />
             case "character_class":
                 return <Class details={data} />
+            case "spell":
+                return <Spell details={data} />
             default:
                 return (<h4>Loading...</h4>)
         }  

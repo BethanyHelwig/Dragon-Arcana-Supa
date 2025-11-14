@@ -42,7 +42,7 @@ export async function getAbilityScores(req, res) {
         }
     }
     catch(err){
-        res.status(500).json({error: 'Failed to fetch ability scores', details: err.message})
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
 
 }
@@ -86,7 +86,7 @@ export async function getSkills(req, res) {
         }
     }
     catch(err){
-        res.status(500).json({error: 'Failed to fetch skills', details: err.message})
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
 
 }
@@ -146,7 +146,7 @@ export async function getWeapons(req, res) {
         }
     }
     catch(err){
-        res.status(500).json({error: 'Failed to fetch weapons', details: err.message})
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
     
 }
@@ -181,7 +181,7 @@ export async function getWeaponProperties(req, res) {
         }
     }
     catch(err){
-        res.status(500).json({error: 'Failed to fetch weapons', details: err.message})
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
     
 }
@@ -216,7 +216,7 @@ export async function getMastery(req, res) {
         }
     }
     catch(err){
-        res.status(500).json({error: 'Failed to fetch weapons', details: err.message})
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }   
 }
 
@@ -250,6 +250,155 @@ export async function getClass(req, res) {
         }
     }
     catch(err){
-        res.status(500).json({error: 'Failed to fetch weapons', details: err.message})
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}
+
+export async function getSpell(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('spell')
+                .select(
+                    `
+                    *,
+                    school_of_magic(school:full_name),
+                    character_class(class:full_name)
+                    `
+                )
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('spell')
+                .select(
+                    `
+                    *,
+                    school_of_magic(school:full_name),
+                    character_class(class:full_name)
+                    `
+                )
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}
+
+export async function getSchoolOfMagic(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('school_of_magic')
+                .select()
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('school_of_magic')
+                .select()
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}
+
+export async function getAlignment(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('alignment')
+                .select()
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('alignment')
+                .select()
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}
+
+export async function getLanguage(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('language')
+                .select()
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('language')
+                .select()
+                .order('full_name')
+
+            res.status(200).json(data)
+            if (error) {
+                console.log(error)
+            }
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }   
 }
