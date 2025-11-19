@@ -4,13 +4,28 @@ import { useNavigate, Link } from "react-router-dom"
 import { useAuth } from "../context/AuthContext.jsx"
 
 export default function Register() {
-    // State values
+
+    const { registerUser } = useAuth()
+    const navigate = useNavigate()
     const [ error, submitAction, isPending ] = useActionState(
         async(prevState, formData) => {
             const email = formData.get('email')
             const password = formData.get('password')
 
-            
+            const {
+                success,
+                data,
+                error: registerError
+            } = await registerUser(email, password)
+
+            if (registerError) {
+                return new Error(registerError)
+            }
+            if (success && data?.session){
+                navigate('/dashboard')
+                return null
+            }
+            return null
         }, null
     )
 
@@ -26,6 +41,10 @@ export default function Register() {
                         id="email"
                         name="email"
                         placeholder="adventurer@home.com"
+                        aria-required="true"
+                        aria-invalid={error ? 'true' : 'false'}
+                        aria-describedby={error ? 'register-error' : undefined}
+                        disabled={isPending}
                          />
                     <label htmlFor="password">Password:</label>
                     <input 
@@ -34,9 +53,24 @@ export default function Register() {
                         id="password" 
                         name="password"
                         placeholder="M@gic1zcool"
+                        aria-required="true"
+                        aria-invalid={error ? 'true' : 'false'}
+                        aria-describedby={error ? 'register-error' : undefined}
+                        disabled={isPending}
                          />
-                    <button type="submit">Create account</button>
+                    <button 
+                        type="submit"
+                        disabled={isPending}
+                        aria-busy={isPending}
+                    >
+                        Create account
+                    </button>
                 </form>
+                {error && (
+                    <div id="register-error" role="alert">
+                        {error.message}
+                    </div>
+                )}
                 <Link to="/login">
                     Already have an account?
                 </Link>
