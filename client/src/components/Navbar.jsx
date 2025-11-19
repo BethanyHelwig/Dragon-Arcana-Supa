@@ -1,10 +1,25 @@
-import React from "react"
-import { Link, NavLink } from "react-router-dom"
+import { useContext, useState } from "react"
+import { useNavigate, Link, NavLink } from "react-router-dom"
 import { ThemeContext } from "./ThemeProvider"
+import { useAuth } from "../context/AuthContext"
 
 export default function Navbar() {
 
-    const { theme, toggleTheme } = React.useContext(ThemeContext)
+    const { theme, toggleTheme } = useContext(ThemeContext)
+    const [ error, setError ] = useState(null)
+    const { signOut, session } = useAuth()
+    const navigate = useNavigate()
+
+    const handleSignOut = async (e) => {
+        e.preventDefault()
+
+        const { success, error } = await signOut()
+        if (success) {
+            navigate('/')
+        } else {
+            setError(error.message)
+        }
+    }
 
     return (
         <nav>
@@ -14,6 +29,10 @@ export default function Navbar() {
             </Link>
             <button className="hamburger" data-btn="hamburger">&#9776;</button>
             <ul className="nav-links">
+                {session && (<li>
+                    <button onClick={handleSignOut} aria-label="Sign out of your account">Sign out</button>
+                </li>
+                )}
                 <li>
                     <NavLink to="characters" className={({isActive}) => isActive ? "active-link" : null}>
                         Characters <i className="fa-solid fa-user"></i>
@@ -34,11 +53,14 @@ export default function Navbar() {
                         World of D&D <i className="fa-solid fa-book-atlas"></i>
                     </NavLink>
                 </li>
+                {session && (
                 <li>
                     <NavLink to="profile" className={({isActive}) => isActive ? "active-link" : null}>
                         Profile <i className="fa-solid fa-gear"></i>
                     </NavLink>
                 </li>
+                )}
+                
                 <li>
                     <button id="theme-toggle-btn" onClick={toggleTheme}>
                         {theme === 'light'? 

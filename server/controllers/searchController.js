@@ -1,6 +1,4 @@
-import { createClient } from "@supabase/supabase-js"
-
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLISHABLE_KEY)
+import supabase from '../supabase-client.js'
 
 // gets all ability scores
 export async function getAbilityScores(req, res) {
@@ -19,10 +17,11 @@ export async function getAbilityScores(req, res) {
                 )
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
-            res.status(200).json(data)
+
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
         // GET all ability scores
         else {
@@ -35,10 +34,11 @@ export async function getAbilityScores(req, res) {
                     `,
                 )
                 .order('full_name')
-            res.status(200).json(data)
+
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -51,7 +51,7 @@ export async function getSkills(req, res) {
     const { term } = req.query
 
     try{
-        // search for specific skill
+        // search for specific
         if (term){
             const { data, error } = await supabase
                 .from('skill')
@@ -63,12 +63,13 @@ export async function getSkills(req, res) {
                 )
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
-            res.status(200).json(data)
+
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
-        // GET all skils
+        // GET all
         else {
             const { data, error } = await supabase
                 .from('skill')
@@ -79,10 +80,11 @@ export async function getSkills(req, res) {
                     `,
                 )
                 .order('full_name')
-            res.status(200).json(data)
+
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -114,13 +116,10 @@ export async function getWeapons(req, res) {
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
-            else {
-                console.log(data)
-            }
+            res.status(200).json(data)
         }
         // GET all weapons
         else {
@@ -139,10 +138,10 @@ export async function getWeapons(req, res) {
                     `
                 )
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -163,10 +162,10 @@ export async function getWeaponProperties(req, res) {
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
         // GET all weapons
         else {
@@ -174,10 +173,10 @@ export async function getWeaponProperties(req, res) {
                 .from('weapon_property')
                 .select()
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -198,10 +197,10 @@ export async function getMastery(req, res) {
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
         // GET all mastery
         else {
@@ -209,10 +208,10 @@ export async function getMastery(req, res) {
                 .from('weapon_mastery_property')
                 .select()
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -232,10 +231,10 @@ export async function getClass(req, res) {
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
         // GET all instances
         else {
@@ -243,10 +242,10 @@ export async function getClass(req, res) {
                 .from('character_class')
                 .select()
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -272,10 +271,10 @@ export async function getSpell(req, res) {
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
         // GET all instances
         else {
@@ -289,10 +288,10 @@ export async function getSpell(req, res) {
                     `
                 )
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -312,10 +311,10 @@ export async function getSchoolOfMagic(req, res) {
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
         // GET all instances
         else {
@@ -323,10 +322,10 @@ export async function getSchoolOfMagic(req, res) {
                 .from('school_of_magic')
                 .select()
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -346,10 +345,10 @@ export async function getAlignment(req, res) {
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
         // GET all instances
         else {
@@ -357,10 +356,10 @@ export async function getAlignment(req, res) {
                 .from('alignment')
                 .select()
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
@@ -380,10 +379,10 @@ export async function getLanguage(req, res) {
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
         // GET all instances
         else {
@@ -392,10 +391,10 @@ export async function getLanguage(req, res) {
                 .select()
                 .order('full_name')
 
-            res.status(200).json(data)
             if (error) {
-                console.log(error)
+                throw error
             }
+            res.status(200).json(data)
         }
     }
     catch(err){
