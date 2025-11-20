@@ -5,9 +5,11 @@ import { useAuth } from "../context/AuthContext"
 
 export default function Navbar() {
 
+    // state values
     const { theme, toggleTheme } = useContext(ThemeContext)
     const [ error, setError ] = useState(null)
     const { signOut, session } = useAuth()
+
     const navigate = useNavigate()
 
     const handleSignOut = async (e) => {
@@ -21,6 +23,23 @@ export default function Navbar() {
         }
     }
 
+    const profileContainer = () => {
+        return (
+            <li>
+                <div id="profile-link-div">
+                    {session.user.user_metadata.username}
+                    <div id="profile-dropdown-menu">
+                        <NavLink to="profile" className={({isActive}) => isActive ? "active-link" : null}>
+                            View Profile <i className="fa-solid fa-gear"></i>
+                        </NavLink>
+                        <button onClick={handleSignOut} aria-label="Sign out of your account">Sign out</button>
+                    </div>
+                </div>
+            </li>
+        )
+    }
+
+
     return (
         <nav>
             <Link to="/" className="logo-link">
@@ -29,10 +48,6 @@ export default function Navbar() {
             </Link>
             <button className="hamburger" data-btn="hamburger">&#9776;</button>
             <ul className="nav-links">
-                {session && (<li>
-                    <button onClick={handleSignOut} aria-label="Sign out of your account">Sign out</button>
-                </li>
-                )}
                 <li>
                     <NavLink to="characters" className={({isActive}) => isActive ? "active-link" : null}>
                         Characters <i className="fa-solid fa-user"></i>
@@ -54,12 +69,13 @@ export default function Navbar() {
                     </NavLink>
                 </li>
                 {session && (
-                <li>
-                    <NavLink to="profile" className={({isActive}) => isActive ? "active-link" : null}>
-                        Profile <i className="fa-solid fa-gear"></i>
-                    </NavLink>
-                </li>
+                    <li>
+                        <NavLink to="dashboard" className={({isActive}) => isActive ? "active-link" : null}>
+                            Dashboard
+                        </NavLink>
+                    </li>
                 )}
+                {session && profileContainer()}
                 
                 <li>
                     <button id="theme-toggle-btn" onClick={toggleTheme}>

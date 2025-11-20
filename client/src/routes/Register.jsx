@@ -5,18 +5,19 @@ import { useAuth } from "../context/AuthContext.jsx"
 
 export default function Register() {
 
-    const { registerUser } = useAuth()
+    const { registerUser, signInUser } = useAuth()
     const navigate = useNavigate()
     const [ error, submitAction, isPending ] = useActionState(
         async(prevState, formData) => {
             const email = formData.get('email')
             const password = formData.get('password')
+            const username = formData.get('username')
 
             const {
                 success,
                 data,
                 error: registerError
-            } = await registerUser(email, password)
+            } = await registerUser(email, password, username)
 
             if (registerError) {
                 return new Error(registerError)
@@ -34,6 +35,19 @@ export default function Register() {
             <section id="register-container">
                 <h2>New here? Welcome, adventurer!</h2>
                 <form id="register-form" action={submitAction}>
+                    <label htmlFor="username">Username:</label>
+                    <input 
+                        type="text" 
+                        required
+                        id="username"
+                        name="username"
+                        placeholder="MooTheMighty"
+                        maxlength="40"
+                        aria-required="true"
+                        aria-invalid={error ? 'true' : 'false'}
+                        aria-describedby={error ? 'register-error' : undefined}
+                        disabled={isPending}
+                         />
                     <label htmlFor="email">Email:</label>
                     <input 
                         type="email" 
@@ -63,7 +77,7 @@ export default function Register() {
                         disabled={isPending}
                         aria-busy={isPending}
                     >
-                        Create account
+                        {isPending ? "Registering... " : "Create account"}
                     </button>
                 </form>
                 {error && (
