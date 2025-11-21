@@ -44,6 +44,8 @@
     box-sizing: border-box;
 }
 
+/* -- LAYOUT -- */
+
 body {
     display: flex;
     flex-direction: column;
@@ -125,6 +127,17 @@ footer a {
     padding: 0;
 }
 
+.submenu {
+    list-style: none;
+    display: flex;
+    padding: 0.75em 1.25em 0;
+    margin: 0;
+}
+
+.submenu * {
+   padding: 0.75em 1.25em;
+}
+
 #register-container,
 #login-container {
     display: flex;
@@ -145,6 +158,14 @@ footer a {
 #login-container button {
     align-self: center;
     width: 250px;
+}
+
+#characters-main-page div {
+    padding: 1em;
+}
+
+#characters-main-page div h2 {
+    margin: 0 0 1em;
 }
 
 main {
@@ -333,6 +354,13 @@ a:active {
     border-bottom: 2px solid var(--link-hover-color);
     color: var(--link-hover-color);
     border-radius: 5px;
+}
+
+.submenu-active-link {
+    background-color: var(--secondary-accent-color);
+    color: black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .logo-link {

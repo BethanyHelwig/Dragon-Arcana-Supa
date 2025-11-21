@@ -1,10 +1,15 @@
+/* Utility */
+import ProtectedRoute from './components/ProtectedRoute'
+import { AuthContextProvider } from './context/AuthContext'
 import { createContext, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Navbar from "/src/components/Navbar"
-import Login from './routes/Login'
+/* Components */
 import Layout from "/src/components/Layout"
 import ThemeProvider from './components/ThemeProvider'
+
+/* Routes */
+import Login from './routes/Login'
 import Search from "./routes/Search"
 import Dashboard from "./routes/Dashboard"
 import Profile from "./routes/Profile"
@@ -12,11 +17,16 @@ import Splash from "./routes/Splash"
 import Characters from "./routes/Characters"
 import Friends from "./routes/Friends"
 import Games from "./routes/Games"
-import NotFound from "./routes/NotFound"
 import Register from "./routes/Register"
-import RootRedirect from './routes/RootRedirect'
-import ProtectedRoute from './components/ProtectedRoute'
-import { AuthContextProvider } from './context/AuthContext'
+import NotFound from "./routes/NotFound"
+
+/* Character Creation and sub routes */
+import CharacterCreation from "./routes/CharacterCreation"
+import Base from "./routes/character/Base"
+import Skills from "./routes/character/Skills"
+import Background from "./routes/character/Background"
+import About from "./routes/character/About"
+import AbilityScores from "./routes/character/AbilityScores"
 
 function App() {
 
@@ -32,6 +42,13 @@ function App() {
 								<Route path="dashboard" element={<Dashboard />} />
 								<Route path="profile" element={<Profile />} />
 								<Route path="characters" element={<Characters />} />
+								<Route path="character_creation" element={<CharacterCreation />} >
+									<Route index element={<Base />} />
+									<Route path="skills" element={<Skills />} />
+									<Route path="ability_scores" element={<AbilityScores />} />
+									<Route path="background" element={<Background />} />
+									<Route path="about" element={<About />} />
+								</Route>
 								<Route path="friends" element={<Friends />} />
 								<Route path="games" element={<Games />} />
 							</Route>
