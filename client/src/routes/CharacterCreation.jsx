@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
+import { CreationContextProvider } from '../context/CreationContext'
 
 export default function CharacterCreation(){
 
@@ -14,9 +15,12 @@ export default function CharacterCreation(){
                     <NavLink to="background" className={({isActive}) => isActive ? "submenu-active-link" : null}>Background</NavLink>
                     <NavLink to="about" className={({isActive}) => isActive ? "submenu-active-link" : null}>About</NavLink>
                 </div>
-                <div className="gradient-border">
-                    <Outlet />
+                <div className="gradient-border creation-outlet-div">
+                    <CreationContextProvider>
+                        <Outlet />
+                    </CreationContextProvider>
                 </div>
+                <button>Submit</button>
             </section>
         </main>
     )
