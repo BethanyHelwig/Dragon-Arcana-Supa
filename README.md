@@ -4,7 +4,7 @@ An online gaming portal to play Dungeons & Dragons, save characters, and run gam
 
 ## Features (IN PROGRESS)
 
-* Search for Dungeons & Dragons information using the D&D 5e API
+* Search for Dungeons & Dragons information using site's own database
 * Build and save character sheets
 * Create and run games/campaigns with friends
     * Interactive map with movable tokens
