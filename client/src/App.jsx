@@ -23,6 +23,7 @@ import NotFound from "./routes/NotFound"
 /* Character Creation and sub routes */
 import CharacterCreation from "./routes/CharacterCreation"
 import Base from "./routes/character/Base"
+import Species from "./routes/character/Species"
 import Skills from "./routes/character/Skills"
 import Background from "./routes/character/Background"
 import About from "./routes/character/About"
@@ -48,6 +49,7 @@ function App() {
 									<Route path="ability_scores" element={<AbilityScores />} />
 									<Route path="background" element={<Background />} />
 									<Route path="about" element={<About />} />
+									<Route path="species" element={<Species />} />
 								</Route>
 								<Route path="friends" element={<Friends />} />
 								<Route path="games" element={<Games />} />

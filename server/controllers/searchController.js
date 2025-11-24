@@ -241,6 +241,7 @@ export async function getClass(req, res) {
             const { data, error } = await supabase
                 .from('character_class')
                 .select()
+                .order('full_name')
 
             if (error) {
                 throw error

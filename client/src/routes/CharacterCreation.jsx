@@ -10,6 +10,7 @@ export default function CharacterCreation(){
             <section>
                 <div className="submenu">
                     <NavLink to="." end className={({isActive}) => isActive ? "submenu-active-link" : null}>Base</NavLink>
+                    <NavLink to="species" className={({isActive}) => isActive ? "submenu-active-link" : null}>Species</NavLink>
                     <NavLink to="ability_scores" className={({isActive}) => isActive ? "submenu-active-link" : null}>Ability Scores</NavLink>
                     <NavLink to="skills" className={({isActive}) => isActive ? "submenu-active-link" : null}>Skills</NavLink>
                     <NavLink to="background" className={({isActive}) => isActive ? "submenu-active-link" : null}>Background</NavLink>

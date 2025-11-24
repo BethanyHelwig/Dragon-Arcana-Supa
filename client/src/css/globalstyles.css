@@ -178,9 +178,23 @@ footer a {
 
 .class-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     flex-wrap: wrap;
     margin-bottom: 1em;
+}
+
+.class-info {
+    min-width: 250px;
+    border-left: 1px solid var(--gray-secondary-color);
+    padding-left: 1.5em;
+    text-align: left;
+}
+
+.class-info p {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    padding-left: 1em;
+    text-indent: -1em;
 }
 
 #register-container,

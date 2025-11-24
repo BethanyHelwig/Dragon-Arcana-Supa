@@ -5,6 +5,16 @@ const CreationContext = createContext()
 export const CreationContextProvider = ({ children }) => {
 
     const [ character, setCharacter ] = useState({})
+    const [ classList, setClasses ] = useState([])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/character_class')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setClasses(data)
+            })
+    }, [])
 
     useEffect(()=> {
         console.log(character)
@@ -16,7 +26,7 @@ export const CreationContextProvider = ({ children }) => {
     }
 
     return (
-        <CreationContext.Provider value={{ character, updateCharacter }}>
+        <CreationContext.Provider value={{ character, updateCharacter, classList }}>
             {children}
         </CreationContext.Provider>
     )
