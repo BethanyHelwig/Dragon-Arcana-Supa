@@ -7,6 +7,7 @@ import Class from "./SearchResults/Class"
 import Language from "./SearchResults/Language"
 import SchoolOfMagic from "./SearchResults/SchoolOfMagic"
 import Skill from "./SearchResults/Skill"
+import Species from "./SearchResults/Species"
 import Spell from "./SearchResults/Spell"
 import Weapon from "./SearchResults/Weapon"
 import WeaponProperty from "./SearchResults/WeaponProperty"
@@ -50,6 +51,8 @@ export default function SearchResult(props) {
                 return <Class details={data} />
             case "spell":
                 return <Spell details={data} />
+            case "species":
+                return <Species details={data} />
             default:
                 return (<h4>Loading...</h4>)
         }  

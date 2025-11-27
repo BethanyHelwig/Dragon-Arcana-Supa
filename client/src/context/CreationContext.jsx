@@ -6,6 +6,7 @@ export const CreationContextProvider = ({ children }) => {
 
     const [ character, setCharacter ] = useState({})
     const [ classList, setClasses ] = useState([])
+    const [ speciesList, setSpecies ] = useState([])
 
     useEffect(() => {
         fetch('http://127.0.0.1:8080/api/search/character_class')
@@ -13,6 +14,15 @@ export const CreationContextProvider = ({ children }) => {
             .then(data => {
                 console.log(data)
                 setClasses(data)
+            })
+    }, [])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/species')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setSpecies(data)
             })
     }, [])
 
@@ -26,7 +36,7 @@ export const CreationContextProvider = ({ children }) => {
     }
 
     return (
-        <CreationContext.Provider value={{ character, updateCharacter, classList }}>
+        <CreationContext.Provider value={{ character, updateCharacter, classList, speciesList }}>
             {children}
         </CreationContext.Provider>
     )

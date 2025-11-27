@@ -402,3 +402,38 @@ export async function getLanguage(req, res) {
         res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }   
 }
+
+export async function getSpecies(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('species')
+                .select()
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('species')
+                .select()
+                .order('full_name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}

@@ -9,7 +9,8 @@ import {
     getSpell,
     getSchoolOfMagic,
     getAlignment,
-    getLanguage
+    getLanguage,
+    getSpecies
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
@@ -24,3 +25,4 @@ searchRouter.get('/spell', getSpell)
 searchRouter.get('/weapon', getWeapons)
 searchRouter.get('/weapon_property', getWeaponProperties)
 searchRouter.get('/weapon_mastery_property', getMastery)
+searchRouter.get('/species', getSpecies)

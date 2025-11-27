@@ -27,6 +27,7 @@ export default function Search() {
         // {value: "rules", name: "Rules"},
         {value: "school_of_magic", name: "Schools of Magic"},
         {value: "skill", name: "Skills"},
+        {value: "species", name: "Species"},
         {value: "spell", name: "Spells"},
         // {value: "subclasses", name: "Subclasses"},
         // {value: "subraces", name: "Subraces"},
