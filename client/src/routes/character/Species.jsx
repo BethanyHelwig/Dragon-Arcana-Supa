@@ -39,8 +39,8 @@ export default function Species(){
         if (el.includes('<strong>')){
             const startIndex = el.search('<strong>') + 8
             const endIndex = el.search('</strong>')
-            console.log(`Start index is: ${startIndex}`)
-            console.log(el.substring(startIndex, endIndex))
+            // console.log(`Start index is: ${startIndex}`)
+            // console.log(el.substring(startIndex, endIndex))
 
             return <p><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</p>
         }

@@ -137,6 +137,7 @@ export async function getWeapons(req, res) {
                     weapon_mastery:full_name)
                     `
                 )
+                .order('full_name')
 
             if (error) {
                 throw error
@@ -172,6 +173,7 @@ export async function getWeaponProperties(req, res) {
             const { data, error } = await supabase
                 .from('weapon_property')
                 .select()
+                .order('full_name')
 
             if (error) {
                 throw error
@@ -207,6 +209,7 @@ export async function getMastery(req, res) {
             const { data, error } = await supabase
                 .from('weapon_mastery_property')
                 .select()
+                .order('full_name')
 
             if (error) {
                 throw error
@@ -288,6 +291,7 @@ export async function getSpell(req, res) {
                     character_class(class:full_name)
                     `
                 )
+                .order('full_name')
 
             if (error) {
                 throw error
@@ -322,6 +326,7 @@ export async function getSchoolOfMagic(req, res) {
             const { data, error } = await supabase
                 .from('school_of_magic')
                 .select()
+                .order('full_name')
 
             if (error) {
                 throw error
@@ -356,6 +361,7 @@ export async function getAlignment(req, res) {
             const { data, error } = await supabase
                 .from('alignment')
                 .select()
+                .order('full_name')
 
             if (error) {
                 throw error
@@ -424,6 +430,42 @@ export async function getSpecies(req, res) {
         else {
             const { data, error } = await supabase
                 .from('species')
+                .select()
+                .order('full_name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}
+
+
+export async function getLifestyle(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('lifestyle')
+                .select()
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('lifestyle')
                 .select()
                 .order('full_name')
 

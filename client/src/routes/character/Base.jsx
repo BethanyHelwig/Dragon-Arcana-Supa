@@ -33,7 +33,6 @@ export default function Base(){
 
         const chosenClass = classList.filter(element => element.full_name === character.class)
         const { 
-            full_name, 
             likes, 
             complexity, 
             primary_ability, 
@@ -69,8 +68,6 @@ export default function Base(){
             <h2>Base info</h2>
             <div className="flex-row">
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="name">Character Name:</label>
-                    <input type="text" name="name" onChange={handleSubmit} value={character.name}></input>
                     <h3><label htmlFor="class">Choose your class:</label></h3>
                     <fieldset name="class" className="class-grid">
                         {classesFormatted}

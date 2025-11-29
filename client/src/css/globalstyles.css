@@ -16,8 +16,10 @@
 
     --link-hover-color: #aef6d3;
     --header-footer-overlay: none;
+    --fieldset-background-color: #373538;
 
     --gray-secondary-color: #424242;
+    --input-placeholder-color: #7e7e7e;
     --pale-blue-accent-color: #bbe1ff;
     --green-accent-color: #aef6d3;
     --dark-green-accent-color: #496F5D;
@@ -34,6 +36,7 @@
 
     --button-hover-background: #fcf9d4;
     --button-hover-text: #880000;
+    --fieldset-background-color: rgb(218, 204, 179);
     
     --link-hover-color: #006e5c;
     --header-footer-overlay: rgba(209, 198, 179, 0.6);
@@ -342,6 +345,15 @@ main {
     margin: 0;
 }
 
+.selection-detail {
+    background-color: var(--gray-secondary-color);
+    color: whitesmoke;
+    padding: 1em;
+    margin: 0 15px;
+    font-size: 0.75rem;
+    font-family: "Roboto", sans-serif;
+}
+
 /* -- INTERACTIVE COMPONENTS -- */
 
 button,
@@ -444,6 +456,13 @@ fieldset {
     gap: 0.5em;
 }
 
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="search"]::placeholder {
+    color: var(--input-placeholder-color);
+}
+
 select,
 input[type="text"],
 input[type="email"],
@@ -490,6 +509,31 @@ input:focus {
     margin-bottom: 1em;
 }
 
+.tooltip {
+    cursor: pointer;
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background-color: var(--gray-secondary-color);
+    color: whitesmoke;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.75rem;
+    padding: 8px;
+    width: 250px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
 /* -- TYPOGRAPHY -- */
 
 #hero-title,
@@ -523,6 +567,18 @@ input:focus {
 
 #profile-content-div p {
     margin: 0 0 10px;
+}
+
+legend {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--background-primary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--dark-secondary-accent-color);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
 }
 
 /* -- IMAGES -- */
@@ -562,10 +618,31 @@ input:focus {
 .flex-column {
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
 }
 
 .flex-row {
     display: flex;
     flex-direction: row;
     gap: 1em;
+}
+
+.fieldset-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fieldset-background-color);
+    border: 1px solid var(--dark-secondary-accent-color);
+    border-radius: 5px;
+    padding: 1em;
+    margin-bottom: 0.5em;
+}
+
+.fieldset-container-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: var(--fieldset-background-color);
+    border: 1px solid var(--dark-secondary-accent-color);
+    border-radius: 5px;
+    padding: 1em;
+    margin-bottom: 0.5em;
 }
