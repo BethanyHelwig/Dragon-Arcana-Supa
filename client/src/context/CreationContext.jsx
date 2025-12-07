@@ -9,6 +9,7 @@ export const CreationContextProvider = ({ children }) => {
     const [ speciesList, setSpecies ] = useState([])
     const [ alignments, setAlignments ] = useState([])
     const [ lifestyles, setLifestyles ] = useState([])
+    const [ abilityScores, setAbilityScores ] = useState([])
 
     useEffect(() => {
         fetch('http://127.0.0.1:8080/api/search/character_class')
@@ -46,6 +47,15 @@ export const CreationContextProvider = ({ children }) => {
             })
     }, [])
 
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/ability_score')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setAbilityScores(data)
+            })
+    }, [])
+
     useEffect(()=> {
         console.log(character)
     }, [character])
@@ -56,7 +66,16 @@ export const CreationContextProvider = ({ children }) => {
     }
 
     return (
-        <CreationContext.Provider value={{ character, updateCharacter, classList, speciesList, alignments, lifestyles }}>
+        <CreationContext.Provider 
+            value={{ 
+                character, 
+                updateCharacter, 
+                classList, 
+                speciesList, 
+                alignments, 
+                lifestyles, 
+                abilityScores 
+                }}>
             {children}
         </CreationContext.Provider>
     )

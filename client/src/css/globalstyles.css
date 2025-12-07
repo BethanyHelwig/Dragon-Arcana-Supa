@@ -16,7 +16,8 @@
 
     --link-hover-color: #aef6d3;
     --header-footer-overlay: none;
-    --fieldset-background-color: #373538;
+    --fieldset-background-color: #2d272e;
+    --soft-overlay: rgba(255, 255, 255, 0.05);
 
     --gray-secondary-color: #424242;
     --input-placeholder-color: #7e7e7e;
@@ -37,6 +38,7 @@
     --button-hover-background: #fcf9d4;
     --button-hover-text: #880000;
     --fieldset-background-color: rgb(218, 204, 179);
+    --soft-overlay: rgba(255, 255, 255, 0.1);
     
     --link-hover-color: #006e5c;
     --header-footer-overlay: rgba(209, 198, 179, 0.6);
@@ -90,6 +92,7 @@ nav {
     top: 0;
     left: 0;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 footer {
@@ -354,6 +357,82 @@ main {
     font-family: "Roboto", sans-serif;
 }
 
+.ability-score-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+    gap: 1rem;
+}
+
+.ability-score-selection-div {
+    padding: 5px 10px;
+}
+
+.ability-score-container {
+    border: 1px solid var(--gray-secondary-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 10px 20px;
+    background-color: var(--soft-overlay);
+    
+}
+
+.ability-score-container h3 {
+    margin: 0;
+}
+
+.ability-score-header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--gray-secondary-color);
+    padding-bottom: 3px;
+}
+
+.ability-score-header-container .tooltip {
+    text-align: left;
+}
+
+.ability-score-display {
+    background-color: var(--secondary-accent-color);
+    width: 90px;
+    height: 90px;
+    font-weight: bold;
+    color: black;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8px;
+    position: relative;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.ability-score-display h3 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.ability-score-display span {
+    font-size: 1rem;
+}
+
+.ability-score-number {
+    background-color: var(--secondary-accent-color);
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    bottom: -10px;
+    margin: 0 0;
+    width: 40px;
+    padding: 2px;
+}
+
 /* -- INTERACTIVE COMPONENTS -- */
 
 button,
@@ -512,6 +591,7 @@ input:focus {
 .tooltip {
     cursor: pointer;
     position: relative;
+    color: var(--dark-primary-accent-color);
 }
 
 .tooltip .tooltiptext {
@@ -630,7 +710,7 @@ legend {
 .fieldset-container {
     display: flex;
     flex-direction: column;
-    background-color: var(--fieldset-background-color);
+    background-color: var(--soft-overlay);
     border: 1px solid var(--dark-secondary-accent-color);
     border-radius: 5px;
     padding: 1em;
@@ -640,7 +720,7 @@ legend {
 .fieldset-container-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    background-color: var(--fieldset-background-color);
+    background-color: var(--soft-overlay);
     border: 1px solid var(--dark-secondary-accent-color);
     border-radius: 5px;
     padding: 1em;

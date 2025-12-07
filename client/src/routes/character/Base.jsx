@@ -65,7 +65,7 @@ export default function Base(){
 
     return (
         <>
-            <h2>Base info</h2>
+            <h2>Class Selection</h2>
             <div className="flex-row">
                 <form onSubmit={handleSubmit}>
                     <h3><label htmlFor="class">Choose your class:</label></h3>
