@@ -10,6 +10,8 @@ export const CreationContextProvider = ({ children }) => {
     const [ alignments, setAlignments ] = useState([])
     const [ lifestyles, setLifestyles ] = useState([])
     const [ abilityScores, setAbilityScores ] = useState([])
+    const [ scoreGenerationMethod, setScoreGenerationMethod ] = useState("Standard Array")
+    const [ generatedScores, setGeneratedScores ] = useState([])
 
     useEffect(() => {
         fetch('http://127.0.0.1:8080/api/search/character_class')
@@ -57,6 +59,15 @@ export const CreationContextProvider = ({ children }) => {
     }, [])
 
     useEffect(()=> {
+        updateCharacter("charisma", 8)
+        updateCharacter("constitution", 8)
+        updateCharacter("dexterity", 8)
+        updateCharacter("intelligence", 8)
+        updateCharacter("strength", 8)
+        updateCharacter("wisdom", 8)
+    }, [])
+
+    useEffect(()=> {
         console.log(character)
     }, [character])
 
@@ -74,8 +85,12 @@ export const CreationContextProvider = ({ children }) => {
                 speciesList, 
                 alignments, 
                 lifestyles, 
-                abilityScores 
-                }}>
+                abilityScores,
+                scoreGenerationMethod,
+                setScoreGenerationMethod,
+                generatedScores,
+                setGeneratedScores 
+            }}>
             {children}
         </CreationContext.Provider>
     )

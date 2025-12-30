@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
 
-export default function Base(){
+export default function Class(){
 
     const { character, updateCharacter, classList } = useContext(CreationContext)
 
@@ -77,7 +77,7 @@ export default function Base(){
                 {character.class ? classInfo()
                     : (<>
                         <h3>Class Information</h3>
-                        <p>Choose a class to see information pertaining to it.</p>
+                        <p>Choose a class to see its details.</p>
                     </>
                 )}
             </div>

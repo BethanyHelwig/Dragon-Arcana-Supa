@@ -156,6 +156,12 @@ footer a {
     height: 100px;
 }
 
+.radio-score-selection {
+    display: flex;
+    position: relative;
+}
+
+.radio-score-selection input[type="radio"],
 .radio-class-selection input[type="radio"] {
     opacity: 0; 
     position: absolute;
@@ -163,6 +169,7 @@ footer a {
     left: 0;
 }
 
+.radio-score-selection label,
 .radio-class-selection label {
     display: flex;
     font-size: 1.1rem;
@@ -176,11 +183,18 @@ footer a {
     justify-content: center;
 }
 
+.radio-score-selection input[type="radio"]:checked + label,
 .radio-class-selection input[type="radio"]:checked + label {
     background-color: var(--secondary-accent-color);
     border: 1px solid whitesmoke;
     color: #211E23;
     transition: background-color 0.4s ease-in-out;
+}
+
+.score-method-container {
+    margin-top: 1em;
+    padding: 1em;
+    font-family: "Roboto", sans-serif;
 }
 
 .class-grid {
@@ -358,11 +372,14 @@ main {
 }
 
 .ability-score-grid {
+    min-width: 350px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     flex-wrap: wrap;
     margin-bottom: 1em;
     gap: 1rem;
+    border-left: 1px solid var(--gray-secondary-color);
+    padding-left: 1.5em;
 }
 
 .ability-score-selection-div {
