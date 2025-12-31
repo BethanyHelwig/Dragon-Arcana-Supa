@@ -11,7 +11,7 @@ export const CreationContextProvider = ({ children }) => {
     const [ lifestyles, setLifestyles ] = useState([])
     const [ abilityScores, setAbilityScores ] = useState([])
     const [ scoreGenerationMethod, setScoreGenerationMethod ] = useState("Standard Array")
-    const [ generatedScores, setGeneratedScores ] = useState([])
+    const [ generatedScores, setGeneratedScores ] = useState([15, 14, 13, 12, 10, 8])
 
     useEffect(() => {
         fetch('http://127.0.0.1:8080/api/search/character_class')
@@ -59,12 +59,7 @@ export const CreationContextProvider = ({ children }) => {
     }, [])
 
     useEffect(()=> {
-        updateCharacter("charisma", 8)
-        updateCharacter("constitution", 8)
-        updateCharacter("dexterity", 8)
-        updateCharacter("intelligence", 8)
-        updateCharacter("strength", 8)
-        updateCharacter("wisdom", 8)
+        resetAbilityScores()
     }, [])
 
     useEffect(()=> {
@@ -74,6 +69,15 @@ export const CreationContextProvider = ({ children }) => {
     function updateCharacter(key, value) {
         console.log("update character called")
         setCharacter(prev => ({...prev, [key]: value}))
+    }
+
+    function resetAbilityScores(){
+        updateCharacter("charisma", 8)
+        updateCharacter("constitution", 8)
+        updateCharacter("dexterity", 8)
+        updateCharacter("intelligence", 8)
+        updateCharacter("strength", 8)
+        updateCharacter("wisdom", 8)
     }
 
     return (
@@ -89,7 +93,8 @@ export const CreationContextProvider = ({ children }) => {
                 scoreGenerationMethod,
                 setScoreGenerationMethod,
                 generatedScores,
-                setGeneratedScores 
+                setGeneratedScores,
+                resetAbilityScores
             }}>
             {children}
         </CreationContext.Provider>

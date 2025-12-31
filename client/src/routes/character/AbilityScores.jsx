@@ -9,8 +9,37 @@ export default function AbilityScores(){
         updateCharacter, 
         abilityScores, 
         scoreGenerationMethod, 
-        setScoreGenerationMethod 
+        setScoreGenerationMethod,
+        resetAbilityScores,
+        generatedScores,
+        setGeneratedScores
     } = useContext(CreationContext)
+
+    const standardArrayBlock = 
+        <div>
+            <p>The Standard Array method uses a set of scores for you to choose from. Use the following six scores for your abilities: 15, 14, 13, 12, 10, 8.</p>
+        </div>
+
+    const randomGenerationBlock =
+        <div>
+            <p>In the Random Generation method, for each score you roll four d6s, drop the lowest roll, and total the rest.</p>
+            <h3>Roll to generate scores:</h3>
+            <button><span><i className="fa-solid fa-dice"></i> Roll!</span></button>
+        </div>
+
+    const pointCostBlock = 
+            <div>
+                <p>The Point Cost method gives you 27 points which you allocate to your chosen abilities. You cannot raise a score above 20.</p>
+                <h3>Points remaining:</h3>
+                <strong>27</strong>
+            </div>
+    
+    const arrayOptions = 
+        <>
+            <div className="flex-row">
+
+            </div>
+        </>
 
     const abilityScoreElements = abilityScores.map(el => {
 
@@ -24,9 +53,11 @@ export default function AbilityScores(){
                         <span className="tooltiptext">{description}</span>
                     </span>
                 </div>
+
                 <div className="ability-score-selection-div">
-                    <span></span>
+                    {arrayOptions}
                 </div>
+
                 <div className="ability-score-display">
                     <div className="ability-score-modifier">
                         <h3>{Math.floor((character[full_name.toLowerCase()] - 10) / 2)}</h3>
@@ -44,19 +75,13 @@ export default function AbilityScores(){
         updateCharacter(e.target.name, e.target.value)
     }
 
-    function methodDescription(){
-        switch (scoreGenerationMethod) {
-            case "Standard Array":
-                return "The Standard Array method uses a set of scores for you to choose from. Use the following six scores for your abilities: 15, 14, 13, 12, 10, 8.";
-            case "Random Generation":
-                return "In the Random Generation method, for each score you roll four d6s, drop the lowest roll, and total the rest.";
-            case "Point Cost":
-                return "The Point Cost method gives you 27 points which you allocate to your chosen abilities. You cannot raise a score above 20.";
-        }
-    }
-
     function changeScoreMethod(e){
         setScoreGenerationMethod(e.target.value)
+        resetAbilityScores()
+    }
+
+    function setStandardArrayScores(){
+        setGeneratedScores([15, 14, 13, 12, 10, 8])
     }
 
     return (
@@ -101,9 +126,10 @@ export default function AbilityScores(){
                         </div>
                     </form>
                     <div className="score-method-container">
-                        {methodDescription()}
-                        <p>generation here</p>
-                        {}
+                        {scoreGenerationMethod === "Standard Array" && standardArrayBlock}
+                        {scoreGenerationMethod === "Random Generation" && randomGenerationBlock}
+                        {scoreGenerationMethod === "Point Cost" && pointCostBlock}
+                        <button className="btn-alt" onClick={resetAbilityScores}>Reset scores</button> 
                     </div>
                 </div>
                 <div className="ability-score-grid">
