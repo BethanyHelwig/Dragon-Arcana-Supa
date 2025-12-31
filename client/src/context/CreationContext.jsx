@@ -11,7 +11,14 @@ export const CreationContextProvider = ({ children }) => {
     const [ lifestyles, setLifestyles ] = useState([])
     const [ abilityScores, setAbilityScores ] = useState([])
     const [ scoreGenerationMethod, setScoreGenerationMethod ] = useState("Standard Array")
-    const [ generatedScores, setGeneratedScores ] = useState([15, 14, 13, 12, 10, 8])
+    const [ generatedScores, setGeneratedScores ] = useState([
+        {id: 1, score: 15, ability: null},
+        {id: 2, score: 14, ability: null},
+        {id: 3, score: 13, ability: null},
+        {id: 4, score: 12, ability: null},
+        {id: 5, score: 10, ability: null},
+        {id: 6, score: 8, ability: null},
+    ])
 
     useEffect(() => {
         fetch('http://127.0.0.1:8080/api/search/character_class')

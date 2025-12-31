@@ -390,7 +390,35 @@ main {
 }
 
 .ability-score-selection-div {
-    padding: 5px 10px;
+    display: flex;
+    padding: 0;
+    gap: 3px;
+    margin: 4px 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.ability-score-selection-div button {
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    border-radius: 0;
+    background-color: var(--gray-secondary-color);
+    width: 30px;
+    height: 30px;
+    color: var(--secondary-accent-color);
+}
+
+.ability-score-selection-div button:disabled {
+    opacity: 0.4;
+    color: black;
+    text-decoration: line-through;
+    pointer-events: none;
+}
+
+.div-disabled button {
+    opacity: 0.4;
+    pointer-events: none;
+    color: black;
 }
 
 .ability-score-container {
