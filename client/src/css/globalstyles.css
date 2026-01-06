@@ -196,12 +196,11 @@ footer a {
     flex-direction: column;
     padding: 1em;
     font-family: "Roboto", sans-serif;
-    height: 100%;
+    height: 70%;
 }
 
 .score-method-container button {
-    align-self: bottom;
-    margin-top: 1em;
+    margin-top: auto;
 }
 
 .class-grid {
@@ -419,6 +418,38 @@ main {
     opacity: 0.4;
     pointer-events: none;
     color: black;
+}
+
+.point-cost-selection-div {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    font-family: "Roboto", sans-serif;
+}
+
+.point-cost-selection-div button {
+    padding: 0.15em 0.5em;
+    font-family: inherit;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.point-cost-selection-div span {
+    margin: auto auto;
+    padding: 0.15em 0.5em;
+    font-size: 1.25rem;
+    border: 1px solid var(--dark-primary-accent-color);
+    border-radius: 5px;
+}
+
+.points-available {
+    padding: 0.4em 0.6em;
+    font-size: 2rem;
+    font-weight: bold;
+    border: 1px solid var(--dark-primary-accent-color);
+    border-radius: 5px;
+    color: var(--dark-primary-accent-color);
+    background-color: var(--secondary-accent-color);
 }
 
 .ability-score-container {

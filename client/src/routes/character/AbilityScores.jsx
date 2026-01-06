@@ -16,6 +16,7 @@ export default function AbilityScores(){
     } = useContext(CreationContext)
 
     const [ randomGenerationResults, setRandomGenerationResults ] = useState([])
+    const [ pointsAvailable, setpointsAvailable ] = useState(27)
 
     const randomGenerationResultsElements = randomGenerationResults.map(el => {return <div><p>{el}</p></div>})
 
@@ -34,9 +35,9 @@ export default function AbilityScores(){
 
     const pointCostBlock = 
             <div>
-                <p>The Point Cost method gives you 27 points which you allocate to your chosen abilities. You cannot raise a score above 20.</p>
+                <p>The Point Cost method gives you 27 points which you allocate to your chosen abilities. <strong>You cannot raise a score above 20.</strong></p>
                 <h3>Points remaining:</h3>
-                <strong>27</strong>
+                <span className="points-available">{pointsAvailable}</span>
             </div>
 
     const scoresArrayElements = generatedScores.map(el => {
@@ -59,10 +60,19 @@ export default function AbilityScores(){
                         <span className="tooltiptext">{description}</span>
                     </span>
                 </div>
+                {scoreGenerationMethod !== "Point Cost" ? <div 
+                    className={"ability-score-selection-div" + (generatedScores.some(el => el.ability === full_name.toLowerCase()) ? " div-disabled" : "")}
+                    >
+                        {scoresArrayElements}
+                    </div>
+                    :
+                    <div className="point-cost-selection-div">
+                        <button onClick={() => updateScore(full_name, 1)} disabled={pointsAvailable > 0 ? "" : "{false}"}>+</button>
+                        <span>{getPointsUsed(full_name)}</span>
+                        <button onClick={() => updateScore(full_name, -1)}>-</button>
+                    </div>
+                }
 
-                <div className={"ability-score-selection-div" + (generatedScores.some(el => el.ability === full_name.toLowerCase()) ? " div-disabled" : "")}>
-                    {scoresArrayElements}
-                </div>
 
                 <div className="ability-score-display">
                     <div className="ability-score-modifier">
@@ -77,6 +87,33 @@ export default function AbilityScores(){
         )
     })
 
+    function updateScore(abilityName, value){
+        const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
+        const newValue = result.score + value
+        // also need to check against total points used
+        if (newValue <= 20 && newValue >= 8 && pointsAvailable >= 0){
+            setGeneratedScores(
+                prev => prev.map((el) => {
+                    if (el.id === result.id){
+                        return {...el, score: newValue}
+                    }
+                    return el
+                })
+            )
+            setpointsAvailable(prev => {
+                if (prev - value > 27){
+                    return 27
+                }
+                else if (prev - value < 0)
+                {
+                    return 0
+                }
+                else
+                    return prev - value
+            })
+        }
+    }
+
     function getScore(abilityName){
         const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
         //console.log(result)
@@ -90,9 +127,18 @@ export default function AbilityScores(){
         const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
         //console.log(result)
         if (result !== undefined) {
-            return Math.floor((result.score - 10) / 2)
+            const modifier = Math.floor((result.score - 10) / 2)
+            return `${modifier > 0 ? "+" : ""}${modifier}`
         }
         return "-"
+    }
+
+    function getPointsUsed(abilityName){
+        const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
+        if (result !== null) {
+            return result.score - 8
+        }
+        return 0
     }
 
     function handleSubmit(e){
@@ -146,13 +192,15 @@ export default function AbilityScores(){
                 break;
             case "Point Cost":
                 setGeneratedScores([
-                    {id: 1, score: 8, ability: null},
-                    {id: 2, score: 8, ability: null},
-                    {id: 3, score: 8, ability: null},
-                    {id: 4, score: 8, ability: null},
-                    {id: 5, score: 8, ability: null},
-                    {id: 6, score: 8, ability: null},
+                    {id: 1, score: 8, ability: "charisma"},
+                    {id: 2, score: 8, ability: "constitution"},
+                    {id: 3, score: 8, ability: "dexterity"},
+                    {id: 4, score: 8, ability: "intelligence"},
+                    {id: 5, score: 8, ability: "strength"},
+                    {id: 6, score: 8, ability: "wisdom"},
                 ])
+                setpointsAvailable(27)
+                break;
         }
     }
 
