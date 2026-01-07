@@ -224,6 +224,36 @@ footer a {
     text-indent: -1em;
 }
 
+.status-of-creation {
+    margin-top: auto;
+    display: flex;
+    gap: 7px;
+    align-items: start;
+    justify-content: flex-end;
+}
+
+.status-of-creation button {
+    margin: 0 0 0 25px;
+}
+
+.status-of-creation span {
+    background-color:  var(--soft-overlay);
+    padding: 0.2em 0.8em;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.status-of-creation .complete {
+    background-color: var(--dark-green-accent-color);
+    color: whitesmoke;
+}
+
+.status-of-creation .complete i {
+    color: rgb(1, 218, 1);
+}
+
 #register-container,
 #login-container {
     display: flex;

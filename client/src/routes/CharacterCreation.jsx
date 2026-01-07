@@ -1,6 +1,7 @@
-import React from 'react'
+import { useContext } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContextProvider } from '../context/CreationContext'
+import StatusOfCreation from './character/StatusOfCreation'
 
 export default function CharacterCreation(){
 
@@ -11,17 +12,17 @@ export default function CharacterCreation(){
                 <div className="submenu">
                     <NavLink to="." end className={({isActive}) => isActive ? "submenu-active-link" : null}>Class</NavLink>
                     <NavLink to="species" className={({isActive}) => isActive ? "submenu-active-link" : null}>Species</NavLink>
+                    <NavLink to="background" className={({isActive}) => isActive ? "submenu-active-link" : null}>Background</NavLink>
                     <NavLink to="ability_scores" className={({isActive}) => isActive ? "submenu-active-link" : null}>Ability Scores</NavLink>
                     <NavLink to="skills" className={({isActive}) => isActive ? "submenu-active-link" : null}>Skills</NavLink>
-                    <NavLink to="background" className={({isActive}) => isActive ? "submenu-active-link" : null}>Background</NavLink>
                     <NavLink to="about" className={({isActive}) => isActive ? "submenu-active-link" : null}>About</NavLink>
                 </div>
-                <div className="gradient-border creation-outlet-div">
                     <CreationContextProvider>
-                        <Outlet />
+                        <div className="gradient-border creation-outlet-div">
+                            <Outlet />
+                        </div>
+                        <StatusOfCreation />
                     </CreationContextProvider>
-                </div>
-                <button>Submit</button>
             </section>
         </main>
     )

@@ -150,6 +150,18 @@ export default function About(){
                         ></input>
                     </div>
                 </fieldset>
+
+                <fieldset>
+                    <legend>Personal Characteristics</legend>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Languages</legend>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Notes</legend>
+                </fieldset>
             </form>
         </>
     )
