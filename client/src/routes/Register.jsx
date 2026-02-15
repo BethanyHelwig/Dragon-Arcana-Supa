@@ -30,6 +30,8 @@ export default function Register() {
         }, null
     )
 
+    // TODO: add in error message toast when something goes wrong
+
     return(
         <main>
             <section id="register-container">

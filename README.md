@@ -16,6 +16,6 @@ An online gaming portal to play Dungeons & Dragons, save characters, and run gam
 
 ## Architecture
 
-**Frontend:** React, Javascript, HTMl, CSS
+**Frontend:** React, Javascript, HTML, CSS
 
 **Backend:** Express, Node.js, Supabase

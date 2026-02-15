@@ -4,9 +4,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --background-primary-color: #211E23;
+    --background-primary-color: #211f24;
     --text-primary-color: #e6e6e6;
-    --primary-accent-color: #aa00ff;
+    --primary-accent-color: #7216a0;
     --dark-primary-accent-color: #6f378b;
     --secondary-accent-color: #80c5ff;
     --dark-secondary-accent-color: #204a64;
@@ -276,7 +276,14 @@ footer a {
     width: 250px;
 }
 
-#characters-main-page div {
+#characters-main-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+#characters-main-page div:first-of-type {
     padding: 1em;
 }
 
@@ -773,6 +780,31 @@ legend {
     margin: 0;
 }
 
+.saved-character {
+    border: 1px solid var(--dark-secondary-accent-color);
+    border-radius: 5px;
+}
+
+.saved-character:hover {
+    background-color: var(--soft-overlay);
+    box-shadow: 0 0 5px var(--dark-secondary-accent-color);
+    cursor: pointer;
+}
+
+.saved-character-summary {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.saved-character-summary h3 {
+    margin: 0 0 10px;
+}
+
+.saved-character-summary p {
+    margin: 0 0 5px;
+}
+
 /* -- IMAGES -- */
 
 #nav-logo {
@@ -794,13 +826,47 @@ legend {
     overflow: hidden;
 }
 
+.saved-character-image {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.saved-character-image i {
+    padding: 0;
+    margin: 0;
+    font-size: 6rem;
+    color: var(--dark-primary-accent-color)
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinning-icon {
+    margin: 1em;
+    font-size: 2rem;
+    color: var(--text-primary-color);
+    /* Apply the animation */
+    animation: spin 1s linear infinite;
+    /* Ensure the rotation is around the center of the icon */
+    transform-origin: center;
+    /* Optional: display as inline-block for proper alignment */
+    display: inline-block;
+}
+
 /* -- UTILITY -- */
 
 .gradient-border {
     background: linear-gradient(var(--background-primary-color), var(--background-primary-color)) padding-box,
             linear-gradient(var(--secondary-accent-color), var(--primary-accent-color)) border-box;
     border-radius: 15px;
-    border: 4px solid transparent;
+    border: 1px solid transparent;
 }
 
 .bold {
@@ -838,4 +904,12 @@ legend {
     border-radius: 5px;
     padding: 1em;
     margin-bottom: 0.5em;
+}
+
+.width-80 {
+    width: 80%;
+}
+
+.width-100 {
+    width: 100%;
 }

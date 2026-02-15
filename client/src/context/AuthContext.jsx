@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
 
         supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session)
-            console.log('Session changed:', session)
+            //console.log('Session changed:', session)
         })
     }, [])
 

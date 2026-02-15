@@ -444,7 +444,6 @@ export async function getSpecies(req, res) {
     }   
 }
 
-
 export async function getLifestyle(req, res) {
     const { term } = req.query
 

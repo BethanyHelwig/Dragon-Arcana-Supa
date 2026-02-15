@@ -1,0 +1,21 @@
+{
+  "name": "dragon-arcana-supa",
+  "version": "1.0.0",
+  "description": "An online gaming portal to play Dungeons & Dragons, save characters, and run games.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BethanyHelwig/Dragon-Arcana-Supa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BethanyHelwig/Dragon-Arcana-Supa/issues"
+  },
+  "homepage": "https://github.com/BethanyHelwig/Dragon-Arcana-Supa#readme"
+}
