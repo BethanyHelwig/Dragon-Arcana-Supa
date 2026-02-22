@@ -4,6 +4,7 @@ import { CreationContext } from '../../context/CreationContext'
 
 export default function AbilityScores(){
 
+
     const { 
         character, 
         updateCharacter, 
@@ -48,6 +49,7 @@ export default function AbilityScores(){
         )
     })
 
+
     const abilityScoreElements = abilityScores.map(el => {
 
         const { full_name, name, description } = el
@@ -56,6 +58,7 @@ export default function AbilityScores(){
             <div key={full_name} data-key={full_name.toLowerCase()} className="ability-score-container">
                 <div className="ability-score-header-container">
                     <h3>{full_name}</h3>
+                    {/* TODO: have the tooltip adjust so it's always within the viewport and doesn't overflow */}
                     <span className="tooltip"><i className="fa-solid fa-circle-info"></i>
                         <span className="tooltiptext">{description}</span>
                     </span>
@@ -167,7 +170,9 @@ export default function AbilityScores(){
 
     function resetGeneratedScores(e){
         console.log(e.type)
+        console.log(e)
         const switchArgument = e.type === "click" ? scoreGenerationMethod : e
+
         switch (switchArgument) {
             case "Standard Array" :
                 setGeneratedScores([
@@ -205,6 +210,16 @@ export default function AbilityScores(){
     }
 
     function randomGeneration(){
+
+        setGeneratedScores([
+            {id: 1, score: 0, ability: null},
+            {id: 2, score: 0, ability: null},
+            {id: 3, score: 0, ability: null},
+            {id: 4, score: 0, ability: null},
+            {id: 5, score: 0, ability: null},
+            {id: 6, score: 0, ability: null},
+        ])
+
         let fullString = []
         for (let i = 1; i < 7; i++){
             let rollArray = []

@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
+import { useApiStore } from "../../store/useApiStore"
 
 export default function StatusOfCreation() {
 
     const { character } = useContext(CreationContext)
+    const { createCharacter } = useApiStore()
 
     const classComplete = character.class ? true : false
     const speciesComplete = character.species ? true : false
@@ -26,11 +28,14 @@ export default function StatusOfCreation() {
     function characterSubmitCheck(){
         if (classComplete && speciesComplete && abilityScoresComplete && skillsComplete && backgroundComplete && aboutComplete()) {
             console.log("Ready to submit character!")
+            
             return true;
         }
         else {
             console.log("Please complete required fields in order to submit character!")
         }
+
+        createCharacter(character)
     }
 
     return (        

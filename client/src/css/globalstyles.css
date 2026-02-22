@@ -276,7 +276,8 @@ footer a {
     width: 250px;
 }
 
-#characters-main-page {
+#characters-main-page,
+#character-sheet-main {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -552,6 +553,10 @@ main {
     padding: 2px;
 }
 
+.character-sheet {
+    padding: 1em;
+}
+
 /* -- INTERACTIVE COMPONENTS -- */
 
 button,
@@ -716,8 +721,9 @@ input:focus {
 .tooltip .tooltiptext {
     visibility: hidden;
     position: absolute;
-    left: 100%;
+    left: 50%;
     bottom: 0;
+    transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
     background-color: var(--gray-secondary-color);
@@ -731,6 +737,13 @@ input:focus {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+.character-sheet-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 80%;
 }
 
 /* -- TYPOGRAPHY -- */
@@ -783,6 +796,7 @@ legend {
 .saved-character {
     border: 1px solid var(--dark-secondary-accent-color);
     border-radius: 5px;
+    margin-bottom: 0.6em;
 }
 
 .saved-character:hover {
@@ -792,17 +806,33 @@ legend {
 }
 
 .saved-character-summary {
+    font-family: "Roboto", sans-serif;
     text-align: left;
     margin: 0;
     padding: 0;
 }
 
 .saved-character-summary h3 {
+    font-family: "Amarante", serif;
     margin: 0 0 10px;
 }
 
 .saved-character-summary p {
     margin: 0 0 5px;
+}
+
+.unselected {
+    font-style: italic;
+    opacity: 50%;
+}
+
+.fa-pen-to-square {
+    opacity: 60%;
+    padding: 0 5px;
+}
+
+.fa-pen-to-square:hover {
+    opacity: 90%;
 }
 
 /* -- IMAGES -- */

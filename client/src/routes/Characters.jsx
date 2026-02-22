@@ -14,7 +14,7 @@ export default function Characters(){
         console.log("Retreiving saved characters...")
         getSavedCharacters()
 
-        console.log(usersSavedCharacters)
+        //console.log(usersSavedCharacters)
     }, [session])
 
     return (
@@ -23,19 +23,48 @@ export default function Characters(){
             <Link to="/character_creation" className="btn-lookalike">Create new character</Link>
             <div className="gradient-border width-100">
                 <h2>Saved Characters</h2>
-                {usersSavedCharacters === null && <p>You have no saved characters yet. Create some!</p>}
-                {isSavedCharactersLoading && <i class="fa-solid fa-spinner spinning-icon"></i>}
+                {usersSavedCharacters.length < 1 && !isSavedCharactersLoading && <p>You have no saved characters yet. Create some!</p>}
+                {isSavedCharactersLoading && <i className="fa-solid fa-spinner spinning-icon"></i>}
                 {usersSavedCharacters.map((character) => (
+                    <Link to={`/characters/${character.id}`}>
                     <div className="flex-row saved-character" key={character.id}>
                         <div className="saved-character-image">
-                            <i class="fa-solid fa-circle-user"></i>
+                            <i className="fa-solid fa-circle-user"></i>
                         </div>
                         <div className="saved-character-summary">
                             <h3>{character.name}</h3>
-                            <p>Class</p>
-                            <p>Level</p>
+                            <p>
+                                <strong>Class: </strong> 
+                                {character.character_class.full_name 
+                                    ? <span> {character.character_class.full_name} </span>
+                                    : <span className="unselected">{"[unselected]"}</span>
+                                }                                
+                            </p>
+                            <p>
+                                <strong>Alignment: </strong> 
+                                {character.alignment_id 
+                                    ? <span> {character.alignment.full_name}</span>
+                                    : <span className="unselected">{"[unselected]"}</span>
+                                }
+                            </p>
+                            <p>
+                                <strong>Species: </strong> 
+                                {character.species 
+                                    ? <span> {character.species.full_name} </span>
+                                    : <span className="unselected">{"[unselected]"}</span>
+                                }
+                            </p>
+                            <p>
+                                <strong>Level: </strong> 
+                                {character.level
+                                    ? <span> {character.level} </span>
+                                    : <span className="unselected">{"[unselected]"}</span>
+                                }
+                            </p>
                         </div>
+                        
                     </div>
+                    </Link>
                 ))}
             </div>
         </main>

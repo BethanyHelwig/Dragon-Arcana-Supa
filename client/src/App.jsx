@@ -19,6 +19,7 @@ import Friends from "./routes/Friends"
 import Games from "./routes/Games"
 import Register from "./routes/Register"
 import NotFound from "./routes/NotFound"
+import CharacterSheet from "./routes/CharacterSheet"
 
 /* Character Creation and sub routes */
 import CharacterCreation from "./routes/CharacterCreation"
@@ -43,6 +44,7 @@ function App() {
 								<Route path="dashboard" element={<Dashboard />} />
 								<Route path="profile" element={<Profile />} />
 								<Route path="characters" element={<Characters />} />
+								<Route path="characters/:id" element={<CharacterSheet />} />
 								<Route path="character_creation" element={<CharacterCreation />} >
 									<Route index element={<Class />} />
 									<Route path="skills" element={<Skills />} />

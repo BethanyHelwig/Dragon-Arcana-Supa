@@ -8,7 +8,7 @@ export default function Class(){
 
     const classesFormatted = classList.map(item => {
 
-        const { full_name } = item
+        const { full_name, id } = item
 
         return (
             <div key={full_name} className="radio-class-selection">
@@ -16,8 +16,8 @@ export default function Class(){
                     type="radio"
                     name="class"
                     id={full_name}
-                    value={full_name}
-                    checked={character.class === item.full_name}
+                    value={id}
+                    checked={character.class === item.id}
                     onChange={handleSubmit}
                 />
                 <label htmlFor={full_name}>{full_name}</label>
@@ -26,12 +26,14 @@ export default function Class(){
     })
 
     function handleSubmit(e){
-        updateCharacter(e.target.name, e.target.value)
+        console.log("Target name: ", e.target.name)
+        console.log("Target value: ", e.target.value)
+        updateCharacter(e.target.name, parseInt(e.target.value))
     }
 
     function classInfo() {
 
-        const chosenClass = classList.filter(element => element.full_name === character.class)
+        const chosenClass = classList.filter(element => element.id === character.class)
         const { 
             likes, 
             complexity, 
@@ -42,13 +44,13 @@ export default function Class(){
             starting_equipment,
             tool_proficiencies,
             weapon_proficiencies,
-            armor_training
-
+            armor_training,
+            full_name
         } = chosenClass[0]
 
         return (
             <>
-                <h3 className="title-glow">{character.class}</h3>
+                <h3 className="title-glow">{full_name}</h3>
                 <p><strong>Likes:</strong> {likes}</p>
                 <p><strong>Complexity:</strong> {complexity}</p>
                 <p><strong>Primary Ability:</strong> {primary_ability}</p>
