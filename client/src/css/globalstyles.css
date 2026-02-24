@@ -835,6 +835,14 @@ legend {
     opacity: 90%;
 }
 
+.date-format {
+    /* background-color: var(--soft-overlay); */
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 80%;
+}
+
 /* -- IMAGES -- */
 
 #nav-logo {

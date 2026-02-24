@@ -33,6 +33,7 @@ export default function Characters(){
                         </div>
                         <div className="saved-character-summary">
                             <h3>{character.name}</h3>
+                            <p className="date-format">Created: {new Date(character.created_at).toLocaleDateString()}</p>
                             <p>
                                 <strong>Class: </strong> 
                                 {character.character_class.full_name 

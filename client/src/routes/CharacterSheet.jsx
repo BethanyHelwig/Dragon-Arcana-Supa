@@ -20,7 +20,7 @@ export default function CharacterSheet(){
                     <div className="character-sheet-header">
                         <h1 className="title-glow">{selectedCharacter[0].name}</h1><i className="fa-solid fa-pen-to-square"></i> 
                     </div>
-                    <h2>{id}</h2>
+                    <h2>{selectedCharacter[0].character_class.full_name}</h2>
                 </div>
             </>
             }

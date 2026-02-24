@@ -108,11 +108,68 @@ export const useApiStore = create((set, get) => ({
                         // level: info.level
                     }
                 )
-            if (error) {
-                throw error
-            }
+            if (error) throw error
+
         } catch (error) {
             console.log("Error saving character: ", error)
+        }
+    },
+
+    updateCharacter: async (info) => {
+
+        try {
+            const { data , error } = await supabase
+                .from('user_saved_characters')
+                .update({
+                        name: info.name,
+                        class_id: info.class,
+                        // alignment_id: info.alignment, // FK alignment id
+                        // armor_class: info.armor_class,
+                        // initiative: info.initiative,
+                        // speed: info.speed,
+                        // strength: info.ability_scores.strength,
+                        // dexterity: info.ability_scores.dexterity,
+                        // constitution: info.ability_scores.constitution,
+                        // intelligence: info.ability_scores.intelligence,
+                        // wisdom: info.ability_scores.wisdom,
+                        // charisma: info.ability_scores.charisma,
+                        // skill_proficiencies: info.skill_proficiencies,
+                        // pronouns: info.pronouns,
+                        // faith: info.faith,
+                        // lifestyle: info.lifestyle,
+                        // age: info.age,
+                        // height: info.height,
+                        // weight: info.weight,
+                        // eyes: info.eyes,
+                        // skin: info.skin,
+                        // hair: info.hair,
+                        // gender: info.gender,
+                        // species: info.species, // FK species id
+                        // level: info.level
+                })
+                .eq('id', info.id)
+
+            if (error) throw error
+            else console.log('Character successfully updated.')
+
+        } catch (error) {
+            console.log("Error updating character: ", error)
+        }
+    },
+
+    deleteCharacter: async (id) => {
+
+        try {
+            const { data, error } = await supabase
+                .from('user_saved_characters')
+                .delete()
+                .eq('id', id)
+
+            if (error) throw error
+            else console.log('Character successfully deleted.')
+
+        } catch (error) {
+            console.log("Error deleting character: ", error)
         }
     }
 
