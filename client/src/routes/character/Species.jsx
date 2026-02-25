@@ -7,12 +7,13 @@ export default function Species(){
     const { character, speciesList, updateCharacter } = useContext(CreationContext)
 
     function handleSubmit(e){
-        updateCharacter(e.target.name, e.target.value)
+        console.log(e.target.name, e.target.value)
+        updateCharacter(e.target.name, parseInt(e.target.value))
     }
 
     const speciesFormatted = speciesList.map(item => {
 
-        const { full_name } = item
+        const { full_name, id } = item
 
         return (
             <div key={full_name} className="radio-class-selection">
@@ -20,8 +21,8 @@ export default function Species(){
                     type="radio"
                     name="species"
                     id={full_name}
-                    value={full_name}
-                    checked={character.species === item.full_name}
+                    value={id}
+                    checked={character.species === item.id}
                     onChange={handleSubmit}
                 />
                 <label htmlFor={full_name}>{full_name}</label>
@@ -31,7 +32,7 @@ export default function Species(){
 
     function speciesInfo() {
 
-        const chosenSpecies = speciesList.filter(element => element.full_name === character.species)
+        const chosenSpecies = speciesList.filter(element => element.id === character.species)
         const { full_name, type, size, size_description, speed, traits } = chosenSpecies[0]
 
         const traitElements = traits.map(el => {
@@ -55,7 +56,7 @@ export default function Species(){
                 <p><strong>Type:</strong> {type}</p>
                 <p><strong>Size:</strong> {size} ({size_description})</p>
                 <p><strong>Speed:</strong> {speed}</p>
-                <p><strong>Traits:</strong> {traitElements}</p>
+                <p><strong>Traits:</strong></p> {traitElements}
             </>
         )
     }

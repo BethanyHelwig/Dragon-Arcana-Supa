@@ -24,7 +24,7 @@ export const CreationContextProvider = ({ children }) => {
         fetch('http://127.0.0.1:8080/api/search/character_class')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setClasses(data)
             })
     }, [])
@@ -42,7 +42,7 @@ export const CreationContextProvider = ({ children }) => {
         fetch('http://127.0.0.1:8080/api/search/alignment')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setAlignments(data)
             })
     }, [])
@@ -51,7 +51,7 @@ export const CreationContextProvider = ({ children }) => {
         fetch('http://127.0.0.1:8080/api/search/lifestyle')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setLifestyles(data)
             })
     }, [])
@@ -60,7 +60,7 @@ export const CreationContextProvider = ({ children }) => {
         fetch('http://127.0.0.1:8080/api/search/ability_score')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setAbilityScores(data)
             })
     }, [])

@@ -6,8 +6,8 @@ export default function About(){
 
     const { character, updateCharacter, alignments, lifestyles } = useContext(CreationContext)
 
-    const alignmentElements = alignments.map(el => <option key={el.full_name} value={el.full_name}>{el.full_name}</option>)
-    const lifestyleElements = lifestyles.map(el => <option key={el.full_name} value={el.full_name}>{el.full_name}</option>)
+    const alignmentElements = alignments.map(el => <option key={el.full_name} value={el.id}>{el.full_name}</option>)
+    const lifestyleElements = lifestyles.map(el => <option key={el.full_name} value={el.id}>{el.full_name}</option>)
 
     const chosenLifestyle = lifestyles.filter(el => el.full_name == character.lifestyle)[0]
 

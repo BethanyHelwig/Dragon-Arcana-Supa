@@ -7,6 +7,7 @@ export const useApiStore = create((set, get) => ({
     isSavedCharactersLoading: false,
     selectedCharacter: null,
     isSelectedCharacterLoading: false,
+    isCreateCharacterLoading: false,
 
     getSavedCharacters: async () => {
         set({ isSavedCharactersLoading: true })
@@ -72,7 +73,7 @@ export const useApiStore = create((set, get) => ({
     },
 
     createCharacter: async (info) => {
-
+        set({ isCreateCharacterLoading: true })
         const { data: { user }, error } = await supabase.auth.getUser()
 
         try {
@@ -83,7 +84,7 @@ export const useApiStore = create((set, get) => ({
                         user_id: user.id,
                         name: info.name,
                         class_id: info.class,
-                        // alignment_id: info.alignment, // FK alignment id
+                        alignment_id: info.alignment, // FK alignment id
                         // armor_class: info.armor_class,
                         // initiative: info.initiative,
                         // speed: info.speed,
@@ -104,7 +105,7 @@ export const useApiStore = create((set, get) => ({
                         // skin: info.skin,
                         // hair: info.hair,
                         // gender: info.gender,
-                        // species: info.species, // FK species id
+                        species: info.species, // FK species id
                         // level: info.level
                     }
                 )
@@ -112,6 +113,8 @@ export const useApiStore = create((set, get) => ({
 
         } catch (error) {
             console.log("Error saving character: ", error)
+        } finally {
+            set({ isCreateCharacterLoading: false })
         }
     },
 

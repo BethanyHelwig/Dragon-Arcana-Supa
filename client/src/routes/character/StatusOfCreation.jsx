@@ -6,7 +6,7 @@ import { useApiStore } from "../../store/useApiStore"
 export default function StatusOfCreation() {
 
     const { character } = useContext(CreationContext)
-    const { createCharacter } = useApiStore()
+    const { createCharacter, isCreateCharacterLoading } = useApiStore()
 
     const classComplete = character.class ? true : false
     const speciesComplete = character.species ? true : false
@@ -58,7 +58,15 @@ export default function StatusOfCreation() {
             <span className={aboutComplete() ? "complete" : ""}>
                 About <i class={aboutComplete() ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
             </span>
-            <button onClick={characterSubmitCheck}>Create Character</button>
+            <button 
+                onClick={characterSubmitCheck}
+                disabled={isCreateCharacterLoading}
+            >
+                {isCreateCharacterLoading 
+                    ? <i className="fa-solid fa-spinner spinning-icon"></i>
+                    : "Create Character"
+                } 
+            </button>
         </div>
     )
     

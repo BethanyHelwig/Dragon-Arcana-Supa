@@ -572,9 +572,13 @@ button,
     margin-bottom: 0.625em; /* 10px */
 }
 
+button:disabled {
+    background-color: gray;
+}
+
 .btn-lookalike:hover,
 .btn-lookalike:active,
-button:hover,
+button:not(:disabled):hover,
 button:active {
     background-color: var(--button-hover-background);
     color: var(--button-hover-text);
@@ -586,7 +590,7 @@ button:active {
     border: 1px solid var(--gray-secondary-color);
 }
 
-.btn-alt:hover,
+.btn-alt:not(:disabled):hover,
 .btn-alt:active {
     background-color: var(--gray-secondary-color);
     color: var(--green-accent-color);
@@ -896,6 +900,10 @@ legend {
     transform-origin: center;
     /* Optional: display as inline-block for proper alignment */
     display: inline-block;
+}
+
+button .spinning-icon {
+    margin: 0;
 }
 
 /* -- UTILITY -- */
