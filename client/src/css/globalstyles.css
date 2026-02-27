@@ -746,8 +746,8 @@ input:focus {
 .character-sheet-header {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
-    width: 80%;
+    justify-content: space-evenly;
+    gap: 1em;
 }
 
 /* -- TYPOGRAPHY -- */
@@ -845,6 +845,22 @@ legend {
     font-style: italic;
     font-size: 0.9rem;
     opacity: 80%;
+}
+
+.character-sheet h4 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    opacity: 70%;
+    font-size: 0.8rem;
+    font-family: "Roboto", sans-serif;
+}
+
+.character-sheet p {
+    margin: 0;
+    padding: 3px;
+    font-size: 1rem;
+    background-color: var(--soft-overlay);
 }
 
 /* -- IMAGES -- */
@@ -952,10 +968,30 @@ button .spinning-icon {
     margin-bottom: 0.5em;
 }
 
+.width-30 {
+    width: 30%;
+}
+
 .width-80 {
     width: 80%;
 }
 
 .width-100 {
     width: 100%;
+}
+
+.overline {
+    border-top: 1px solid var(--dark-secondary-accent-color);
+}
+
+.character-sheet-grid-header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid var(--dark-secondary-accent-color);
+    margin: 20px 0;
 }

@@ -26,8 +26,8 @@ export default function Class(){
     })
 
     function handleSubmit(e){
-        console.log("Target name: ", e.target.name)
-        console.log("Target value: ", e.target.value)
+        // console.log("Target name: ", e.target.name)
+        // console.log("Target value: ", e.target.value)
         updateCharacter(e.target.name, parseInt(e.target.value))
     }
 

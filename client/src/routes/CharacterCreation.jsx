@@ -6,7 +6,7 @@ import StatusOfCreation from './character/StatusOfCreation'
 export default function CharacterCreation(){
 
     return (
-        <main>
+        <main className="width-100">
             <h1 className="title-glow">Character Creation</h1>
             <section>
                 <div className="submenu">

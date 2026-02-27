@@ -9,6 +9,7 @@ export const CreationContextProvider = ({ children }) => {
     const [ speciesList, setSpecies ] = useState([])
     const [ alignments, setAlignments ] = useState([])
     const [ lifestyles, setLifestyles ] = useState([])
+    const [ backgrounds, setBackgrounds ] = useState([])
     const [ abilityScores, setAbilityScores ] = useState([])
     const [ scoreGenerationMethod, setScoreGenerationMethod ] = useState("Standard Array")
     const [ generatedScores, setGeneratedScores ] = useState([
@@ -33,7 +34,7 @@ export const CreationContextProvider = ({ children }) => {
         fetch('http://127.0.0.1:8080/api/search/species')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setSpecies(data)
             })
     }, [])
@@ -62,6 +63,15 @@ export const CreationContextProvider = ({ children }) => {
             .then(data => {
                 //console.log(data)
                 setAbilityScores(data)
+            })
+    }, [])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/background')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setBackgrounds(data)
             })
     }, [])
 
@@ -101,7 +111,8 @@ export const CreationContextProvider = ({ children }) => {
                 setScoreGenerationMethod,
                 generatedScores,
                 setGeneratedScores,
-                resetAbilityScores
+                resetAbilityScores,
+                backgrounds
             }}>
             {children}
         </CreationContext.Provider>

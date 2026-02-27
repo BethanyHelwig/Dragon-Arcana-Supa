@@ -72,7 +72,7 @@ export const useApiStore = create((set, get) => ({
         }
     },
 
-    createCharacter: async (info) => {
+    createCharacter: async (info, abilityScores) => {
         set({ isCreateCharacterLoading: true })
         const { data: { user }, error } = await supabase.auth.getUser()
 

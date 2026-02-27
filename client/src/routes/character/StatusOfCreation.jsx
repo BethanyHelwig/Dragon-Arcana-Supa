@@ -5,14 +5,14 @@ import { useApiStore } from "../../store/useApiStore"
 
 export default function StatusOfCreation() {
 
-    const { character } = useContext(CreationContext)
+    const { character, abilityScores } = useContext(CreationContext)
     const { createCharacter, isCreateCharacterLoading } = useApiStore()
 
     const classComplete = character.class ? true : false
     const speciesComplete = character.species ? true : false
     const abilityScoresComplete = false
     const skillsComplete = false
-    const backgroundComplete = false
+    const backgroundComplete = character.background ? true : false
     const aboutComplete = () => {
         if (character.name === undefined || character.name === null) {
             return false
@@ -35,7 +35,7 @@ export default function StatusOfCreation() {
             console.log("Please complete required fields in order to submit character!")
         }
 
-        createCharacter(character)
+        createCharacter(character, abilityScores)
     }
 
     return (        
