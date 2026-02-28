@@ -161,6 +161,7 @@ footer a {
     position: relative;
 }
 
+.sub-selection input[type="checkbox"],
 .radio-score-selection input[type="radio"],
 .radio-class-selection input[type="radio"] {
     opacity: 0; 
@@ -169,6 +170,7 @@ footer a {
     left: 0;
 }
 
+.sub-selection label,
 .radio-score-selection label,
 .radio-class-selection label {
     display: flex;
@@ -183,12 +185,31 @@ footer a {
     justify-content: center;
 }
 
+.sub-selection input[type="checkbox"]:checked + label,
 .radio-score-selection input[type="radio"]:checked + label,
 .radio-class-selection input[type="radio"]:checked + label {
     background-color: var(--secondary-accent-color);
     border: 1px solid whitesmoke;
     color: #211E23;
     transition: background-color 0.4s ease-in-out;
+}
+
+.sub-selection div:hover,
+.radio-class-selection:hover {
+    background-color: var(--soft-overlay);
+}
+
+.sub-selection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    gap: 3px;
+    font-family: "Roboto", sans-serif;
+}
+
+.sub-selection label {
+    font-size: 1rem;
+    background-color: var(--soft-overlay);
 }
 
 .score-method-container {

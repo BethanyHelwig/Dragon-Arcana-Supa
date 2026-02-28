@@ -4,7 +4,7 @@ import { CreationContext } from '../../context/CreationContext'
 
 export default function Class(){
 
-    const { character, updateCharacter, classList } = useContext(CreationContext)
+    const { character, updateCharacter, classList, updateArrayInCharacter } = useContext(CreationContext)
 
     const classesFormatted = classList.map(item => {
 
@@ -25,10 +25,37 @@ export default function Class(){
         )
     })
 
+    // if a new class is selected, submits that change to character
+    // and clears any selected starting equipment chosen from a prior
+    // class selection
     function handleSubmit(e){
-        // console.log("Target name: ", e.target.name)
-        // console.log("Target value: ", e.target.value)
         updateCharacter(e.target.name, parseInt(e.target.value))
+        updateCharacter("starting_equipment", null)
+        updateCharacter("skill_proficiencies", [])
+        //clearEquipmentSelection()
+    }
+
+    // submits the starting equipment or skill proficiencies to character
+    function handleStringSubmit(e){
+        updateCharacter(e.target.name, e.target.value)
+    }
+
+    function handleProficiencySubmit(e, allowance){
+
+        if(character[e.target.name].length >= allowance) {
+            if(character[e.target.name].includes(e.target.value)){
+                console.log("Allowance met but removing item.")
+                updateArrayInCharacter(e.target.name, e.target.value)
+            }
+            else {
+                console.log("No more options left for skill proficiency.")
+            }
+        } else {
+            console.log("Submitting skill proficiency update to character.")
+            updateArrayInCharacter(e.target.name, e.target.value)
+        }
+
+        
     }
 
     function classInfo() {
@@ -40,7 +67,8 @@ export default function Class(){
             primary_ability, 
             hit_point_die,
             skill_proficiencies, 
-            saving_throw_proficiencies, 
+            saving_throw_proficiencies,
+            skill_proficiency_allowance,
             starting_equipment,
             tool_proficiencies,
             weapon_proficiencies,
@@ -56,9 +84,39 @@ export default function Class(){
                 <p><strong>Primary Ability:</strong> {primary_ability}</p>
                 <p><strong>Armor Training:</strong> {armor_training}</p>
                 <p><strong>Hit Point Die:</strong> {hit_point_die}</p>
-                <p><strong>Skill Proficiencies:</strong> {skill_proficiencies}</p>
+                <p><strong>Skill Proficiencies:</strong> -- Choose {skill_proficiency_allowance} --</p>
+
+                <div key={full_name} className="sub-selection">
+                        {skill_proficiencies.map(el => {
+                            return (
+                                <div key={el}>
+                                    <input 
+                                        type="checkbox"
+                                        name="skill_proficiencies"
+                                        id={el}
+                                        value={el}
+                                        checked={character.skill_proficiencies.includes(el)}
+                                        onChange={(e) => handleProficiencySubmit(e, skill_proficiency_allowance)}
+                                    />
+                                    <label htmlFor={el}>{el}</label>
+                                </div>
+                            )
+                        })}
+                </div>
                 <p><strong>Saving Throw Proficiencies:</strong> {saving_throw_proficiencies}</p>
-                <p><strong>Starting Equipment:</strong> {starting_equipment}</p>
+                <p><strong>Starting Equipment:</strong></p>
+                    <select 
+                        id="starting_equipment" 
+                        name="starting_equipment"
+                        onChange={handleStringSubmit}
+                    >
+                        <option value="">-- Choose one --</option>
+                        {starting_equipment.map(el => {
+                            return (
+                                <option value={el}>{el}</option>
+                            )
+                        })}
+                    </select>
                 <p><strong>Weapon Proficiencies:</strong> {weapon_proficiencies}</p>
                 <p><strong>Tool Proficiencies:</strong> {tool_proficiencies ? tool_proficiencies : "n/a"}</p>
             </>

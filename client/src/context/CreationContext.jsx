@@ -4,7 +4,7 @@ const CreationContext = createContext()
 
 export const CreationContextProvider = ({ children }) => {
 
-    const [ character, setCharacter ] = useState({})
+    const [ character, setCharacter ] = useState({skill_proficiencies: []})
     const [ classList, setClasses ] = useState([])
     const [ speciesList, setSpecies ] = useState([])
     const [ alignments, setAlignments ] = useState([])
@@ -70,7 +70,7 @@ export const CreationContextProvider = ({ children }) => {
         fetch('http://127.0.0.1:8080/api/search/background')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setBackgrounds(data)
             })
     }, [])
@@ -88,6 +88,27 @@ export const CreationContextProvider = ({ children }) => {
         setCharacter(prev => ({...prev, [key]: value}))
     }
 
+    function updateArrayInCharacter(key, value) {
+        if(character.hasOwnProperty(key)){
+            var updatedArray = character[key]
+            if(updatedArray.includes(value)){
+                updatedArray = updatedArray.filter(item => item !== value)
+            }
+            else {
+                updatedArray.push(value)
+            }
+
+            setCharacter(prev => (
+                {...prev, [key] : updatedArray}
+            ))
+        }
+        else {
+            setCharacter(prev => (
+                {...prev, [key]: [value]}
+            ))
+        }
+    }
+
     function resetAbilityScores(){
         updateCharacter("charisma", 8)
         updateCharacter("constitution", 8)
@@ -101,7 +122,8 @@ export const CreationContextProvider = ({ children }) => {
         <CreationContext.Provider 
             value={{ 
                 character, 
-                updateCharacter, 
+                updateCharacter,
+                updateArrayInCharacter,
                 classList, 
                 speciesList, 
                 alignments, 
@@ -112,7 +134,7 @@ export const CreationContextProvider = ({ children }) => {
                 generatedScores,
                 setGeneratedScores,
                 resetAbilityScores,
-                backgrounds
+                backgrounds,
             }}>
             {children}
         </CreationContext.Provider>
