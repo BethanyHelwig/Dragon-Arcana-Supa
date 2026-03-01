@@ -54,7 +54,7 @@ export default function Species(){
             <>
                 <h3 className="title-glow">{full_name}</h3>
                 <p><strong>Type:</strong> {type}</p>
-                <p><strong>Size:</strong> {size} ({size_description})</p>
+                <p><strong>Size:</strong> {size.creature_size} ({size_description})</p>
                 <p><strong>Speed:</strong> {speed}</p>
                 <p><strong>Traits:</strong></p> {traitElements}
             </>

@@ -3,6 +3,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import { AuthContextProvider } from './context/AuthContext'
 import { createContext, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import toast, { Toaster } from "react-hot-toast";
 
 /* Components */
 import Layout from "/src/components/Layout"
@@ -35,6 +36,7 @@ function App() {
 	return (
 		<ThemeProvider>
 			<AuthContextProvider>
+				<Toaster containerStyle={{top: '30%'}} />
 				<BrowserRouter>
 					<Routes>
 						<Route element={<Layout />}>

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
+import toast from "react-hot-toast"
 
 export default function Class(){
 
@@ -32,7 +33,7 @@ export default function Class(){
         updateCharacter(e.target.name, parseInt(e.target.value))
         updateCharacter("starting_equipment", null)
         updateCharacter("skill_proficiencies", [])
-        //clearEquipmentSelection()
+        //document.getElementById("starting_equipment").selectedIndex = 0
     }
 
     // submits the starting equipment or skill proficiencies to character
@@ -49,6 +50,7 @@ export default function Class(){
             }
             else {
                 console.log("No more options left for skill proficiency.")
+                toast.error(`Cannot select more than ${allowance} skills.`)
             }
         } else {
             console.log("Submitting skill proficiency update to character.")
@@ -84,7 +86,7 @@ export default function Class(){
                 <p><strong>Primary Ability:</strong> {primary_ability}</p>
                 <p><strong>Armor Training:</strong> {armor_training}</p>
                 <p><strong>Hit Point Die:</strong> {hit_point_die}</p>
-                <p><strong>Skill Proficiencies:</strong> -- Choose {skill_proficiency_allowance} --</p>
+                <p><strong>Skill Proficiencies</strong> <span className="highlighter">(Choose {skill_proficiency_allowance})</span>:</p>
 
                 <div key={full_name} className="sub-selection">
                         {skill_proficiencies.map(el => {
@@ -104,19 +106,25 @@ export default function Class(){
                         })}
                 </div>
                 <p><strong>Saving Throw Proficiencies:</strong> {saving_throw_proficiencies}</p>
-                <p><strong>Starting Equipment:</strong></p>
-                    <select 
-                        id="starting_equipment" 
-                        name="starting_equipment"
-                        onChange={handleStringSubmit}
-                    >
-                        <option value="">-- Choose one --</option>
-                        {starting_equipment.map(el => {
-                            return (
-                                <option value={el}>{el}</option>
-                            )
-                        })}
-                    </select>
+                <p><strong>Starting Equipment</strong> <span className="highlighter">(Choose 1)</span>:</p>
+                <fieldset id="starting_equipment" className="flex-column">  
+                    {starting_equipment.map(el => {
+                        return (
+                            <div key={el} className="radio-equipment-selection">
+                                <input 
+                                    type="radio"
+                                    name="starting_equipment"
+                                    id={el}
+                                    value={el}
+                                    checked={character.starting_equipment === el}
+                                    onChange={handleStringSubmit}
+                                />
+                                <label htmlFor={el}>{el}</label>
+                            </div>
+                        )
+                            })}
+                </fieldset>
+
                 <p><strong>Weapon Proficiencies:</strong> {weapon_proficiencies}</p>
                 <p><strong>Tool Proficiencies:</strong> {tool_proficiencies ? tool_proficiencies : "n/a"}</p>
             </>

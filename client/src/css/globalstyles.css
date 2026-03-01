@@ -161,6 +161,7 @@ footer a {
     position: relative;
 }
 
+.radio-equipment-selection input[type="radio"],
 .sub-selection input[type="checkbox"],
 .radio-score-selection input[type="radio"],
 .radio-class-selection input[type="radio"] {
@@ -170,6 +171,7 @@ footer a {
     left: 0;
 }
 
+.radio-equipment-selection label,
 .sub-selection label,
 .radio-score-selection label,
 .radio-class-selection label {
@@ -185,6 +187,7 @@ footer a {
     justify-content: center;
 }
 
+.radio-equipment-selection input[type="radio"]:checked + label,
 .sub-selection input[type="checkbox"]:checked + label,
 .radio-score-selection input[type="radio"]:checked + label,
 .radio-class-selection input[type="radio"]:checked + label {
@@ -194,6 +197,7 @@ footer a {
     transition: background-color 0.4s ease-in-out;
 }
 
+.radio-equipment-selection:hover,
 .sub-selection div:hover,
 .radio-class-selection:hover {
     background-color: var(--soft-overlay);
@@ -205,6 +209,11 @@ footer a {
     position: relative;
     gap: 3px;
     font-family: "Roboto", sans-serif;
+}
+
+.radio-equipment-selection label {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
 }
 
 .sub-selection label {
@@ -882,6 +891,12 @@ legend {
     padding: 3px;
     font-size: 1rem;
     background-color: var(--soft-overlay);
+}
+
+.highlighter {
+    background-color: var(--dark-green-accent-color);
+    border-radius: 3px;
+    color: whitesmoke;
 }
 
 /* -- IMAGES -- */

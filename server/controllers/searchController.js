@@ -417,7 +417,10 @@ export async function getSpecies(req, res) {
         if (term){
             const { data, error } = await supabase
                 .from('species')
-                .select()
+                .select(`
+                    *,
+                    size(creature_size:size)
+                    `)
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
@@ -430,7 +433,10 @@ export async function getSpecies(req, res) {
         else {
             const { data, error } = await supabase
                 .from('species')
-                .select()
+                .select(`
+                    *,
+                    size(creature_size:size)
+                    `)
                 .order('full_name')
 
             if (error) {

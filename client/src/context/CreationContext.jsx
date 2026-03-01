@@ -34,7 +34,7 @@ export const CreationContextProvider = ({ children }) => {
         fetch('http://127.0.0.1:8080/api/search/species')
             .then(res => res.json())
             .then(data => {
-                //console.log(data)
+                console.log(data)
                 setSpecies(data)
             })
     }, [])
