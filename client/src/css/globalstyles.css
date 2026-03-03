@@ -266,23 +266,23 @@ footer a {
     margin: 0 0 0 25px;
 }
 
-.status-of-creation span {
+/* .status-of-creation span {
     background-color:  var(--soft-overlay);
     padding: 0.2em 0.8em;
     border-radius: 5px;
     display: flex;
     align-items: center;
     gap: 4px;
-}
+} */
 
-.status-of-creation .complete {
+/* .status-of-creation .complete {
     background-color: var(--dark-green-accent-color);
     color: whitesmoke;
 }
 
 .status-of-creation .complete i {
     color: rgb(1, 218, 1);
-}
+} */
 
 #register-container,
 #login-container {
@@ -897,6 +897,44 @@ legend {
     background-color: var(--dark-green-accent-color);
     border-radius: 3px;
     color: whitesmoke;
+}
+
+.container {
+    background-color: var(--soft-overlay);
+    padding: 0.4em 0.4em;
+    border-radius: 10px;
+    display: grid;
+    align-items: start;
+    grid-template-columns: min-content 0fr;
+    transition: grid-template-columns 0.4s 125ms ease-in-out;
+    overflow: hidden;
+    line-height: 1rem;
+    min-height: 1rem;
+    white-space: nowrap;
+}
+
+.container:hover {
+    grid-template-columns: min-content 1fr;
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.4s ease 0.1s;
+    min-width: 0;
+}
+
+.container:hover .hidden {
+    /* display: block; */
+    opacity: 1;
+}
+
+.complete {
+    background-color: var(--dark-green-accent-color);
+    color: whitesmoke;
+}
+
+.complete i {
+    color: rgb(1, 218, 1);
 }
 
 /* -- IMAGES -- */

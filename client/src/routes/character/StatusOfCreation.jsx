@@ -12,6 +12,7 @@ export default function StatusOfCreation() {
     const speciesComplete = character.species ? true : false
     const abilityScoresComplete = false
     const skillsComplete = false
+    const spellsComplete = false
     const backgroundComplete = character.background ? true : false
     const aboutComplete = () => {
         if (character.name === undefined || character.name === null) {
@@ -40,24 +41,35 @@ export default function StatusOfCreation() {
 
     return (        
         <div className="status-of-creation">
-            <span className={classComplete ? "complete" : ""}>
-                Class <i class={classComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
-            </span> 
-            <span className={speciesComplete ? "complete" : ""}>
-                Species <i class={speciesComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
-            </span>
-            <span className={backgroundComplete ? "complete" : ""}>
-                Background <i class={backgroundComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
-            </span> 
-            <span className={abilityScoresComplete ? "complete" : ""}>
-                Ability Scores <i class={abilityScoresComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
-            </span>
-            <span className={skillsComplete ? "complete" : ""}>
-                Skills <i class={skillsComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
-            </span>
-            <span className={aboutComplete() ? "complete" : ""}>
-                About <i class={aboutComplete() ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
-            </span>
+            <div className={classComplete ? "container complete" : "container"}>
+                <i class={classComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
+                <span className="hidden">Class</span>
+            </div>
+            <div className={speciesComplete ? "container complete" : "container"}>
+                <i class={speciesComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
+                <span className="hidden">Species</span>
+            </div>
+            <div className={backgroundComplete ? "container complete" : "container"}>
+                <i class={backgroundComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
+                <span className="hidden">Background</span>
+            </div>
+            <div className={abilityScoresComplete ? "container complete" : "container"}>
+                <i class={abilityScoresComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
+                <span className="hidden">Ability Scores</span>
+            </div>
+            <div className={skillsComplete ? "container complete" : "container"}>
+                <i class={skillsComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
+                <span className="hidden">Skills</span>
+            </div>
+            <div className={spellsComplete ? "container complete" : "container"}>
+                <i class={spellsComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
+                <span className="hidden">Spells</span>
+            </div>
+            <div className={aboutComplete() ? "container complete" : "container"}>
+                <i class={aboutComplete() ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
+                <span className="hidden">About</span>
+            </div>
+
             <button 
                 onClick={characterSubmitCheck}
                 disabled={isCreateCharacterLoading}
