@@ -11,6 +11,7 @@ export const CreationContextProvider = ({ children }) => {
     const [ lifestyles, setLifestyles ] = useState([])
     const [ backgrounds, setBackgrounds ] = useState([])
     const [ abilityScores, setAbilityScores ] = useState([])
+    const [ skillList, setSkillList ] = useState([])
     const [ scoreGenerationMethod, setScoreGenerationMethod ] = useState("Standard Array")
     const [ generatedScores, setGeneratedScores ] = useState([
         {id: 1, score: 15, ability: null},
@@ -61,7 +62,7 @@ export const CreationContextProvider = ({ children }) => {
         fetch('http://127.0.0.1:8080/api/search/ability_score')
             .then(res => res.json())
             .then(data => {
-                //console.log(data)
+                console.log(data)
                 setAbilityScores(data)
             })
     }, [])
@@ -72,6 +73,15 @@ export const CreationContextProvider = ({ children }) => {
             .then(data => {
                 //console.log(data)
                 setBackgrounds(data)
+            })
+    }, [])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/skill')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setSkillList(data)
             })
     }, [])
 
@@ -135,6 +145,7 @@ export const CreationContextProvider = ({ children }) => {
                 setGeneratedScores,
                 resetAbilityScores,
                 backgrounds,
+                skillList
             }}>
             {children}
         </CreationContext.Provider>

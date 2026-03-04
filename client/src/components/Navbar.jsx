@@ -65,7 +65,7 @@ export default function Navbar() {
                 </li>
                 <li>
                     <NavLink to="search" className={({isActive}) => isActive ? "active-link" : null}>
-                        World of D&D <i className="fa-solid fa-book-atlas"></i>
+                        Compendium <i className="fa-solid fa-book-atlas"></i>
                     </NavLink>
                 </li>
                 {session && (

@@ -240,11 +240,31 @@ footer a {
     margin-bottom: 1em;
 }
 
+.skill-display,
 .class-info {
     min-width: 250px;
     border-left: 1px solid var(--gray-secondary-color);
     padding-left: 1.5em;
     text-align: left;
+}
+
+.skill-display {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, min-content);
+    gap: 1em;
+    font-family: "Roboto", sans-serif;
+    width: 60%;
+    text-align: center;
+}
+
+.skill-display-element-header {
+    opacity: 80%;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--dark-secondary-accent-color);
+}
+
+.skill-display-name {
+    text-align: start;
 }
 
 .class-info p {
@@ -935,6 +955,23 @@ legend {
 
 .complete i {
     color: rgb(1, 218, 1);
+}
+
+.skill-selection {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 2rem;
+}
+
+.skill-selection p {
+    margin: 0;
+}
+
+.skill-selection h4 {
+    font-size: 1.1rem;
+    margin: 0 0 5px;
+    border-bottom: 1px solid var(--dark-secondary-accent-color);
 }
 
 /* -- IMAGES -- */

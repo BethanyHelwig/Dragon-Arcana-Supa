@@ -58,7 +58,7 @@ export async function getSkills(req, res) {
                 .select(
                     `
                     *,
-                    ability_score(name)
+                    ability_score(name, full_name)
                     `,
                 )
                 .ilike('full_name', `%${term}%`)
@@ -76,7 +76,7 @@ export async function getSkills(req, res) {
                 .select(
                     `
                     *,
-                    ability_score(name)
+                    ability_score(name, full_name)
                     `,
                 )
                 .order('full_name')

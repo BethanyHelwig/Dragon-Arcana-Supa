@@ -88,7 +88,7 @@ export default function Class(){
                 <p><strong>Hit Point Die:</strong> {hit_point_die}</p>
                 <p><strong>Skill Proficiencies</strong> <span className="highlighter">(Choose {skill_proficiency_allowance})</span>:</p>
 
-                <div key={full_name} className="sub-selection">
+                <div className="sub-selection">
                         {skill_proficiencies.map(el => {
                             return (
                                 <div key={el}>
