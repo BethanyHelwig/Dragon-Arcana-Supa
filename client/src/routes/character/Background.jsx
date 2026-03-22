@@ -16,7 +16,7 @@ export default function Background(){
         const { full_name, id } = item
 
         return (
-            <div key={full_name} className="radio-class-selection">
+            <div key={full_name} className="selection square">
                 <input 
                     type="radio"
                     name="background"
@@ -65,7 +65,7 @@ export default function Background(){
                 {character.background ? backgroundInfo()
                     : (<>
                         <h3>Background Information</h3>
-                        <p>Choose a background to see information pertaining to it.</p>
+                        <p className="font-Roboto">Choose a background to see information pertaining to it.</p>
                     </>
                 )}
             </div>

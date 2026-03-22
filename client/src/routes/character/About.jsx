@@ -69,7 +69,7 @@ export default function About(){
                         {lifestyleElements}
                     </select>
                     {character.lifestyle ? (
-                        <div className="selection-detail">
+                        <div className="selection-detail font-Roboto">
                             {chosenLifestyle.description} (<strong>{chosenLifestyle.cost_per_day} {chosenLifestyle.denomination}</strong> per day)
                         </div>
 

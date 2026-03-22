@@ -1,7 +1,9 @@
-/* -- GENERAL -- */
+/* -- IMPORTED FONTS -- */
 
 @import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* -- VARIABLES -- */
 
 :root {
     --background-primary-color: #211f24;
@@ -20,7 +22,7 @@
     --soft-overlay: rgba(255, 255, 255, 0.05);
 
     --gray-secondary-color: #424242;
-    --input-placeholder-color: #7e7e7e;
+    --input-placeholder-color: #9b9b9b;
     --pale-blue-accent-color: #bbe1ff;
     --green-accent-color: #aef6d3;
     --dark-green-accent-color: #496F5D;
@@ -45,11 +47,10 @@
     --background-image: url("/src/assets/marble.jpg");
 }
 
+/* -- BASE -- */
 * {
     box-sizing: border-box;
 }
-
-/* -- LAYOUT -- */
 
 body {
     display: flex;
@@ -101,8 +102,19 @@ footer {
     text-align: center;
     margin-top: auto;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
-    font-family: "Roboto", sans-serif;
     font-size: 0.75rem;
+}
+
+.font-Roboto,
+footer,
+.search-result-details,
+.ability-score-selection-div,
+.point-cost-selection-div,
+.ability-score-display,
+.tooltip .tooltiptext,
+.saved-character-summary,
+.character-sheet h4 {
+    font-family: "Roboto", sans-serif;
 }
 
 .whats-new-content {
@@ -149,32 +161,16 @@ footer a {
     margin-bottom: 1em;
 }
 
-.radio-class-selection {
+.selection input {
     display: flex;
     position: relative;
-    width: 100px;
-    height: 100px;
-}
-
-.radio-score-selection {
-    display: flex;
-    position: relative;
-}
-
-.radio-equipment-selection input[type="radio"],
-.sub-selection input[type="checkbox"],
-.radio-score-selection input[type="radio"],
-.radio-class-selection input[type="radio"] {
     opacity: 0; 
     position: absolute;
     top: 0;
     left: 0;
 }
 
-.radio-equipment-selection label,
-.sub-selection label,
-.radio-score-selection label,
-.radio-class-selection label {
+.selection label {
     display: flex;
     font-size: 1.1rem;
     border-radius: 7px; 
@@ -185,47 +181,29 @@ footer a {
     cursor: pointer;
     align-items: center;
     justify-content: center;
+    background-color: var(--soft-overlay);
 }
 
-.radio-equipment-selection input[type="radio"]:checked + label,
-.sub-selection input[type="checkbox"]:checked + label,
-.radio-score-selection input[type="radio"]:checked + label,
-.radio-class-selection input[type="radio"]:checked + label {
+.selection input:checked + label {
     background-color: var(--secondary-accent-color);
     border: 1px solid whitesmoke;
     color: #211E23;
     transition: background-color 0.4s ease-in-out;
 }
 
-.radio-equipment-selection:hover,
-.sub-selection div:hover,
-.radio-class-selection:hover {
+.selection:hover {
     background-color: var(--soft-overlay);
 }
 
-.sub-selection {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    position: relative;
-    gap: 3px;
-    font-family: "Roboto", sans-serif;
-}
-
-.radio-equipment-selection label {
-    font-family: "Roboto", sans-serif;
-    font-size: 1rem;
-}
-
-.sub-selection label {
-    font-size: 1rem;
-    background-color: var(--soft-overlay);
+.square {
+    width: 100px;
+    height: 100px;
 }
 
 .score-method-container {
     display: flex;
     flex-direction: column;
     padding: 1em;
-    font-family: "Roboto", sans-serif;
     height: 70%;
 }
 
@@ -252,7 +230,6 @@ footer a {
     display: grid;
     grid-template-columns: 1fr repeat(4, min-content);
     gap: 1em;
-    font-family: "Roboto", sans-serif;
     width: 60%;
     text-align: center;
 }
@@ -268,7 +245,6 @@ footer a {
 }
 
 .class-info p {
-    font-family: "Roboto", sans-serif;
     font-size: 1rem;
     padding-left: 1em;
     text-indent: -1em;
@@ -285,24 +261,6 @@ footer a {
 .status-of-creation button {
     margin: 0 0 0 25px;
 }
-
-/* .status-of-creation span {
-    background-color:  var(--soft-overlay);
-    padding: 0.2em 0.8em;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-} */
-
-/* .status-of-creation .complete {
-    background-color: var(--dark-green-accent-color);
-    color: whitesmoke;
-}
-
-.status-of-creation .complete i {
-    color: rgb(1, 218, 1);
-} */
 
 #register-container,
 #login-container {
@@ -366,10 +324,6 @@ main {
     border-bottom: 2px solid var(--dark-primary-accent-color);
     padding: 0.75em;
     cursor: pointer;
-}
-
-.search-result-details {
-    font-family: "Roboto", sans-serif;
 }
 
 .search-result-details p {
@@ -462,7 +416,6 @@ main {
     padding: 1em;
     margin: 0 15px;
     font-size: 0.75rem;
-    font-family: "Roboto", sans-serif;
 }
 
 .ability-score-grid {
@@ -481,7 +434,6 @@ main {
     padding: 0;
     gap: 3px;
     margin: 4px 0;
-    font-family: "Roboto", sans-serif;
 }
 
 .ability-score-selection-div button {
@@ -512,7 +464,6 @@ main {
     display: flex;
     gap: 5px;
     padding: 5px;
-    font-family: "Roboto", sans-serif;
 }
 
 .point-cost-selection-div button {
@@ -573,7 +524,6 @@ main {
     height: 90px;
     font-weight: bold;
     color: black;
-    font-family: "Roboto", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -738,19 +688,10 @@ input[type="radio"] {
     margin-right: 0.5em;
 }
 
-legend {
-    text-decoration: underline;
-    margin-bottom: 0.5em;
-}
-
 select,
 input[type="search"] {
     min-width: 250px;
     width: 100%;
-}
-
-input:focus {
-    outline: none;
 }
 
 #login-form,
@@ -782,7 +723,6 @@ input:focus {
     transition: opacity 0.3s;
     background-color: var(--gray-secondary-color);
     color: whitesmoke;
-    font-family: "Roboto", sans-serif;
     font-size: 0.75rem;
     padding: 8px;
     width: 250px;
@@ -860,7 +800,6 @@ legend {
 }
 
 .saved-character-summary {
-    font-family: "Roboto", sans-serif;
     text-align: left;
     margin: 0;
     padding: 0;
@@ -903,7 +842,6 @@ legend {
     font-weight: normal;
     opacity: 70%;
     font-size: 0.8rem;
-    font-family: "Roboto", sans-serif;
 }
 
 .character-sheet p {
@@ -1012,6 +950,8 @@ legend {
     color: var(--dark-primary-accent-color)
 }
 
+/* -- ANIMATION -- */
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -1080,11 +1020,11 @@ button .spinning-icon {
 }
 
 .width-30 {
-    width: 30%;
+    width: 0.3;
 }
 
 .width-80 {
-    width: 80%;
+    width: 0.8;
 }
 
 .width-100 {
@@ -1105,4 +1045,11 @@ button .spinning-icon {
     border: none;
     border-top: 1px solid var(--dark-secondary-accent-color);
     margin: 20px 0;
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    gap: 3px;
 }

@@ -1,5 +1,6 @@
 import supabase from "../../supabase-client.js"
 import { createContext, useContext, useState, useEffect } from 'react'
+import { toast } from "react-hot-toast"
 
 const AuthContext = createContext()
 
@@ -36,6 +37,7 @@ export const AuthContextProvider = ({ children }) => {
                 password: password,
             });
             if (error) {
+                toast.error("Error during login.")
                 console.error('Supabase sign-in error:', error.message)
                 return { success: false, error: error.message}
             }
@@ -43,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
             return { success: true, data }
         }
         catch (error) {
+            toast.error("Error during login.")
             console.error('Unexpected error during sign-in:', error.message)
             return { success: false, error: 'An unexpeced error occurred. Please try again.'}
         }
@@ -52,12 +55,14 @@ export const AuthContextProvider = ({ children }) => {
         try {
             const { error } = await supabase.auth.signOut()
             if (error) {
+                toast.error("Error during logout.")
                 console.error('Supabase sign-out error:', error.message)
                 return { success: false, error: error.message}
             }
             return { success: true }
         }
         catch (error) {
+            toast.error("Error during logout.")
             console.error('Unexpected error during sign-out:', error.message)
             return { success: false, error: 'An unexpeced error occurred. Please try again.'}
         }
@@ -75,6 +80,7 @@ export const AuthContextProvider = ({ children }) => {
                 }
             });
             if (error) {
+                toast.error("Error during sign-up.")
                 console.error('Supabase sign-up error:', error.message)
                 return { success: false, error: error.message}
             }
@@ -82,6 +88,7 @@ export const AuthContextProvider = ({ children }) => {
             return { success: true, data }
         }
         catch (error) {
+            toast.error("Error during sign-up.")
             console.error('Unexpected error during sign-up:', error.message)
             return { success: false, error: 'An unexpeced error occurred. Please try again.'}
         }

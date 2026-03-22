@@ -16,7 +16,7 @@ export default function Species(){
         const { full_name, id } = item
 
         return (
-            <div key={full_name} className="radio-class-selection">
+            <div key={full_name} className="selection square">
                 <input 
                     type="radio"
                     name="species"
@@ -75,7 +75,7 @@ export default function Species(){
                 {character.species ? speciesInfo()
                     : (<>
                         <h3>Species Information</h3>
-                        <p>Choose a species to see information pertaining to it.</p>
+                        <p className="font-Roboto">Choose a species to see information pertaining to it.</p>
                     </>
                 )}
             </div>

@@ -250,7 +250,7 @@ export default function AbilityScores(){
                 <div>
                     <h3>Choose how to generate your scores:</h3>
                     <form>
-                        <div className="radio-score-selection">
+                        <div className="selection">
                             <input 
                                 type="radio"
                                 name="score-type"
@@ -261,7 +261,7 @@ export default function AbilityScores(){
                             />
                             <label htmlFor="Standard Array">Standard Array</label>
                         </div>
-                        <div className="radio-score-selection">
+                        <div className="selection">
                             <input 
                                 type="radio"
                                 name="score-type"
@@ -272,7 +272,7 @@ export default function AbilityScores(){
                             />
                             <label htmlFor="Random Generation">Random Generation</label>
                         </div>
-                        <div className="radio-score-selection">
+                        <div className="selection">
                             <input 
                                 type="radio"
                                 name="score-type"
@@ -284,7 +284,7 @@ export default function AbilityScores(){
                             <label htmlFor="Point Cost">Point Cost</label>
                         </div>
                     </form>
-                    <div className="score-method-container">
+                    <div className="score-method-container font-Roboto">
                         {scoreGenerationMethod === "Standard Array" && standardArrayBlock}
                         {scoreGenerationMethod === "Random Generation" && randomGenerationBlock}
                         {scoreGenerationMethod === "Point Cost" && pointCostBlock}
