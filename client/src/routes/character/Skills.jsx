@@ -10,7 +10,7 @@ export default function Skills(){
         skillList, 
         classList, 
         updateArrayInCharacter, 
-        abilityScores, 
+        backgrounds,
         generatedScores, 
         speciesList, 
         updateCharacter 
@@ -25,7 +25,7 @@ export default function Skills(){
         return (
             <>
             <p>Choose {skill_proficiency_allowance} skills:</p>
-            <div className="two-col font-Roboto">
+            <div className="two-col">
                     {skill_proficiencies.map(el => {
                         return (
                             <div key={el} className="selection">
@@ -56,7 +56,7 @@ export default function Skills(){
             return (
                 <>
                     <p>Choose one:</p>
-                    <div className="two-col font-Roboto">
+                    <div className="two-col">
                         {skills.map(el => {
                             return (
                                 <div key={el + "species"} className="selection">
@@ -85,6 +85,37 @@ export default function Skills(){
         }
     }
 
+    // Gets the available skills for the chosen background
+    function backgroundInformation() {
+        const chosenBackground = backgrounds.filter(element => element.id === character.background)
+
+        const { skill_proficiencies } = chosenBackground[0]
+
+        if (skill_proficiencies){
+            return (
+                <>
+                    <p>You are proficient in the following:</p>
+                    <div className="two-col">
+                        {skill_proficiencies.map(el => {
+                            return (
+                                <div className="selection-look-alike">
+                                    <span>{el}</span>
+                                </div>
+                            )}
+                        )}
+                    </div>
+                </>
+            )
+        }
+        else {
+            return (
+                <div>
+                    <p>This background does not have a skill proficiency.</p>
+                </div>
+            )
+        }
+    }
+
     // Calculates the modifier for each ability selection
     function getModifier(abilityName){
         const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
@@ -96,20 +127,39 @@ export default function Skills(){
         return "-"
     }
 
+    function calculateProficiencyBonus(fullName){
+
+        const chosenBackground = backgrounds.filter(element => element.id === character.background)
+
+        const { skill_proficiencies: backgroundProficiencies } = chosenBackground[0]
+
+        if (character.skill_proficiencies.includes(fullName)
+                || character.species_skills === (fullName)
+                || backgroundProficiencies.includes(fullName)) {
+            return Math.ceil(character.level / 4) + 1;
+        }
+
+        return "--";
+    }
+
     const skillsFormatted = skillList.map(el => {
+        const modifier = getModifier(el.ability_score.full_name);
+        const bonus = calculateProficiencyBonus(el.full_name);
+
         return (
             <>
                 {/* SKILL NAME */}
-                <div className="skill-display-name"><span>{el.full_name}</span></div>
+                <span className="skill-display-name">{el.full_name}</span>
 
                 {/* ABILITY SCORE NAME */}
                 <span>{el.ability_score.name}</span>
 
                 {/* SCORE */}
-                <span>{getModifier(el.ability_score.full_name)}</span>
+                <span>{modifier}</span>
 
                 {/* PROFICIENCY */}
-                <span>{character.skill_proficiencies.includes(el.full_name) || character.species_skills === (el.full_name) ? "yes" : "--"}</span>
+                {/* This scales with the character's level, starting at +2 and going up to +9 */}
+                <span>{bonus}</span>
 
                 {/* TOTAL */}
                 <span>0</span>
@@ -145,32 +195,35 @@ export default function Skills(){
         <>
             <h2>Skills Selection</h2>
             <div className="flex-row">
-                <div className="skill-selection">
-                    <form>
-                        {/* <h3><label htmlFor="skills">Available Skills</label></h3> */}
-                        <fieldset name="skills" className="flex-column">
-                            <h4>Based on chosen class</h4>
-                            {character.class ? classInformation()
-                                : <p>Please choose a class first to see class specific skill proficiencies.</p>
-                            }
-                        </fieldset>
-                    </form>
-                    <form>
+                <div className="flex-col">
+                    <div className="skill-selection">
+                        <h4>Based on chosen class</h4>
+                        {character.class ? classInformation()
+                            : <p>Please choose a class first to see class specific skill proficiencies.</p>
+                        }
+                    </div>
+                    <div className="skill-selection">
                         <h4>Based on chosen species</h4>
                         {character.species ? speciesInformation()
                             : <p>Please select a species to see specific skill proficiencies.</p>
                         }
-                    </form>
-                    <h4>Based on chosen background</h4>
+                    </div>
+                    <div className="skill-selection">
+                        <h4>Based on chosen background</h4>
+                            {character.background ? backgroundInformation()
+                                : <p>Please select a background to see specific skill proficiencies.</p>
+                            }
+
+                    </div>
                 </div>
-            <div className="skill-display font-Roboto">
-                <div className="skill-display-name"><span className="skill-display-element-header">SKILL</span></div>
-                <span className="skill-display-element-header">ABILITY</span>
-                <span className="skill-display-element-header">SCORE</span>
-                <span className="skill-display-element-header">PROFICIENCY</span>
-                <span className="skill-display-element-header">TOTAL</span>
-                {skillsFormatted}
-            </div>
+                <div className="skill-display font-Roboto">
+                    <span className="skill-display-name skill-display-element-header">SKILL</span>
+                    <span className="skill-display-element-header">ABILITY</span>
+                    <span className="skill-display-element-header">SCORE</span>
+                    <span className="skill-display-element-header">PROFICIENCY</span>
+                    <span className="skill-display-element-header">TOTAL</span>
+                    {skillsFormatted}
+                </div>
             </div>
         </>
     )

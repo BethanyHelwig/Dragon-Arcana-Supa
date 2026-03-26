@@ -4,7 +4,7 @@ const CreationContext = createContext()
 
 export const CreationContextProvider = ({ children }) => {
 
-    const [ character, setCharacter ] = useState({skill_proficiencies: []})
+    const [ character, setCharacter ] = useState({skill_proficiencies: [], level: 1})
     const [ classList, setClasses ] = useState([])
     const [ speciesList, setSpecies ] = useState([])
     const [ alignments, setAlignments ] = useState([])

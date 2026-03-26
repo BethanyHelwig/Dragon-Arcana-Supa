@@ -35,6 +35,13 @@ export default function Class(){
         //document.getElementById("starting_equipment").selectedIndex = 0
     }
 
+    function handleLevelSubmit(e){
+        const newValue = parseInt(e.target.value) + character.level;
+        if (newValue >= 1 && newValue <= 30){
+            updateCharacter("level", parseInt(e.target.value) + character.level)
+        }
+    }
+
     // submits the starting equipment or skill proficiencies to character
     function handleStringSubmit(e){
         updateCharacter(e.target.name, e.target.value)
@@ -99,12 +106,18 @@ export default function Class(){
         <>
             <h2>Class Selection</h2>
             <div className="flex-row">
-                <form onSubmit={handleSubmit}>
+                <div>
+                    <h3>Choose your level:</h3>
+                    <div className="level-input">
+                        <button value={-1} onClick={handleLevelSubmit}>-</button>
+                        <span>{character.level}</span>
+                        <button value={1} onClick={handleLevelSubmit}>+</button>
+                    </div>
                     <h3><label htmlFor="class">Choose your class:</label></h3>
-                    <fieldset name="class" className="class-grid">
+                    <div name="class" className="class-grid">
                         {classesFormatted}
-                    </fieldset>
-                </form>
+                    </div>
+                </div>
             <div className="class-info">
                 {character.class ? classInfo()
                     : (<>

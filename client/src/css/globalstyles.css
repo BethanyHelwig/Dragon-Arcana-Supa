@@ -161,6 +161,30 @@ footer a {
     margin-bottom: 1em;
 }
 
+.level-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 55px;
+}
+
+.level-input button {
+    height: 100%;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.level-input span {
+    background-color: var(--soft-overlay);
+    border: 1px solid var(--gray-secondary-color);
+    padding: 1rem 1.5rem;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 7px;
+    color: whitesmoke;
+}
+
 .selection input {
     display: flex;
     position: relative;
@@ -195,6 +219,21 @@ footer a {
     background-color: var(--soft-overlay);
 }
 
+.selection-look-alike {
+    display: flex;
+    font-size: 1.1rem;
+    border-radius: 7px; 
+    border: 1px solid var(--gray-secondary-color);
+    padding: 3px 10px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-accent-color);
+    border: 1px solid whitesmoke;
+    color: #211E23;
+}
+
 .square {
     width: 100px;
     height: 100px;
@@ -216,6 +255,7 @@ footer a {
     grid-template-columns: repeat(4, 1fr);
     flex-wrap: wrap;
     margin-bottom: 1em;
+    gap: 0.5em;
 }
 
 .skill-display,
@@ -899,7 +939,8 @@ legend {
     display: flex;
     flex-direction: column;
     text-align: left;
-    gap: 2rem;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .skill-selection p {
@@ -996,7 +1037,7 @@ button .spinning-icon {
     display: flex;
     flex-direction: row;
     gap: 1em;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .fieldset-container {
@@ -1052,4 +1093,9 @@ button .spinning-icon {
     grid-template-columns: repeat(2, 1fr);
     position: relative;
     gap: 3px;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
 }
