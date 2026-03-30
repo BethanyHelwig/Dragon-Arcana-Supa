@@ -113,7 +113,8 @@ footer,
 .ability-score-display,
 .tooltip .tooltiptext,
 .saved-character-summary,
-.character-sheet h4 {
+.character-sheet h4,
+textarea {
     font-family: "Roboto", sans-serif;
 }
 
@@ -269,7 +270,7 @@ footer a {
 .skill-display {
     display: grid;
     grid-template-columns: 1fr repeat(4, min-content);
-    gap: 1em;
+    gap: 1.2em 1em;
     width: 60%;
     text-align: center;
 }
@@ -282,6 +283,13 @@ footer a {
 
 .skill-display-name {
     text-align: start;
+}
+
+.skill-display-total {
+    background-color: var(--soft-overlay);
+    border-radius: 7px;
+    padding: 5px 0;
+    font-weight: bold;
 }
 
 .class-info p {
@@ -706,7 +714,8 @@ fieldset {
 input[type="text"]::placeholder,
 input[type="email"]::placeholder,
 input[type="password"]::placeholder,
-input[type="search"]::placeholder {
+input[type="search"]::placeholder,
+textarea::placeholder {
     color: var(--input-placeholder-color);
 }
 
@@ -714,8 +723,10 @@ select,
 input[type="text"],
 input[type="email"],
 input[type="password"],
-input[type="search"] {
-    width: 250px;
+input[type="search"],
+textarea {
+    /* width: 250px; */
+    min-width: 250px;
     margin-bottom: 0.625em; /* 10px */
     background-color: var(--gray-secondary-color);
     border: 2px solid var(--dark-secondary-accent-color);
@@ -726,6 +737,12 @@ input[type="search"] {
 
 input[type="radio"] {
     margin-right: 0.5em;
+}
+
+textarea {
+    min-height: 100px;
+    min-width: 300px;
+    font-size: 0.9rem;
 }
 
 select,
@@ -1057,6 +1074,7 @@ button .spinning-icon {
     border: 1px solid var(--dark-secondary-accent-color);
     border-radius: 5px;
     padding: 1em;
+    gap: 1em 2em;
     margin-bottom: 0.5em;
 }
 

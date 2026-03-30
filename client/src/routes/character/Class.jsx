@@ -35,6 +35,7 @@ export default function Class(){
         //document.getElementById("starting_equipment").selectedIndex = 0
     }
 
+    // Handles update to level with a cap between 1 and 30
     function handleLevelSubmit(e){
         const newValue = parseInt(e.target.value) + character.level;
         if (newValue >= 1 && newValue <= 30){
@@ -47,6 +48,7 @@ export default function Class(){
         updateCharacter(e.target.name, e.target.value)
     }
 
+    // Generates additional information for the chosen class in the right pane
     function classInfo() {
         const chosenClass = classList.filter(element => element.id === character.class)
         const { 

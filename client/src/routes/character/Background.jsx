@@ -1,16 +1,17 @@
 import { useContext } from 'react'
-import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
 
 export default function Background(){
 
     const { character, backgrounds, updateCharacter } = useContext(CreationContext)
 
+    // Chosen background is added to character in Creation Context
     function handleSubmit(e){
         console.log(e.target.name, e.target.value)
         updateCharacter(e.target.name, parseInt(e.target.value))
     }
 
+    // Displays each selectable background
     const backgroundsFormatted = backgrounds.map(item => {
 
         const { full_name, id } = item
@@ -30,6 +31,7 @@ export default function Background(){
         )
     })
 
+    // Once a background is chosen, shows additional information in right pane
     function backgroundInfo() {
 
         const chosenBackground = backgrounds.filter(element => element.id === character.background)

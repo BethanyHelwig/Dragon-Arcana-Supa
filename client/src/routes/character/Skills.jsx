@@ -122,24 +122,32 @@ export default function Skills(){
         //console.log(result)
         if (result !== undefined) {
             const modifier = Math.floor((result.score - 10) / 2)
-            return `${modifier > 0 ? "+" : ""}${modifier}`
+            return modifier
         }
-        return "-"
+        return 0
     }
 
     function calculateProficiencyBonus(fullName){
 
         const chosenBackground = backgrounds.filter(element => element.id === character.background)
 
-        const { skill_proficiencies: backgroundProficiencies } = chosenBackground[0]
+        if (chosenBackground.length > 0){
+            const { skill_proficiencies: backgroundProficiencies } = chosenBackground[0]
 
-        if (character.skill_proficiencies.includes(fullName)
+            if (character.skill_proficiencies.includes(fullName)
                 || character.species_skills === (fullName)
                 || backgroundProficiencies.includes(fullName)) {
-            return Math.ceil(character.level / 4) + 1;
+                return Math.ceil(character.level / 4) + 1;
+            }   
+        }
+        else {
+            if (character.skill_proficiencies.includes(fullName)
+                || character.species_skills === (fullName)) {
+                return Math.ceil(character.level / 4) + 1;
+            }  
         }
 
-        return "--";
+        return 0;
     }
 
     const skillsFormatted = skillList.map(el => {
@@ -155,14 +163,14 @@ export default function Skills(){
                 <span>{el.ability_score.name}</span>
 
                 {/* SCORE */}
-                <span>{modifier}</span>
+                <span>{modifier > 0 ? "+": ""}{modifier === 0 ? "-" : modifier}</span>
 
                 {/* PROFICIENCY */}
                 {/* This scales with the character's level, starting at +2 and going up to +9 */}
-                <span>{bonus}</span>
+                <span>{bonus === 0 ? "--" : bonus}</span>
 
                 {/* TOTAL */}
-                <span>0</span>
+                <span className="skill-display-total">{modifier + bonus > 0 ? "+" : ""}{modifier + bonus}</span>
             </>
         )
     })

@@ -4,7 +4,6 @@ import { CreationContext } from '../../context/CreationContext'
 
 export default function AbilityScores(){
 
-
     const { 
         character, 
         updateCharacter, 
@@ -21,6 +20,7 @@ export default function AbilityScores(){
 
     const randomGenerationResultsElements = randomGenerationResults.map(el => {return <div><p>{el}</p></div>})
 
+    // ... Text and choices for each method of calculating ability scores
     const standardArrayBlock = 
         <div>
             <p>The Standard Array method uses a set of scores for you to choose from. Use the following six scores for your abilities: 15, 14, 13, 12, 10, 8.</p>
@@ -40,7 +40,9 @@ export default function AbilityScores(){
                 <h3>Points remaining:</h3>
                 <span className="points-available">{pointsAvailable}</span>
             </div>
+    // ... end
 
+    // Array of clickable available scores used within each ability score block
     const scoresArrayElements = generatedScores.map(el => {
         return (
             <button onClick={(e) => assignScore(el.id, el.score, e)} key={"btn" + el.id} disabled={el.ability !== null ? "{false}" : ""}>
@@ -49,7 +51,7 @@ export default function AbilityScores(){
         )
     })
 
-
+    // Maps over each ability score and creates an ability score block
     const abilityScoreElements = abilityScores.map(el => {
 
         const { full_name, name, description } = el
@@ -90,6 +92,7 @@ export default function AbilityScores(){
         )
     })
 
+    // Updates an ability score's score, checking point limit
     function updateScore(abilityName, value){
         const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
         const newValue = result.score + value
@@ -117,6 +120,7 @@ export default function AbilityScores(){
         }
     }
 
+    // Gets any assigned abilities scores from character in Creation Context
     function getScore(abilityName){
         const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
         //console.log(result)
@@ -126,6 +130,7 @@ export default function AbilityScores(){
         return "-"
     }
 
+    // Calculates the modifier for an ability score
     function getModifier(abilityName){
         const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
         //console.log(result)
@@ -136,6 +141,7 @@ export default function AbilityScores(){
         return "-"
     }
 
+    // Determines how many points have already been used for an ability score
     function getPointsUsed(abilityName){
         const result = generatedScores.find(el => {return el.ability === abilityName.toLowerCase()})
         if (result !== null) {
@@ -144,15 +150,17 @@ export default function AbilityScores(){
         return 0
     }
 
-    function handleSubmit(e){
-        updateCharacter(e.target.name, e.target.value)
-    }
+    // function handleSubmit(e){
+    //     updateCharacter(e.target.name, e.target.value)
+    // }
 
+    // Changes what the set method is for determining ability scores
     function changeScoreMethod(e){
         setScoreGenerationMethod(e.target.value)
         resetGeneratedScores(e.target.value)
     }
 
+    // Assigns a score to an ability
     function assignScore(id, score, e){
         const ability = e.target.parentElement.parentElement.getAttribute("data-key")
         //console.log(id, score, ability)
@@ -168,6 +176,7 @@ export default function AbilityScores(){
         //console.log(some)
     }
 
+    // Resets the generated scores to base values for each method
     function resetGeneratedScores(e){
         console.log(e.type)
         console.log(e)
@@ -209,6 +218,7 @@ export default function AbilityScores(){
         }
     }
 
+    // Resets the array of score available and then randomly generates new scores to assign
     function randomGeneration(){
 
         setGeneratedScores([
