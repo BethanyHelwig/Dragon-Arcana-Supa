@@ -94,7 +94,7 @@ export const useApiStore = create((set, get) => ({
                         // intelligence: info.ability_scores.intelligence,
                         // wisdom: info.ability_scores.wisdom,
                         // charisma: info.ability_scores.charisma,
-                        // skill_proficiencies: info.skill_proficiencies,
+                        // skill_proficiencies: info.skill_proficiencies, // ARRAY
                         // pronouns: info.pronouns,
                         // faith: info.faith,
                         // lifestyle: info.lifestyle,
@@ -106,7 +106,8 @@ export const useApiStore = create((set, get) => ({
                         // hair: info.hair,
                         // gender: info.gender,
                         species: info.species, // FK species id
-                        // level: info.level
+                        level: info.level
+                        // languages: info.languages // ARRAY
                     }
                 )
             if (error) throw error

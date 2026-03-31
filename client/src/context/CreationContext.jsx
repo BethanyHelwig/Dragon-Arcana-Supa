@@ -4,7 +4,7 @@ const CreationContext = createContext()
 
 export const CreationContextProvider = ({ children }) => {
 
-    const [ character, setCharacter ] = useState({skill_proficiencies: [], level: 1})
+    const [ character, setCharacter ] = useState({skill_proficiencies: [], level: 1, languages: []})
     const [ classList, setClasses ] = useState([])
     const [ speciesList, setSpecies ] = useState([])
     const [ alignments, setAlignments ] = useState([])
@@ -12,6 +12,7 @@ export const CreationContextProvider = ({ children }) => {
     const [ backgrounds, setBackgrounds ] = useState([])
     const [ abilityScores, setAbilityScores ] = useState([])
     const [ skillList, setSkillList ] = useState([])
+    const [ languages, setLanguages ] = useState([])
     const [ scoreGenerationMethod, setScoreGenerationMethod ] = useState("Standard Array")
     const [ generatedScores, setGeneratedScores ] = useState([
         {id: 1, score: 15, ability: null},
@@ -85,6 +86,15 @@ export const CreationContextProvider = ({ children }) => {
             })
     }, [])
 
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/language')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setLanguages(data)
+            })
+    },[])
+
     useEffect(()=> {
         resetAbilityScores()
     }, [])
@@ -145,7 +155,8 @@ export const CreationContextProvider = ({ children }) => {
                 setGeneratedScores,
                 resetAbilityScores,
                 backgrounds,
-                skillList
+                skillList,
+                languages
             }}>
             {children}
         </CreationContext.Provider>
