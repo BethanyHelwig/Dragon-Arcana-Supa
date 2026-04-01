@@ -42,7 +42,7 @@ export default function Spell({details}){
                 <li><h4>Range: <span>{range}</span></h4></li>
                 <li><h4>Components: <span>{components}</span></h4></li>
                 <li><h4>Duration: <span>{duration}</span></h4></li>
-                <li><h4> Description: <span>{descriptionElements}</span></h4></li>
+                <li><h4>Description: <span>{descriptionElements}</span></h4></li>
             </ul>
         </div> 
     )

@@ -230,7 +230,10 @@ export async function getClass(req, res) {
         if (term){
             const { data, error } = await supabase
                 .from('character_class')
-                .select()
+                .select(`
+                    *,
+                    class_features(*)
+                    `)
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
 
@@ -243,7 +246,10 @@ export async function getClass(req, res) {
         else {
             const { data, error } = await supabase
                 .from('character_class')
-                .select()
+                .select(`
+                    *,
+                    class_features(*)
+                    `)
                 .order('full_name')
 
             if (error) {
@@ -517,6 +523,57 @@ export async function getBackground(req, res) {
                     `
                 )
                 .order('full_name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}
+
+export async function getClassFeatures(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('class_features')
+                .select(
+                    `id,
+                    class,
+                    title,
+                    description,
+                    level,
+                    character_class!class_features_character_class_fkey(full_name)
+                    `
+                )
+                .ilike('title', `%${term}%`)
+                .order('title')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('class_features')
+                .select(
+                    `id,
+                    class,
+                    title,
+                    description,
+                    level,
+                    character_class!class_features_character_class_fkey(full_name)
+                    `
+                )
+                .order('title')
 
             if (error) {
                 throw error

@@ -12,7 +12,8 @@ import {
     getLanguage,
     getSpecies,
     getLifestyle,
-    getBackground
+    getBackground,
+    getClassFeatures
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
@@ -30,3 +31,4 @@ searchRouter.get('/weapon_mastery_property', getMastery)
 searchRouter.get('/species', getSpecies)
 searchRouter.get('/lifestyle', getLifestyle)
 searchRouter.get('/background', getBackground)
+searchRouter.get('/class_features', getClassFeatures)
