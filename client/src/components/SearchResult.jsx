@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Collapsible } from "./Collapsible"
 
 import AbilityScore from "./SearchResults/AbilityScore"
 import Alignment from "./SearchResults/Alignment"
@@ -12,17 +13,11 @@ import Spell from "./SearchResults/Spell"
 import Weapon from "./SearchResults/Weapon"
 import WeaponProperty from "./SearchResults/WeaponProperty"
 import WeaponMasteryProperty from "./SearchResults/WeaponMasteryProperty"
+import Feat from "./SearchResults/Feat"
 
 export default function SearchResult(props) {
 
     const { data, searchCategory } = props
-
-    // State values
-    const [ expanded, setExpanded ] = useState(false)
-
-    function toggleExpanded(){
-        setExpanded(prev => !prev)
-    }
 
     function detailElements(){
 
@@ -33,36 +28,34 @@ export default function SearchResult(props) {
                 return <Alignment details={data} />
             case "background":
                 return <Background details={data} />
-            case "class":
+            case "character_class":
                 return <Class details={data} />
+            case "feat":
+                return <Feat details={data} />
             case "language":
                 return <Language details={data} />
             case "school_of_magic":
                 return <SchoolOfMagic details={data} />
             case "skill":
                 return <Skill details={data} />
+            case "species":
+                return <Species details={data} />
+            case "spell":
+                return <Spell details={data} />
             case "weapon":
                 return <Weapon details={data} />
             case "weapon_property":
                 return <WeaponProperty details={data} />
             case "weapon_mastery_property":
                 return <WeaponMasteryProperty details={data} />
-            case "character_class":
-                return <Class details={data} />
-            case "spell":
-                return <Spell details={data} />
-            case "species":
-                return <Species details={data} />
             default:
                 return (<h4>Loading...</h4>)
         }  
     }
 
-
     return (
-        <div className="search-result-item" onClick={toggleExpanded}>
-            <h3>{data.full_name}</h3>
-            {expanded && detailElements()}
-        </div>
+        <Collapsible label={data.full_name}>
+            {detailElements()}
+        </Collapsible>
     )
 }

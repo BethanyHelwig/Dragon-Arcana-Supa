@@ -8,21 +8,23 @@ export default function Search() {
     const [ searchResults, setSearchResults ] = React.useState([])
     const [ resultCount, setResultCount ] = React.useState("Results will display here.")
 
+    // List of categories to search from
+    // value is the api reference which needs to be an EXACT match
+    // name is what actually shows in the drop down menu
     const categories = [
         {value: "ability_score", name: "Ability Scores"},
         {value: "alignment", name: "Alignments"},
-        // {value: "backgrounds", name: "Backgrounds"},
+        {value: "background", name: "Backgrounds"},
         {value: "character_class", name: "Classes"},
         // {value: "conditions", name: "Conditions"},
         // {value: "damage-types", name: "Damage Types"},
         // {value: "equipment", name: "Equipment"},
         // {value: "equipment-categories", name: "Equipment Categories"},
-        // {value: "feats", name: "Feats"},
+        {value: "feat", name: "Feats"},
         // {value: "features", name: "Features"},
         {value: "language", name: "Languages"},
         // {value: "magic-items", name: "Magic Items"},
         // {value: "monsters", name: "Monsters"},
-        // {value: "proficiencies", name: "Proficiencies"},
         // {value: "rule-sections", name: "Rule Sections"},
         // {value: "rules", name: "Rules"},
         {value: "school_of_magic", name: "Schools of Magic"},
@@ -30,7 +32,6 @@ export default function Search() {
         {value: "species", name: "Species"},
         {value: "spell", name: "Spells"},
         // {value: "subclasses", name: "Subclasses"},
-        // {value: "subraces", name: "Subraces"},
         //{value: "traits", name: "Traits"},
         {value: "weapon", name: "Weapons"},
         {value: "weapon_mastery_property", name: "Weapon Mastery"},
@@ -86,7 +87,7 @@ export default function Search() {
     return (
         <>
             <main className="gradient-border">
-                <h2 className="title-glow">World of D&D</h2>
+                <h2 className="title-glow">Compendium</h2>
                 <form id="search-form" action={search}>
                     <label htmlFor="dnd-search">Search D&D Database:</label>
                     <input type="search" id="dnd-search" name="searchText" placeholder="What are you looking for?" pattern="[a-zA-Z\s0-9]+" />
@@ -112,7 +113,7 @@ export default function Search() {
                 </form>
             </main>
             <section id="search-results" className="gradient-border">
-                {resultCount}
+                <p>{resultCount}</p>
                 {searchResults.length > 0 && searchResultsElements}
             </section>
         </>

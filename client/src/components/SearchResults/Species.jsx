@@ -22,7 +22,7 @@ export default function Species({details}){
             <ul>
                 <li><h4>Full Name: <span>{full_name}</span></h4></li>
                 <li><h4>Type: <span>{type}</span></h4></li>
-                <li><h4>Size: <span>{size} ({size_description})</span></h4></li>
+                <li><h4>Size: <span>{size.creature_size} ({size_description})</span></h4></li>
                 <li><h4>Speed: <span>{speed}</span></h4></li>
                 <li><h4>Traits: <span>{traits.length > 0 ? traitElements : "n/a"}</span></h4></li>
             </ul>

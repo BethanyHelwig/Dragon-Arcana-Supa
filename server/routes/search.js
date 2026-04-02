@@ -13,7 +13,8 @@ import {
     getSpecies,
     getLifestyle,
     getBackground,
-    getClassFeatures
+    getClassFeatures,
+    getFeats
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
@@ -32,3 +33,4 @@ searchRouter.get('/species', getSpecies)
 searchRouter.get('/lifestyle', getLifestyle)
 searchRouter.get('/background', getBackground)
 searchRouter.get('/class_features', getClassFeatures)
+searchRouter.get('/feat', getFeats)

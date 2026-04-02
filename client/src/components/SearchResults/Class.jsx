@@ -23,11 +23,11 @@ export default function Class({details}){
                 <li><h4>Complexity: <span>{complexity}</span></h4></li>
                 <li><h4>Hit Point Die: <span>{hit_point_die}</span></h4></li>
                 <li><h4>Saving Throw Proficiencies: <span>{saving_throw_proficiencies}</span></h4></li>
-                <li><h4>Skill Proficiencies: <span>{skill_proficiencies}</span></h4></li>
+                <li><h4>Skill Proficiencies: <span>{skill_proficiencies.join(", ")}</span></h4></li>
                 <li><h4>Weapon Proficiencies: <span>{weapon_proficiencies}</span></h4></li>
                 <li><h4>Armor Proficiencies: <span>{armor_training}</span></h4></li>
                 {tool_proficiencies && <li><h4>Tool Proficiencies: <span>{tool_proficiencies}</span></h4></li>}
-                <li><h4>Starting Equipment: <span>{starting_equipment}</span></h4></li>
+                <li><h4>Starting Equipment: <span>{starting_equipment.join(" OR ")}</span></h4></li>
             </ul>
         </div> 
     )

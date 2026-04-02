@@ -1,31 +1,15 @@
 export default function Background({details}){
 
-    const { feature, starting_proficiencies, starting_equipment } = details
-
-    const featureDescription = feature.desc.map(el => <p>{el}</p>)
-    const proficienciesElements = starting_proficiencies.map(prof => <li>{prof.name}</li>)
-    const equipmentElements = starting_equipment.map(equip => <li>{equip.equipment.name}</li>)
+    const { full_name, feat, feat_specific, skill_proficiencies, tool_proficiency } = details
 
     return (
         <div className="search-result-details">
             <ul>
-                <li><h4>Feature: <span>{feature.name}</span></h4></li>
-                <li><ul>
-                        <li>{featureDescription}</li>
-                    </ul>
-                </li>
-                <li><h4>Starting Proficiencies:</h4></li>
-                <li>
-                    <ul>
-                        {proficienciesElements}
-                    </ul>
-                </li>
-                <li><h4>Starting Equipment:</h4></li>
-                <li>
-                    <ul>
-                        {equipmentElements}
-                    </ul>
-                </li>
+                <li><h4>Name: <span>{full_name}</span></h4></li>
+                <li><h4>Feat: <span>{feat.feat}</span></h4></li>
+                <li><h4>Specific to: <span>{feat_specific ? feat_specific : "--"}</span></h4></li>
+                <li><h4>Skill Proficiencies: <span>{skill_proficiencies.join(", ")}</span></h4></li>
+                <li><h4>Tool Proficiency: <span>{tool_proficiency}</span></h4></li>
             </ul>
         </div> 
     )

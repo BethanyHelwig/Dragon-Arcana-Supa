@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react'
-import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
 import toast from "react-hot-toast"
 import { Collapsible } from '../../components/Collapsible'
@@ -103,6 +102,8 @@ export default function Class(){
                 <p><strong>Weapon Proficiencies:</strong> {weapon_proficiencies}</p>
                 <p><strong>Tool Proficiencies:</strong> {tool_proficiencies ? tool_proficiencies : "n/a"}</p>
                 <p><strong>Class Features</strong></p>
+
+                {/* TODO: Sort, seperate, and label by subclass name */}
                 {class_features.sort((a, b) => a.level - b.level).map(el => {
                     console.log("Subclass for " + el.title + " is " + el.subclass)
                     console.log(el.subclass)

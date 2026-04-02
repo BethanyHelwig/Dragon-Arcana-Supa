@@ -263,8 +263,11 @@ export async function getClass(req, res) {
     }   
 }
 
-export async function getSpell(req, res) {
-    const { term } = req.query
+export async function getSpell(req, res) { 
+    
+    // term is used in search of Compendium
+    // c_class (character_class) is used in the Spells section of Character Creation
+    const { term, c_class } = req.query
 
     try{
         // search for specific instance
@@ -275,11 +278,33 @@ export async function getSpell(req, res) {
                     `
                     *,
                     school_of_magic(school:full_name),
-                    character_class(class:full_name)
+                    character_class(class:full_name, class_id:id)
                     `
                 )
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // get specific additional data for Spells section of Character Creation
+        else if (c_class){
+            const { data, error } = await supabase
+                .from('spell')
+                .select(
+                    `
+                    *,
+                    school_of_magic(school:full_name),
+                    spell_class_junction!inner(
+                        class_id,
+                        character_class(full_name)
+                    )
+                    `
+                )
+                .eq('spell_class_junction.class_id', c_class)
+                .order('level')
 
             if (error) {
                 throw error
@@ -294,7 +319,7 @@ export async function getSpell(req, res) {
                     `
                     *,
                     school_of_magic(school:full_name),
-                    character_class(class:full_name)
+                    character_class(class:full_name, class_id:id)
                     `
                 )
                 .order('full_name')
@@ -584,4 +609,40 @@ export async function getClassFeatures(req, res) {
     catch(err){
         res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }   
+}
+
+export async function getFeats(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific weapon
+        if (term){
+            const { data, error } = await supabase
+                .from('feat')
+                .select()
+                .ilike('full_name', `%${term}%`)
+                .order('full_name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all weapons
+        else {
+            const { data, error } = await supabase
+                .from('feat')
+                .select()
+                .order('full_name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+    
 }
