@@ -33,15 +33,6 @@ export const CreationContextProvider = ({ children }) => {
     }, [])
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/class_features')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                // setClasses(data)
-            })
-    }, [])
-
-    useEffect(() => {
         fetch('http://127.0.0.1:8080/api/search/species')
             .then(res => res.json())
             .then(data => {

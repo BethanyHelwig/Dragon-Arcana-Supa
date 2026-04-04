@@ -88,12 +88,12 @@ export const useApiStore = create((set, get) => ({
                         // armor_class: info.armor_class,
                         // initiative: info.initiative,
                         // speed: info.speed,
-                        // strength: info.ability_scores.strength,
-                        // dexterity: info.ability_scores.dexterity,
-                        // constitution: info.ability_scores.constitution,
-                        // intelligence: info.ability_scores.intelligence,
-                        // wisdom: info.ability_scores.wisdom,
-                        // charisma: info.ability_scores.charisma,
+                        strength: abilityScores.strength,
+                        dexterity: abilityScores.dexterity,
+                        constitution: abilityScores.constitution,
+                        intelligence: abilityScores.intelligence,
+                        wisdom: abilityScores.wisdom,
+                        charisma: abilityScores.charisma,
                         // skill_proficiencies: info.skill_proficiencies, // ARRAY
                         // pronouns: info.pronouns,
                         // faith: info.faith,
@@ -106,8 +106,8 @@ export const useApiStore = create((set, get) => ({
                         // hair: info.hair,
                         // gender: info.gender,
                         species: info.species, // FK species id
-                        level: info.level
-                        // languages: info.languages // ARRAY
+                        level: info.level,
+                        languages: info.languages // ARRAY
                     }
                 )
             if (error) throw error

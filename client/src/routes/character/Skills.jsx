@@ -79,7 +79,7 @@ export default function Skills(){
         else {
             return (
                 <div>
-                    <p>This class does not have a skill proficiency.</p>
+                    <p>This species does not have a skill proficiency.</p>
                 </div>
             )
         }

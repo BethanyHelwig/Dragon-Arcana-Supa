@@ -5,7 +5,7 @@ import { useApiStore } from "../../store/useApiStore"
 
 export default function StatusOfCreation() {
 
-    const { character, abilityScores } = useContext(CreationContext)
+    const { character, generatedScores } = useContext(CreationContext)
     const { createCharacter, isCreateCharacterLoading } = useApiStore()
 
     const classComplete = character.class ? true : false
@@ -36,7 +36,12 @@ export default function StatusOfCreation() {
             console.log("Please complete required fields in order to submit character!")
         }
 
-        createCharacter(character, abilityScores)
+        // TODO: calculate armor class
+
+        // reformat generated ability scores into a format easy to submit to backend
+        const formattedScores = Object.fromEntries(generatedScores.map(item => [item.ability, item.score]))
+
+        createCharacter(character, formattedScores)
     }
 
     return (        
@@ -70,6 +75,7 @@ export default function StatusOfCreation() {
                 <span className="hidden">About</span>
             </div>
 
+    {/* TODO: Change this to Review Character and send to review page before creation */}
             <button 
                 onClick={characterSubmitCheck}
                 disabled={isCreateCharacterLoading}

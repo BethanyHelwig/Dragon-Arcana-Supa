@@ -115,7 +115,8 @@ footer,
 .saved-character-summary,
 .character-sheet h4,
 textarea,
-.collapsible-content {
+.collapsible-content,
+.cs-box {
     font-family: "Roboto", sans-serif;
 }
 
@@ -574,6 +575,7 @@ main {
     padding-top: 8px;
     position: relative;
     border: 2px solid rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.5em;
 }
 
 .ability-score-display h3 {
@@ -592,13 +594,22 @@ main {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     position: absolute;
     bottom: -10px;
-    margin: 0 0;
+    margin: 0;
     width: 40px;
     padding: 2px;
 }
 
 .character-sheet {
-    padding: 1em;
+    padding: 1.5em;
+}
+
+.cs-box {
+    background-color: var(--soft-overlay);
+    border: 1px solid var(--gray-secondary-color);
+    border-radius: 7px;
+    margin-bottom: 0.5em;
+    padding: 2px 5px;
+    font-size: 0.9rem;
 }
 
 /* -- INTERACTIVE COMPONENTS -- */
@@ -1124,6 +1135,10 @@ button .spinning-icon {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1em;
+}
+
+.character-sheet-grid-header p {
+    min-height: 1.6em;
 }
 
 .divider {
