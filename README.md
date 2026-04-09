@@ -1,11 +1,14 @@
 # Dragon Arcana
 
+![Logo for Dragon Arcana](/client/src/assets/logo_dark_mode.png)
 An online gaming portal to play Dungeons & Dragons, save characters, and run games.
 
-## Features (IN PROGRESS)
+## Features
 
 * Search for Dungeons & Dragons information using site's own database
 * Build and save character sheets
+
+## Features IN PROGRESS
 * Create and run games/campaigns with friends
     * Interactive map with movable tokens
     * Log of actions and rolls

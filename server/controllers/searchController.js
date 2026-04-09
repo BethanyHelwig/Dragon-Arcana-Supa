@@ -232,7 +232,8 @@ export async function getClass(req, res) {
                 .from('character_class')
                 .select(`
                     *,
-                    class_features(*)
+                    class_features(*),
+                    subclass(*)
                     `)
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
@@ -248,7 +249,8 @@ export async function getClass(req, res) {
                 .from('character_class')
                 .select(`
                     *,
-                    class_features(*)
+                    class_features(*),
+                    subclass(*)
                     `)
                 .order('full_name')
 
@@ -264,6 +266,8 @@ export async function getClass(req, res) {
 }
 
 export async function getSpell(req, res) { 
+
+    // TODO: add pagination to this search
     
     // term is used in search of Compendium
     // c_class (character_class) is used in the Spells section of Character Creation

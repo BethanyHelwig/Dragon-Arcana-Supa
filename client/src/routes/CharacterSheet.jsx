@@ -14,8 +14,7 @@ export default function CharacterSheet(){
 
     useEffect(() => {
         getSelectedCharacter(id)
-        console.log(selectedCharacter)
-    }, [])
+    }, [id])
 
     useEffect(() => {
         fetch('http://127.0.0.1:8080/api/search/ability_score')
@@ -33,12 +32,22 @@ export default function CharacterSheet(){
             })
     }, [])
 
+    const character = selectedCharacter?.[0]
+
+    if(isSelectedCharacterLoading || !character) {
+        return (
+            <main id="character-sheet-main">
+                <i className="fa-solid fa-spinner spinning-icon"></i>
+            </main>
+        )
+    }
+
     const {
         age,
-        alignment: { full_name: c_alignment },
+        alignment, // object with id and full_name
         armor_class, // maybe just calculate this?
         background,
-        character_class: { full_name: c_class },
+        character_class, // object with id and full_name
         charisma,
         // class_id,
         constitution,
@@ -58,12 +67,16 @@ export default function CharacterSheet(){
         pronouns,
         skill_proficiencies, //array
         skin,
-        species: { full_name: c_species },
+        species, // object with id and full_name
         speed,
         strength,
         weight,
         wisdom,
-    } = selectedCharacter[0]
+    } = character
+
+    const c_alignment = alignment?.full_name
+    const c_class = character_class?.full_name
+    const c_species = species?.full_name
 
     const skillsFormatted = skillList.map(el => {
         if(skill_proficiencies){
@@ -101,175 +114,171 @@ export default function CharacterSheet(){
         // }
     })
 
+
     return (
         <main id="character-sheet-main">
-            {isSelectedCharacterLoading && <i className="fa-solid fa-spinner spinning-icon"></i>}
-            {selectedCharacter &&    
-            <>
-                <div className="character-sheet gradient-border width-100">
-                    {/* HEADER AREA */}
-                    <div className="character-sheet-header">
-                        <div className="flex-row">
-                            <div className="saved-character-image">
-                                <i className="fa-solid fa-circle-user"></i>
-                            </div>
-                            <div>
-                                <h1 className="title-glow">{selectedCharacter[0].name}</h1>
-                                {/* <i className="fa-solid fa-pen-to-square"></i> */}
-                                <h4>CHARACTER NAME</h4>
-                            </div>
-                        </div>
-                        <div className="character-sheet-grid-header">
-                                <div>
-                                    <p>{c_class} {level}</p>
-                                    <h4 className="overline">CLASS & LEVEL</h4>
-                                </div>
-                                <div>
-                                    <p>{background}</p>
-                                    <h4 className="overline">BACKGROUND</h4>
-                                </div>
-                                <div>
-                                    <p>{session.user.user_metadata.username}</p>
-                                    <h4 className="overline">PLAYER NAME</h4>
-                                </div>
-                                <div>
-                                    <p>{c_species}</p>
-                                    <h4 className="overline">RACE</h4>
-                                </div>
-                                <div>
-                                    <p>{c_alignment}</p>
-                                    <h4 className="overline">ALIGNMENT</h4>
-                                </div>
-                                <div>
-                                    {/* TODO: work on experience points implementation */}
-                                    <p></p>
-                                    <h4 className="overline">EXPERIENCE POINTS</h4>
-                                </div>
-                            </div>
-                        </div>
-                    <hr className="divider"></hr>
-
-                    {/* TODO: put this is iterative pattern, calculate modifier */}
+            <div className="character-sheet gradient-border width-100">
+                {/* HEADER AREA */}
+                <div className="character-sheet-header">
                     <div className="flex-row">
-                        {/* ABILITY SCORES */}
-                        <div className="flex-column">
-                            <div>
-                                <div className="ability-score-display">
-                                    <h4>STRENGTH</h4>
-                                    <div className="ability-score-modifier">
-                                        <h3>+1</h3>
-                                    </div>
-                                    <div className="ability-score-number">
-                                        <span>{strength}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="ability-score-display">
-                                    <h4>DEXTERITY</h4>
-                                    <div className="ability-score-modifier">
-                                        <h3>+1</h3>
-                                    </div>
-                                    <div className="ability-score-number">
-                                        <span>{dexterity}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="ability-score-display">
-                                    <h4>CONSTITUTION</h4>
-                                    <div className="ability-score-modifier">
-                                        <h3>+1</h3>
-                                    </div>
-                                    <div className="ability-score-number">
-                                        <span>{constitution}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="ability-score-display">
-                                    <h4>INTELLIGENCE</h4>
-                                    <div className="ability-score-modifier">
-                                        <h3>+1</h3>
-                                    </div>
-                                    <div className="ability-score-number">
-                                        <span>{intelligence}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="ability-score-display">
-                                    <h4>WISDOM</h4>
-                                    <div className="ability-score-modifier">
-                                        <h3>+1</h3>
-                                    </div>
-                                    <div className="ability-score-number">
-                                        <span>{wisdom}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="ability-score-display">
-                                    <h4>CHARISMA</h4>
-                                    <div className="ability-score-modifier">
-                                        <h3>+1</h3>
-                                    </div>
-                                    <div className="ability-score-number">
-                                        <span>{charisma}</span>
-                                    </div>
-                                </div>
-                            </div>
-                                                        <div className="flex-col cs-box">
-                                <span>Saving Throws</span>
-                                {savingThrowsFormatted}
-                            </div>
+                        <div className="saved-character-image">
+                            <i className="fa-solid fa-circle-user"></i>
                         </div>
-
-                        {/* SKILLS */}
-                        <div className="flex-col">
-                            <div className="flex-row cs-box">
-                                <div>00</div>
-                                <span>Inspiration</span>
-                            </div>
-                            <div className="flex-row cs-box">
-                                <div>00</div>
-                                <span>Proficiency Bonus</span>
-                            </div>
-                            <div className="flex-col cs-box">
-                                <span>Skills</span>
-                                {skillsFormatted}
-                            </div>
-                        </div>
-
                         <div>
-                            <div className="flex-row">
-                                <div className="flex-col cs-box">
-                                    <div>00</div>
-                                    <span>Armor Class</span>
-                                </div>
-                                <div className="flex-col cs-box">
-                                    <div>00</div>
-                                    <span>Initiative</span>
-                                </div>
-                                <div className="flex-col cs-box">
-                                    <div>00</div>
-                                    <span>Speed</span>
-                                </div>
+                            <h1 className="title-glow">{name}</h1>
+                            {/* <i className="fa-solid fa-pen-to-square"></i> */}
+                            <h4>CHARACTER NAME</h4>
+                        </div>
+                    </div>
+                    <div className="character-sheet-grid-header">
+                            <div>
+                                <p>{c_class} {level}</p>
+                                <h4 className="overline">CLASS & LEVEL</h4>
                             </div>
-                            <div className="flex-col cs-box">
-                                <div>00</div>
-                                <span>Current Hit Points</span>
+                            <div>
+                                <p>{background}</p>
+                                <h4 className="overline">BACKGROUND</h4>
+                            </div>
+                            <div>
+                                <p>{session.user.user_metadata.username}</p>
+                                <h4 className="overline">PLAYER NAME</h4>
+                            </div>
+                            <div>
+                                <p>{c_species}</p>
+                                <h4 className="overline">RACE</h4>
+                            </div>
+                            <div>
+                                <p>{c_alignment}</p>
+                                <h4 className="overline">ALIGNMENT</h4>
+                            </div>
+                            <div>
+                                {/* TODO: work on experience points implementation */}
+                                <p></p>
+                                <h4 className="overline">EXPERIENCE POINTS</h4>
                             </div>
                         </div>
                     </div>
+                <hr className="divider"></hr>
 
-                    {/* ATTACKS, SPELLS, INVENTORY */}
+                {/* TODO: put this is iterative pattern, calculate modifier */}
+                <div className="flex-row">
+                    {/* ABILITY SCORES */}
+                    <div className="flex-column">
+                        <div>
+                            <div className="ability-score-display">
+                                <h4>STRENGTH</h4>
+                                <div className="ability-score-modifier">
+                                    <h3>+1</h3>
+                                </div>
+                                <div className="ability-score-number">
+                                    <span>{strength}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="ability-score-display">
+                                <h4>DEXTERITY</h4>
+                                <div className="ability-score-modifier">
+                                    <h3>+1</h3>
+                                </div>
+                                <div className="ability-score-number">
+                                    <span>{dexterity}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="ability-score-display">
+                                <h4>CONSTITUTION</h4>
+                                <div className="ability-score-modifier">
+                                    <h3>+1</h3>
+                                </div>
+                                <div className="ability-score-number">
+                                    <span>{constitution}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="ability-score-display">
+                                <h4>INTELLIGENCE</h4>
+                                <div className="ability-score-modifier">
+                                    <h3>+1</h3>
+                                </div>
+                                <div className="ability-score-number">
+                                    <span>{intelligence}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="ability-score-display">
+                                <h4>WISDOM</h4>
+                                <div className="ability-score-modifier">
+                                    <h3>+1</h3>
+                                </div>
+                                <div className="ability-score-number">
+                                    <span>{wisdom}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="ability-score-display">
+                                <h4>CHARISMA</h4>
+                                <div className="ability-score-modifier">
+                                    <h3>+1</h3>
+                                </div>
+                                <div className="ability-score-number">
+                                    <span>{charisma}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex-col cs-box">
+                            <span>Saving Throws</span>
+                            {savingThrowsFormatted}
+                        </div>
+                    </div>
 
-                    {/* PERSONAL, TRAITS */}
+                    {/* SKILLS */}
+                    <div className="flex-col">
+                        <div className="flex-row cs-box">
+                            <div>00</div>
+                            <span>Inspiration</span>
+                        </div>
+                        <div className="flex-row cs-box">
+                            <div>00</div>
+                            <span>Proficiency Bonus</span>
+                        </div>
+                        <div className="flex-col cs-box">
+                            <span>Skills</span>
+                            {skillsFormatted}
+                        </div>
+                    </div>
 
+                    <div>
+                        <div className="flex-row">
+                            <div className="flex-col cs-box">
+                                <div>00</div>
+                                <span>Armor Class</span>
+                            </div>
+                            <div className="flex-col cs-box">
+                                <div>00</div>
+                                <span>Initiative</span>
+                            </div>
+                            <div className="flex-col cs-box">
+                                <div>00</div>
+                                <span>Speed</span>
+                            </div>
+                        </div>
+                        <div className="flex-col cs-box">
+                            <div>00</div>
+                            <span>Current Hit Points</span>
+                        </div>
+                    </div>
                 </div>
-            </>
-            }
+
+                {/* ATTACKS, SPELLS, INVENTORY */}
+
+                {/* PERSONAL, TRAITS */}
+
+            </div>
         </main>
     )
 }

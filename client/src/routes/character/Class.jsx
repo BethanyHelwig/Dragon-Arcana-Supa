@@ -64,8 +64,58 @@ export default function Class(){
             weapon_proficiencies,
             armor_training,
             full_name,
-            class_features
+            class_features, // array
+            subclass // array
         } = chosenClass[0]
+
+
+        // sorts the various class features into their respective subclasses
+        // then returns them formatted
+        function subclassesSorted() {
+            const sorted = [{id: "base", title: "Base", values: []}]
+            sorted.push(...subclass.map(el => ({...el, values: []})))
+            
+
+            class_features.sort((a,b) => a.level - b.level).map(feature=>{
+                console.log("checking for subclass match")
+                if(sorted.find(el => el.id === feature.subclass_id)){
+                    const index = sorted.findIndex(el => el.id === feature.subclass_id)
+                    console.log(index)
+                    sorted[index].values.push(feature)
+                } else {
+                    sorted[0].values.push(feature)
+                }
+            })
+
+            return (
+                sorted.map(subclass => {
+                    return (
+                        <>
+                            <p><strong>{subclass.title !== "Base" ? `${subclass.title} Subclass` : "Class"} Features</strong></p>
+                            {subclass.values.map(feature => {
+                                return (
+                                    <Collapsible label={`Level ${feature.level}: ${feature.title}`}>
+                                    <ul>
+                                        {feature.description.map( el => {
+                                            if (el.includes('<strong>')){
+                                                const startIndex = el.search('<strong>') + 8
+                                                const endIndex = el.search('</strong>')
+                        
+                                                return <li><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                            }
+                                            else {
+                                                return <li>{el}</li>
+                                            }
+                                        })}
+                                    </ul>
+                                </Collapsible>
+                                )
+                            })}
+                        </>
+                    )
+                })
+            )
+        }
 
         return (
             <>
@@ -101,60 +151,9 @@ export default function Class(){
 
                 <p><strong>Weapon Proficiencies:</strong> {weapon_proficiencies}</p>
                 <p><strong>Tool Proficiencies:</strong> {tool_proficiencies ? tool_proficiencies : "n/a"}</p>
-                <p><strong>Class Features</strong></p>
-
-                {/* TODO: Sort, seperate, and label by subclass name */}
-                {class_features.sort((a, b) => a.level - b.level).map(el => {
-                    console.log("Subclass for " + el.title + " is " + el.subclass)
-                    console.log(el.subclass)
-                    if (el.subclass){
-                        return null
-                    }
-                    else {
-                        return (
-                            <Collapsible label={`Level ${el.level}: ${el.title}`}>
-                                <ul>
-                                    {el.description.map( el => {
-                                        if (el.includes('<strong>')){
-                                            const startIndex = el.search('<strong>') + 8
-                                            const endIndex = el.search('</strong>')
-                    
-                                            return <li><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
-                                        }
-                                        else {
-                                            return <li>{el}</li>
-                                        }
-                                    })}
-                                </ul>
-                            </Collapsible>
-                        )
-                    }
-                })}
-                <p><strong>Subclass Features</strong></p>
-                {class_features.sort((a, b) => a.level - b.level).map(el => {
-                    if (!el.subclass){
-                        return null
-                    }
-                    else {
-                        return (
-                            <Collapsible label={`Level ${el.level}: ${el.title}`}>
-                                <ul>
-                                    {el.description.map( el => {
-                                        if (el.includes('<strong>')){
-                                            const startIndex = el.search('<strong>') + 8
-                                            const endIndex = el.search('</strong>')
-                    
-                                            return <li><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
-                                        }
-                                        else {
-                                            return <li>{el}</li>
-                                        }
-                                    })}
-                                </ul>
-                            </Collapsible>
-                        )
-                    }
-                })}
+                {/* <h3 className="emphasis"><strong>Class Features</strong></h3> */}
+                <div className="divider"></div>
+                {subclassesSorted()}
             </>
         )
     }
