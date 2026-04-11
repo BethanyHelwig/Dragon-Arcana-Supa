@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import supabase from "../../supabase-client.js"
 import { useAuth } from "../context/AuthContext.jsx"
 import { useApiStore } from "../store/useApiStore.js"
 

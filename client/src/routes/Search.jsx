@@ -86,9 +86,9 @@ export default function Search() {
 
     return (
         <>
-            <main className="gradient-border">
-                <h2 className="title-glow">Compendium</h2>
-                <form id="search-form" action={search}>
+        <h1 className="title-glow">Compendium: Search</h1>
+            <div className="gradient-border compendium-container">
+                <form id="search-form" action={search} className="search-container">
                     <label htmlFor="dnd-search">Search D&D Database:</label>
                     <input type="search" id="dnd-search" name="searchText" placeholder="What are you looking for?" pattern="[a-zA-Z\s0-9]+" />
                     <select name="searchCategory" id="searchCategory" onChange={handleSelectionChange} value={chosenCategory}>
@@ -111,11 +111,11 @@ export default function Search() {
                     }
                     <button type="submit">Go!</button>
                 </form>
-            </main>
-            <section id="search-results" className="gradient-border">
-                <p>{resultCount}</p>
-                {searchResults.length > 0 && searchResultsElements}
-            </section>
+                <section id="search-results">
+                    <p>{resultCount}</p>
+                    {searchResults.length > 0 && searchResultsElements}
+                </section>
+            </div>
         </>
     )
 }

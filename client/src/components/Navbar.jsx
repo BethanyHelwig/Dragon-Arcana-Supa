@@ -64,7 +64,7 @@ export default function Navbar() {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="search" className={({isActive}) => isActive ? "active-link" : null}>
+                    <NavLink to="compendium" className={({isActive}) => isActive ? "active-link" : null}>
                         Compendium <i className="fa-solid fa-book-atlas"></i>
                     </NavLink>
                 </li>

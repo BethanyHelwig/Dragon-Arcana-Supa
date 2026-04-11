@@ -7,7 +7,7 @@
 
 :root {
     --background-primary-color: #211f24;
-    --text-primary-color: #e6e6e6;
+    --text-primary-color: #d1dddf;
     --primary-accent-color: #7216a0;
     --dark-primary-accent-color: #6f378b;
     --secondary-accent-color: #80c5ff;
@@ -40,7 +40,7 @@
     --button-hover-background: #fcf9d4;
     --button-hover-text: #880000;
     --fieldset-background-color: rgb(218, 204, 179);
-    --soft-overlay: rgba(255, 255, 255, 0.1);
+    --soft-overlay: rgba(255, 255, 255, 0.25);
     
     --link-hover-color: #006e5c;
     --header-footer-overlay: rgba(209, 198, 179, 0.6);
@@ -116,7 +116,8 @@ footer,
 .character-sheet h4,
 textarea,
 .collapsible-content,
-.cs-box {
+.cs-box,
+.compendium-content {
     font-family: "Roboto", sans-serif;
 }
 
@@ -124,7 +125,9 @@ textarea,
     padding: 1em;
     border-top: 2px solid var(--dark-primary-accent-color);
     width: 100%;
-    background-color: var(--header-footer-overlay);
+    background-color: var(--soft-overlay);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 footer p {
@@ -157,6 +160,47 @@ footer a {
 
 .submenu * {
    padding: 0.75em 1.25em;
+}
+
+.side-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    text-align: left;
+    margin: 0;
+    min-width: 200px;
+}
+
+.side-menu-active-link {
+    background-color: var(--soft-overlay);
+    border-radius: 7px; 
+    padding-left: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.compendium-home {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}
+
+.compendium-home-link {
+    background-color: var(--soft-overlay);
+    border: 1px solid var(--gray-secondary-color);
+    border-radius: 7px;
+    padding: 1.5em;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.compendium-home-link:hover {
+    /* background-color: var(--soft-overlay); */
+    border: 1px solid whitesmoke;
+    transition: all 0.4s ease-in-out;
+}
+
+.compendium-container {
+    padding: 1.5em;
 }
 
 .creation-outlet-div {
@@ -366,7 +410,7 @@ main {
 }
 
 #search-results {
-    width: 80%;
+    width: 100%;
     margin-bottom: 2em;
     padding: 1em 2em;
 }
@@ -386,6 +430,74 @@ main {
 
 .search-result-details span {
     font-weight: normal;
+}
+
+.search-container {
+    max-width: 500px;
+    margin: auto auto;
+    text-align: center;
+}
+
+.back-btn {
+    max-width: 100px;
+    margin: 0 auto 0 0;
+}
+
+.compendium-content {
+    text-align: left;
+    padding: 1.5em;
+}
+
+.compendium-content h2,
+.compendium-content h3,
+.compendium-content h4 {
+    margin: 0;
+}
+
+.compendium-content p {
+    text-indent: 1em;
+    margin: 0.6em 0;
+}
+
+.compendium-content ol,
+.compendium-content ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.compendium-content-emphasis {
+    background-color: var(--soft-overlay);
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.459);
+    padding: 1em;
+    margin-bottom: 1.5em;
+}
+
+.compendium-content table {
+    border-collapse: collapse;
+    margin: 0.5em 0 1em;
+}
+
+.compendium-content tr
+{
+    border: 1px solid var(--soft-overlay);
+}
+
+.compendium-content th,
+.compendium-content td 
+{
+    padding: 5px 10px;
+    min-width: 90px;
+}
+
+.compendium-content thead {
+    background-color: var(--dark-secondary-accent-color);
+    color: whitesmoke;
+}
+
+.compendium-content tbody tr:nth-of-type(odd) {
+    background-color: var(--soft-overlay);
 }
 
 #profile-link-div {
@@ -444,7 +556,7 @@ main {
 #splash-page h1 {
     font-size: 4.2rem;
     max-width: 600px;
-    margin: 10px 0 0.5em;
+    margin: 10px 0 0;
 }
 
 #splash-page h2 {
@@ -1145,6 +1257,12 @@ button .spinning-icon {
     border: none;
     border-top: 1px solid var(--dark-secondary-accent-color);
     margin: 20px 0;
+}
+
+.compendium-divider {
+    border: none;
+    border-top: 1px solid var(--dark-secondary-accent-color);
+    margin: 5px 0;
 }
 
 .two-col {

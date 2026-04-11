@@ -1,11 +1,11 @@
 # Dragon Arcana
 
-![Logo for Dragon Arcana](/client/src/assets/logo_dark_mode.png)
+<img src="client/src/assets/logo_dark_mode.png" width="100px">  
 An online gaming portal to play Dungeons & Dragons, save characters, and run games.
 
 ## Features
 
-* Search for Dungeons & Dragons information using site's own database
+* Search for Dungeons & Dragons information using the site's own database
 * Build and save character sheets
 
 ## Features IN PROGRESS
@@ -22,3 +22,7 @@ An online gaming portal to play Dungeons & Dragons, save characters, and run gam
 **Frontend:** React, Javascript, HTML, CSS
 
 **Backend:** Express, Node.js, Supabase
+
+**Additional Libraries**: 
+* [Motion](https://motion.dev/): animations and transitions
+* [React Hot Toast](https://react-hot-toast.com/): toast
