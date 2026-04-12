@@ -36,6 +36,10 @@ import Spells from "./routes/character/Spells"
 import Compendium from './routes/Compendium';
 import CompendiumHome from './routes/compendium/CompendiumHome'
 import PlayingTheGame from './routes/compendium/PlayingTheGame'
+import RulesGlossary from './routes/compendium/RulesGlossary'
+/* Rules Glossary sub routes */
+import GlossaryConventions from './routes/compendium/glossary/GlossaryConventions'
+import GlossaryTerm from './routes/compendium/glossary/GlossaryTerm';
 /* Compendium/PlayingTheGame sub routes */
 import RhythmOfPlay from './routes/compendium/playingthegame/RhythmOfPlay'
 import TheSixAbilities from './routes/compendium/playingthegame/TheSixAbilities'
@@ -60,6 +64,10 @@ function App() {
 							<Route path="compendium" element={<Compendium />} >
 								<Route index element={<CompendiumHome />} />
 								<Route path="search" element={<Search />} />
+								<Route path="rules_glossary" element={<RulesGlossary />}>
+									<Route index element={<GlossaryConventions />} />
+									<Route path=":id" element={<GlossaryTerm />} />
+								</Route>
 								<Route path="playing_the_game" element={<PlayingTheGame />}>
 									<Route index element={<RhythmOfPlay />} />
 									<Route path="the_six_abilities" element={<TheSixAbilities />} />

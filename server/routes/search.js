@@ -14,7 +14,8 @@ import {
     getLifestyle,
     getBackground,
     getClassFeatures,
-    getFeats
+    getFeats,
+    getRulesGlossary,
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
@@ -34,3 +35,4 @@ searchRouter.get('/lifestyle', getLifestyle)
 searchRouter.get('/background', getBackground)
 searchRouter.get('/class_features', getClassFeatures)
 searchRouter.get('/feat', getFeats)
+searchRouter.get('/rules_glossary', getRulesGlossary)

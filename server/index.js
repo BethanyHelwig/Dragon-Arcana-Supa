@@ -7,7 +7,7 @@ import 'dotenv/config'
 import cookieParser from 'cookie-parser'
 
 import { searchRouter } from './routes/search.js'
-import { charactersRouter } from "./routes/charactersRoute.js"
+// import { charactersRouter } from "./routes/charactersRoute.js"
 
 const app = express()
 const PORT = process.env.PORT || 8000
@@ -18,7 +18,7 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
 app.use(cookieParser())
 
 app.use('/api/search', searchRouter)
-app.use('/api/characters', charactersRouter)
+// app.use('/api/characters', charactersRouter)
 
 app.listen(PORT, () => console.log(`server listening on port ${PORT}`))
     .on('error', (err) => {

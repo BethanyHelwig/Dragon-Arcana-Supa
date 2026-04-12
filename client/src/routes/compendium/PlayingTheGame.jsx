@@ -7,10 +7,9 @@ export default function PlayingTheGame(){
     return (
         <>
             <h1 className="title-glow">Compendium: Playing the Game</h1>
-            <BackButton />
+            <Link to ="/compendium" className="back-btn btn-lookalike">Back</Link>
             <div className="flex-row">
                 <div className="side-menu">
-                    <h3>Playing the Game</h3>
                     <NavLink to="." end className={({isActive}) => isActive ? "side-menu-active-link" : null}>Rhythm of Play</NavLink>
                     <NavLink to="the_six_abilities" className={({isActive}) => isActive ? "side-menu-active-link" : null}>The Six Abilities</NavLink>
                     <NavLink to="d20_tests" className={({isActive}) => isActive ? "side-menu-active-link" : null}>D20 Tests</NavLink>

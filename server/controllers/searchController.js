@@ -650,3 +650,60 @@ export async function getFeats(req, res) {
     }
     
 }
+
+export async function getRulesGlossary(req, res) {
+    const { term, id } = req.query
+
+    try{
+        // search for specific glossary rule
+        if (term){
+            const { data, error } = await supabase
+                .from('rules_glossary')
+                .select(`
+                    *,
+                    rules_glossary_table(*)
+                    `)
+                .ilike('title', `%${term}%`)
+                .order('title')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // search for specific glossary rule
+        else if (id){
+            const { data, error } = await supabase
+                .from('rules_glossary')
+                .select(`
+                    *,
+                    rules_glossary_table(*)
+                    `)
+                .eq('id', id)
+                .order('title')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all glossary rules
+        else {
+            const { data, error } = await supabase
+                .from('rules_glossary')
+                .select(`
+                    *,
+                    rules_glossary_table(*)
+                    `)
+                .order('title')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
