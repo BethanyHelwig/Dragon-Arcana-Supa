@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react'
 
 export default function GlossaryTerm(){
     const { id } = useParams()
-    console.log(id)
-    // const { glossary } = useOutletContext()
-    // const term = glossary.find(term => term.id === Number(id))
+    const { glossary } = useOutletContext()
     const [ rule, setRule ] = useState()
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8080/api/search/rules_glossary/?id=${id}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setRule(data[0])
-            })
+        const term = glossary.find(term => term.id === Number(id))
+        setRule(term)
+        // fetch(`http://127.0.0.1:8080/api/search/rules_glossary/?id=${id}`)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         setRule(data[0])
+        //     })
     }, [id])
 
     function formatted(){

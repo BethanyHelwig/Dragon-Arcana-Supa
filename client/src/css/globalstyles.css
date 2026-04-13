@@ -447,6 +447,7 @@ main {
 .compendium-content {
     text-align: left;
     padding: 1.5em;
+    min-height: 50vh;
 }
 
 .compendium-content h2,
@@ -930,6 +931,8 @@ input[type="search"] {
 .collapsible-content {
     padding: 5px 10px;
     text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 .collapsible-content ul {
