@@ -306,6 +306,7 @@ footer a {
     gap: 0.5em;
 }
 
+.spells-container,
 .skill-display,
 .class-info {
     min-width: 250px;
@@ -713,6 +714,35 @@ main {
     padding: 2px;
 }
 
+.spells-container {
+    text-align: center;
+}
+
+.spells-container form {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin: 15px 0;
+    justify-content: center;
+}
+
+.spells-container h4 {
+    margin: 0;
+}
+
+.spell-attributes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.spell-attributes span {
+    background-color: var(--soft-overlay);
+    border-radius: 5px;
+    padding: 2px 8px;
+    margin: 0 10px 10px 0;
+    white-space: nowrap;
+}
+
 .character-sheet {
     padding: 1.5em;
 }
@@ -917,6 +947,8 @@ input[type="search"] {
     justify-content: space-evenly;
     gap: 1em;
 }
+
+/* -- COLLAPSIBLE COMPONENT -- */
 
 .collapsible-title {
     display: flex;

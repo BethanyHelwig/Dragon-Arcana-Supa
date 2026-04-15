@@ -13,7 +13,7 @@ export const Collapsible = (props) => {
         <div>
             <div className="collapsible-title font-Roboto" onClick={toggle}>
                 <span>{props.label}</span>
-                <span>{open ? <i class="fa-solid fa-angle-down"></i> : <i className="fa-solid fa-angle-left"></i>}</span>
+                <span>{open ? <i className="fa-solid fa-angle-down"></i> : <i className="fa-solid fa-angle-left"></i>}</span>
             </div>
             <div className="collapsible"
                 style={{
