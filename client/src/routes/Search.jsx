@@ -1,5 +1,6 @@
 import React from "react"
 import SearchResult from "/src/components/SearchResult"
+import { Link } from "react-router-dom"
 
 export default function Search() {
 
@@ -86,7 +87,10 @@ export default function Search() {
 
     return (
         <>
-        <h1 className="title-glow">Compendium: Search</h1>
+            <div className="title-back-btn-container">
+                <Link to ="/compendium" className="back-btn btn-lookalike">Back</Link>
+                <h1 className="title-glow">Compendium: Search</h1>
+            </div>
             <div className="gradient-border compendium-container">
                 <form id="search-form" action={search} className="search-container">
                     <label htmlFor="dnd-search">Search D&D Database:</label>

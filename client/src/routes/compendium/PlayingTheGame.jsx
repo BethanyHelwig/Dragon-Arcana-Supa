@@ -6,8 +6,10 @@ export default function PlayingTheGame(){
 
     return (
         <>
-            <h1 className="title-glow">Compendium: Playing the Game</h1>
-            <Link to ="/compendium" className="back-btn btn-lookalike">Back</Link>
+            <div className="title-back-btn-container">
+                <Link to ="/compendium" className="back-btn btn-lookalike">Back</Link>
+                <h1 className="title-glow">Compendium: Playing the Game</h1>
+            </div>
             <div className="flex-row">
                 <div className="side-menu">
                     <NavLink to="." end className={({isActive}) => isActive ? "side-menu-active-link" : null}>Rhythm of Play</NavLink>

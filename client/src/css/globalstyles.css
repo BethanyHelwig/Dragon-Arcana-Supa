@@ -12,6 +12,7 @@
     --dark-primary-accent-color: #6f378b;
     --secondary-accent-color: #80c5ff;
     --dark-secondary-accent-color: #204a64;
+    --compendium-subtitle-color: #80c5ff;
 
     --button-hover-background: #ebd7f5;
     --button-hover-text: #7700b3;
@@ -36,6 +37,7 @@
     --dark-primary-accent-color: #880000;
     --secondary-accent-color: #fcf9d4;
     --dark-secondary-accent-color: #642020;
+    --compendium-subtitle-color: #880000;
 
     --button-hover-background: #fcf9d4;
     --button-hover-text: #880000;
@@ -443,6 +445,7 @@ main {
 .back-btn {
     max-width: 100px;
     margin: 0 auto 0 0;
+    justify-self: start;
 }
 
 .compendium-content {
@@ -455,6 +458,10 @@ main {
 .compendium-content h3,
 .compendium-content h4 {
     margin: 0;
+}
+
+.compendium-content h4 {
+    color: var(--compendium-subtitle-color);
 }
 
 .compendium-content p {
@@ -501,6 +508,11 @@ main {
 
 .compendium-content tbody tr:nth-of-type(odd) {
     background-color: var(--soft-overlay);
+}
+
+.compendium-content .header-span {
+    position: relative;
+    text-align: center;
 }
 
 #profile-link-div {
@@ -754,6 +766,12 @@ main {
     margin-bottom: 0.5em;
     padding: 2px 5px;
     font-size: 0.9rem;
+}
+
+.title-back-btn-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
 }
 
 /* -- INTERACTIVE COMPONENTS -- */

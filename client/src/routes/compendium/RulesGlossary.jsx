@@ -34,7 +34,10 @@ export default function RulesGlossary(){
     
     return (
         <>
-            <h1 className="title-glow">Compendium: Rules Glossary</h1>
+            <div className="title-back-btn-container">
+                <Link to ="/compendium" className="back-btn btn-lookalike">Back</Link>
+                <h1 className="title-glow">Compendium: Rules Glossary</h1>
+            </div>
             <div className="flex-row">
                 <div className="side-menu">
                     <NavLink to="." end className={({isActive}) => isActive ? "side-menu-active-link" : null}>Glossary Conventions</NavLink>

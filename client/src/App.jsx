@@ -37,6 +37,7 @@ import Compendium from './routes/Compendium';
 import CompendiumHome from './routes/compendium/CompendiumHome'
 import PlayingTheGame from './routes/compendium/PlayingTheGame'
 import RulesGlossary from './routes/compendium/RulesGlossary'
+import GameplayToolbox from './routes/compendium/GameplayToolbox';
 /* Rules Glossary sub routes */
 import GlossaryConventions from './routes/compendium/glossary/GlossaryConventions'
 import GlossaryTerm from './routes/compendium/glossary/GlossaryTerm';
@@ -50,6 +51,15 @@ import SocialInteraction from './routes/compendium/playingthegame/SocialInteract
 import Exploration from './routes/compendium/playingthegame/Exploration'
 import Combat from './routes/compendium/playingthegame/Combat'
 import DamageAndHealing from './routes/compendium/playingthegame/DamageAndHealing'
+/* Gameplay Toolbox sub routes */
+import CombatEncounters from './routes/compendium/gameplaytoolbox/CombatEncounters'
+import CreatingABackground from "./routes/compendium/gameplaytoolbox/CreatingABackground"
+import CursesAndMagicalContagions from "./routes/compendium/gameplaytoolbox/CursesAndMagicalContagions"
+import EnvironmentalEffects from "./routes/compendium/gameplaytoolbox/EnvironmentalEffects"
+import FearAndMentalStress from "./routes/compendium/gameplaytoolbox/FearAndMentalStress"
+import Poison from "./routes/compendium/gameplaytoolbox/Poison"
+import Traps from "./routes/compendium/gameplaytoolbox/Traps"
+import TravelPace from "./routes/compendium/gameplaytoolbox/TravelPace"
 
 function App() {
 
@@ -64,6 +74,16 @@ function App() {
 							<Route path="compendium" element={<Compendium />} >
 								<Route index element={<CompendiumHome />} />
 								<Route path="search" element={<Search />} />
+								<Route path="gameplay_toolbox" element={<GameplayToolbox />}>
+									<Route index element={<CombatEncounters/>}/>
+									<Route path="creating_a_background" element={<CreatingABackground/>}/>
+									<Route path="curses_and_magical_contagions" element={<CursesAndMagicalContagions/>}/>
+									<Route path="environmental_effects" element={<EnvironmentalEffects/>}/>
+									<Route path="fear_and_mental_stress" element={<FearAndMentalStress/>}/>
+									<Route path="poison" element={<Poison/>}/>
+									<Route path="traps" element={<Traps/>}/>
+									<Route path="travel_pace" element={<TravelPace/>}/>
+								</Route>
 								<Route path="rules_glossary" element={<RulesGlossary />}>
 									<Route index element={<GlossaryConventions />} />
 									<Route path=":id" element={<GlossaryTerm />} />
