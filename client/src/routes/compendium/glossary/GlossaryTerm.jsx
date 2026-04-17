@@ -9,12 +9,6 @@ export default function GlossaryTerm(){
     useEffect(() => {
         const term = glossary.find(term => term.id === Number(id))
         setRule(term)
-        // fetch(`http://127.0.0.1:8080/api/search/rules_glossary/?id=${id}`)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data)
-        //         setRule(data[0])
-        //     })
     }, [id])
 
     function formatted(){

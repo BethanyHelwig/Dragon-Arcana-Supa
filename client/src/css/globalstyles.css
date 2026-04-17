@@ -13,6 +13,8 @@
     --secondary-accent-color: #80c5ff;
     --dark-secondary-accent-color: #204a64;
     --compendium-subtitle-color: #80c5ff;
+    --monster-color: #bce0fd;
+    --gray-subtitle: #7c7c7c;
 
     --button-hover-background: #ebd7f5;
     --button-hover-text: #7700b3;
@@ -38,6 +40,8 @@
     --secondary-accent-color: #fcf9d4;
     --dark-secondary-accent-color: #642020;
     --compendium-subtitle-color: #880000;
+    --monster-color: #642020;
+    --gray-subtitle: #7c7c7c;
 
     --button-hover-background: #fcf9d4;
     --button-hover-text: #880000;
@@ -1171,6 +1175,92 @@ legend {
     font-size: 1.1rem;
     margin: 0 0 5px;
     border-bottom: 1px solid var(--dark-secondary-accent-color);
+}
+
+/* .monster-card {
+    border-top: solid 4px var(--dark-primary-accent-color);
+    border-bottom: solid 4px var(--dark-primary-accent-color);
+    padding: 5px 0;
+} */
+
+/* .monster-card p {
+    text-indent: 0;
+} */
+
+.monster-card h3 {
+    margin-top: 10px;
+}
+
+.monster-name {
+    text-transform: uppercase;
+}
+
+.monster-name::first-letter {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.monster-divider {
+  height: 3px;
+  width: 100%;
+  background: var(--dark-primary-accent-color);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  margin: 0 0 6px;
+}
+
+.monster-color {
+    color: var(--monster-color);
+}
+
+.monster-color p {
+    margin: 3px 0;
+    padding: 0;
+    text-indent: 0;
+}
+
+.compendium-content .stat-table tr {
+  border: none;
+}
+
+.compendium-content .stat-table tbody tr:nth-of-type(odd) {
+    background-color: rgb(0,0,0,0);
+}
+
+.compendium-content .stat-table th,
+.compendium-content .stat-table td {
+    text-align: center;
+    min-width: 0;
+    padding: 2px 4px;
+}
+
+.compendium-content .stat-table thead {
+    background-color: rgb(0,0,0,0);
+    border: none;
+    color: var(--gray-subtitle);
+}
+
+
+.stat-table th:first-child {
+  text-align: left;
+  font-weight: bold;
+}
+
+.stat-table thead th {
+  font-size: 0.75rem;
+}
+
+.stat-table tbody:nth-child(2) th:first-child,
+.stat-table tbody:nth-child(2) td:nth-child(2) {
+    background-color: #7c7c7c5b;
+}
+
+.stat-table tbody:nth-child(2) td:nth-child(3),
+.stat-table tbody:nth-child(2) td:nth-child(4) {
+    background-color: var(--soft-overlay);
+}
+
+.stat-table tr:nth-child(2) {
+    border-top: 1px solid var(--soft-overlay);
 }
 
 /* -- IMAGES -- */

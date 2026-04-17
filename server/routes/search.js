@@ -16,6 +16,7 @@ import {
     getClassFeatures,
     getFeats,
     getRulesGlossary,
+    getMonsters
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
@@ -36,3 +37,4 @@ searchRouter.get('/background', getBackground)
 searchRouter.get('/class_features', getClassFeatures)
 searchRouter.get('/feat', getFeats)
 searchRouter.get('/rules_glossary', getRulesGlossary)
+searchRouter.get('/monsters', getMonsters)

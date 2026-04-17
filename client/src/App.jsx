@@ -33,14 +33,18 @@ import AbilityScores from "./routes/character/AbilityScores"
 import Spells from "./routes/character/Spells"
 
 /* Compendium and sub routes */
-import Compendium from './routes/Compendium';
+import Compendium from './routes/Compendium'
 import CompendiumHome from './routes/compendium/CompendiumHome'
 import PlayingTheGame from './routes/compendium/PlayingTheGame'
 import RulesGlossary from './routes/compendium/RulesGlossary'
-import GameplayToolbox from './routes/compendium/GameplayToolbox';
+import GameplayToolbox from './routes/compendium/GameplayToolbox'
+import Monsters from './routes/compendium/Monsters'
 /* Rules Glossary sub routes */
 import GlossaryConventions from './routes/compendium/glossary/GlossaryConventions'
-import GlossaryTerm from './routes/compendium/glossary/GlossaryTerm';
+import GlossaryTerm from './routes/compendium/glossary/GlossaryTerm'
+/* Monsters sub routes */
+import MonstersOverview from './routes/compendium/monsters/MonstersOverview'
+import MonsterDetails from './routes/compendium/monsters/MonsterDetails'
 /* Compendium/PlayingTheGame sub routes */
 import RhythmOfPlay from './routes/compendium/playingthegame/RhythmOfPlay'
 import TheSixAbilities from './routes/compendium/playingthegame/TheSixAbilities'
@@ -74,6 +78,10 @@ function App() {
 							<Route path="compendium" element={<Compendium />} >
 								<Route index element={<CompendiumHome />} />
 								<Route path="search" element={<Search />} />
+								<Route path="monsters" element={<Monsters />}>
+									<Route index element={<MonstersOverview />}/>
+									<Route path=":id" element={<MonsterDetails />}/>
+								</Route>
 								<Route path="gameplay_toolbox" element={<GameplayToolbox />}>
 									<Route index element={<CombatEncounters/>}/>
 									<Route path="creating_a_background" element={<CreatingABackground/>}/>

@@ -707,3 +707,64 @@ export async function getRulesGlossary(req, res) {
         res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
 }
+
+export async function getMonsters(req, res) {
+    const { term, id } = req.query
+
+    try{
+        // search for specific monster by name
+        if (term){
+            const { data, error } = await supabase
+                .from('monster')
+                .select(`
+                    *,
+                    size(creature_size:size),
+                    alignment(full_name)
+                    `)
+                .ilike('name', `%${term}%`)
+                .order('name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // search for specific monster by ID
+        else if (id){
+            const { data, error } = await supabase
+                .from('monster')
+                .select(`
+                    *,
+                    size(creature_size:size),
+                    alignment(full_name)
+                    `)
+                .eq('id', id)
+                .order('name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all monsters
+        else {
+            const { data, error } = await supabase
+                .from('monster')
+                .select(`
+                    *,
+                    size(creature_size:size),
+                    alignment(full_name)
+                    `)
+                .order('name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+    
+}
