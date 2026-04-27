@@ -26,7 +26,7 @@ export default function Splash(){
                     }
                 </div>
                 <motion.img
-                    src={theme === 'dark' ? "/src/assets/logo_dark_mode.png" : "/src/assets/logo_light_mode.png"}
+                    src={theme === 'dark' ? "/logo_dark_mode.png" : "/logo_light_mode.png"}
                     width="300px"
                     height="100%"
                     initial={{ opacity: 0, y: 20 }}

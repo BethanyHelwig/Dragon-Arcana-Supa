@@ -114,6 +114,14 @@ export default function CharacterSheet(){
         // }
     })
 
+    // Calculates the modifier for an ability score
+    function getModifier(abilityName){
+        if (abilityName !== undefined && abilityName !== null) {
+            const modifier = Math.floor((abilityName - 10) / 2)
+            return `${modifier > 0 ? "+" : ""}${modifier}`
+        }
+        return "-"
+    }
 
     return (
         <main id="character-sheet-main">
@@ -166,9 +174,9 @@ export default function CharacterSheet(){
                     <div className="flex-column">
                         <div>
                             <div className="ability-score-display">
-                                <h4>STRENGTH</h4>
+                                <h2>STRENGTH</h2>
                                 <div className="ability-score-modifier">
-                                    <h3>+1</h3>
+                                    <h3>{getModifier(strength)}</h3>
                                 </div>
                                 <div className="ability-score-number">
                                     <span>{strength}</span>
@@ -177,9 +185,9 @@ export default function CharacterSheet(){
                         </div>
                         <div>
                             <div className="ability-score-display">
-                                <h4>DEXTERITY</h4>
+                                <h2>DEXTERITY</h2>
                                 <div className="ability-score-modifier">
-                                    <h3>+1</h3>
+                                    <h3>{getModifier(dexterity)}</h3>
                                 </div>
                                 <div className="ability-score-number">
                                     <span>{dexterity}</span>
@@ -188,9 +196,9 @@ export default function CharacterSheet(){
                         </div>
                         <div>
                             <div className="ability-score-display">
-                                <h4>CONSTITUTION</h4>
+                                <h2>CONSTITUTION</h2>
                                 <div className="ability-score-modifier">
-                                    <h3>+1</h3>
+                                    <h3>{getModifier(constitution)}</h3>
                                 </div>
                                 <div className="ability-score-number">
                                     <span>{constitution}</span>
@@ -199,9 +207,9 @@ export default function CharacterSheet(){
                         </div>
                         <div>
                             <div className="ability-score-display">
-                                <h4>INTELLIGENCE</h4>
+                                <h2>INTELLIGENCE</h2>
                                 <div className="ability-score-modifier">
-                                    <h3>+1</h3>
+                                    <h3>{getModifier(intelligence)}</h3>
                                 </div>
                                 <div className="ability-score-number">
                                     <span>{intelligence}</span>
@@ -210,9 +218,9 @@ export default function CharacterSheet(){
                         </div>
                         <div>
                             <div className="ability-score-display">
-                                <h4>WISDOM</h4>
+                                <h2>WISDOM</h2>
                                 <div className="ability-score-modifier">
-                                    <h3>+1</h3>
+                                    <h3>{getModifier(wisdom)}</h3>
                                 </div>
                                 <div className="ability-score-number">
                                     <span>{wisdom}</span>
@@ -221,9 +229,9 @@ export default function CharacterSheet(){
                         </div>
                         <div>
                             <div className="ability-score-display">
-                                <h4>CHARISMA</h4>
+                                <h2>CHARISMA</h2>
                                 <div className="ability-score-modifier">
-                                    <h3>+1</h3>
+                                    <h3>{getModifier(charisma)}</h3>
                                 </div>
                                 <div className="ability-score-number">
                                     <span>{charisma}</span>

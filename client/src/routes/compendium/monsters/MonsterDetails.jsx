@@ -143,6 +143,7 @@ export default function MonsterDetails(){
                 </div>
                 {monster.skills && <p><strong>Skills</strong> {monster.skills}</p>}
                 {monster.resistances && <p><strong>Resistances</strong> {monster.resistances}</p>}
+                {monster.vulnerabilities && <p><strong>Vulnerabilities</strong> {monster.vulnerabilities}</p>}
                 {monster.immunities && <p><strong>Immunities</strong> {monster.immunities}</p>}
                 {monster.senses && <p><strong>Senses</strong> {monster.senses}</p>}
                 {monster.languages && <p><strong>Languages</strong> {monster.languages}</p>}
