@@ -1,0 +1,245 @@
+.submenu {
+    list-style: none;
+    display: flex;
+    padding: 0.75em 1.25em 0;
+    margin: 0;
+}
+
+.submenu * {
+   padding: 0.75em 1.25em;
+}
+
+.level-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 55px;
+}
+
+.level-input button {
+    height: 100%;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.level-input span {
+    background-color: var(--soft-overlay);
+    border: 1px solid var(--gray-secondary-color);
+    padding: 1rem 1.5rem;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 7px;
+    color: var(--text-primary-color);
+}
+
+.creation-outlet-div {
+    padding: 1em 2em;
+    margin-bottom: 1em;
+}
+
+.score-method-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    height: 70%;
+}
+
+.score-method-container button {
+    margin-top: auto;
+}
+
+.class-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+    gap: 0.5em;
+}
+
+.spells-container,
+.skill-display,
+.class-info {
+    min-width: 250px;
+    border-left: 1px solid var(--gray-secondary-color);
+    padding-left: 1.5em;
+    text-align: left;
+}
+
+.skill-display {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, min-content);
+    gap: 1.2em 1em;
+    width: 60%;
+    text-align: center;
+    align-items: center;
+}
+
+.skill-display-element-header {
+    opacity: 80%;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--dark-secondary-accent-color);
+}
+
+.skill-display-name {
+    text-align: start;
+}
+
+.skill-display-total {
+    background-color: var(--soft-overlay);
+    border-radius: 7px;
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+.status-of-creation {
+    margin-top: auto;
+    display: flex;
+    gap: 7px;
+    align-items: start;
+    justify-content: flex-end;
+}
+
+.status-of-creation button {
+    margin: 0 0 0 25px;
+}
+
+.class-info p {
+    font-size: 1rem;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+.ability-score-grid {
+    min-width: 450px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+    gap: 1rem;
+    border-left: 1px solid var(--gray-secondary-color);
+    padding-left: 1.5em;
+}
+
+.ability-score-selection-div {
+    display: flex;
+    padding: 0;
+    gap: 3px;
+    margin: 4px 0;
+}
+
+.ability-score-selection-div button {
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    border-radius: 0;
+    background-color: var(--gray-secondary-color);
+    width: 30px;
+    height: 30px;
+    color: var(--secondary-accent-color);
+}
+
+.ability-score-selection-div button:disabled {
+    opacity: 0.4;
+    color: black;
+    text-decoration: line-through;
+    pointer-events: none;
+}
+
+.container {
+    background-color: var(--soft-overlay);
+    padding: 0.4em 0.4em;
+    border-radius: 10px;
+    display: grid;
+    align-items: start;
+    grid-template-columns: min-content 0fr;
+    transition: grid-template-columns 0.4s 125ms ease-in-out;
+    overflow: hidden;
+    line-height: 1rem;
+    min-height: 1rem;
+    white-space: nowrap;
+}
+
+.container:hover {
+    grid-template-columns: min-content 1fr;
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.4s ease 0.1s;
+    min-width: 0;
+}
+
+.container:hover .hidden {
+    /* display: block; */
+    opacity: 1;
+}
+
+.complete {
+    background-color: var(--dark-green-accent-color);
+    color: whitesmoke;
+}
+
+.complete i {
+    color: rgb(1, 218, 1);
+}
+
+.spells-container {
+    text-align: center;
+}
+
+.spells-container form {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    margin: 15px 0;
+    justify-content: center;
+}
+
+.spells-container h4 {
+    margin: 0;
+}
+
+.spell-attributes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.spell-attributes span {
+    background-color: var(--soft-overlay);
+    border-radius: 5px;
+    padding: 2px 8px;
+    margin: 0 10px 10px 0;
+    white-space: nowrap;
+}
+
+.point-cost-selection-div {
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+}
+
+.point-cost-selection-div button {
+    padding: 0.15em 0.5em;
+    font-family: inherit;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.point-cost-selection-div span {
+    margin: auto auto;
+    padding: 0.15em 0.5em;
+    font-size: 1.25rem;
+    border: 1px solid var(--dark-primary-accent-color);
+    border-radius: 5px;
+}
+
+.points-available {
+    padding: 0.4em 0.6em;
+    font-size: 2rem;
+    font-weight: bold;
+    border: 1px solid var(--dark-primary-accent-color);
+    border-radius: 5px;
+    color: var(--dark-primary-accent-color);
+    background-color: var(--secondary-accent-color);
+}

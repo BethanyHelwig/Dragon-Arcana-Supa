@@ -28,7 +28,7 @@ export default function GlossaryTerm(){
                     rowArray.map(item => { return (<tr>{item}</tr>)})
                 })
                 return (
-                    <table>
+                    <table className="table">
                         <thead>
                             <tr>{table.headers.map(el => <th>{el}</th>)}</tr>
                         </thead>

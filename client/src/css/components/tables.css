@@ -1,0 +1,54 @@
+.table,
+.table--stat {
+    border-collapse: collapse;
+    margin: 0.5em 0 1em;
+}
+
+.table tr {
+    border: 1px solid var(--soft-overlay);
+}
+
+.table th,
+.table td {
+    padding: 5px 10px;
+    min-width: 90px;
+}
+
+.table thead {
+    background-color: var(--dark-secondary-accent-color);
+    color: whitesmoke;
+}
+
+.table tr:nth-of-type(odd) {
+    background-color: var(--soft-overlay);
+}
+
+.table__header-span {
+    position: relative;
+    text-align: center;
+}
+
+/* -- MONSTER STAT TABLE -- */
+
+.table--stat th:first-child {
+  text-align: left;
+  font-weight: bold;
+}
+
+.table--stat thead th {
+  font-size: 0.75rem;
+}
+
+.table--stat tbody:nth-child(2) th:first-child,
+.table--stat tbody:nth-child(2) td:nth-child(2) {
+    background-color: #7c7c7c5b;
+}
+
+.table--stat tbody:nth-child(2) td:nth-child(3),
+.table--stat tbody:nth-child(2) td:nth-child(4) {
+    background-color: var(--soft-overlay);
+}
+
+.table--stat tr:nth-child(2) {
+    border-top: 1px solid var(--soft-overlay);
+}

@@ -14,6 +14,7 @@ import Weapon from "./SearchResults/Weapon"
 import WeaponProperty from "./SearchResults/WeaponProperty"
 import WeaponMasteryProperty from "./SearchResults/WeaponMasteryProperty"
 import Feat from "./SearchResults/Feat"
+import Rule from "./SearchResults/Rule"
 
 export default function SearchResult(props) {
 
@@ -34,6 +35,8 @@ export default function SearchResult(props) {
                 return <Feat details={data} />
             case "language":
                 return <Language details={data} />
+            case "rules_glossary":
+                return <Rule details={data} />
             case "school_of_magic":
                 return <SchoolOfMagic details={data} />
             case "skill":
@@ -54,7 +57,7 @@ export default function SearchResult(props) {
     }
 
     return (
-        <Collapsible label={data.full_name}>
+        <Collapsible label={data.full_name ? data.full_name : data.title}>
             {detailElements()}
         </Collapsible>
     )

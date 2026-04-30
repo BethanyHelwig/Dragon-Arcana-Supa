@@ -1,0 +1,56 @@
+/* -- IMPORTED FONTS -- */
+
+@import url("https://fonts.googleapis.com/css2?family=Amarante&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* -- TYPOGRAPHY -- */
+
+.font-Roboto,
+footer,
+.search-result-details,
+.ability-score-selection-div,
+.point-cost-selection-div,
+.ability-score__display,
+.tooltip .tooltip_text,
+.saved-character-summary,
+.character-sheet h4,
+textarea,
+.collapsible__content,
+.cs-box,
+.compendium-content,
+.side-menu {
+    font-family: "Roboto", sans-serif;
+}
+
+#hero-title,
+#nav-title,
+.title-glow {
+    background-image: linear-gradient(white 10%, var(--secondary-accent-color));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 5px var(--primary-accent-color));
+    margin: 0;
+    padding: 0;
+}
+
+#hero-title {
+    line-height: 80%;
+    font-size: 5rem;
+}
+
+#nav-title {
+    font-size: 2rem;
+    margin-left: 15px;
+}
+
+#register-container h2 {
+    max-width: 250px;
+}
+
+#profile-content-div h2 {
+    margin: 0 0 1em;
+}
+
+#profile-content-div p {
+    margin: 0 0 10px;
+}

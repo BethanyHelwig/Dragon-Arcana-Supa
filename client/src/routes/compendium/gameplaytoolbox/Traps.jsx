@@ -66,7 +66,7 @@ export default function Traps(){
             <p><strong>At Higher Levels.</strong> You can scale the trap for higher
                 levels by increasing the damage and the save DC, as
                 shown in the following table.</p>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Levels</th>
@@ -160,7 +160,7 @@ export default function Traps(){
             <p><strong>At Higher Levels.</strong> You can scale the trap for higher
                 levels by increasing the damage and the area of effect,
                 as shown in the following table.</p>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Levels</th>
@@ -215,7 +215,7 @@ export default function Traps(){
             <p><strong>At Higher Levels.</strong> You can scale the trap for higher
                 levels by increasing the pit’s depth and damage, as
                 shown in the following table.</p>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Levels</th>
@@ -296,7 +296,7 @@ export default function Traps(){
             <p><strong>At Higher Levels.</strong> You can scale the trap for higher
                 levels by increasing the damage and the save DC, as
                 shown in the following table.</p>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Levels</th>
@@ -393,7 +393,7 @@ export default function Traps(){
             <p><strong>At Higher Levels.</strong> You can scale the trap for higher
                 levels by increasing the pit’s depth and damage, as
                 shown in the following table.</p>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Levels</th>

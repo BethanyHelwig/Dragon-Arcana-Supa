@@ -21,7 +21,7 @@ export default function FearAndMentalStress(){
                 based on how terrifying the situation is. The Sample
                 Fear DCs table provides some examples.</p>
             <h4>Sample Fear DCs</h4>
-            <table>
+            <table  className="table">
                 <thead>
                     <tr>
                         <th scope="col">Example</th>
@@ -78,7 +78,7 @@ export default function FearAndMentalStress(){
                 take half as much damage instead of no damage, at
                 your discretion.</p>
             <h4>Sample Mental Stress Effects</h4>
-            <table>
+            <table  className="table">
                 <thead>
                     <tr>
                         <th scope="col">Example</th>

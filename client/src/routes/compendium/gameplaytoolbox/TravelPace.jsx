@@ -51,7 +51,7 @@ export default function TravelPace(){
                 choose a travel pace.</p>
 
             <h4>Travel Terrain</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Terrain</th>

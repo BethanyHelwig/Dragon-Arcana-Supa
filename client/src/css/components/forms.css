@@ -1,0 +1,175 @@
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.25em; /* 4px */
+}
+
+fieldset {
+    border: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    gap: 0.5em;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="search"]::placeholder,
+textarea::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+select,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea {
+    /* width: 250px; */
+    min-width: 250px;
+    margin-bottom: 0.625em; /* 10px */
+    background-color: var(--gray-secondary-color);
+    border: 2px solid var(--dark-secondary-accent-color);
+    border-radius: 10px;
+    padding: 0.5em 0.75em;
+    color: whitesmoke;
+}
+
+input[type="radio"] {
+    margin-right: 0.5em;
+}
+
+textarea {
+    min-height: 100px;
+    min-width: 300px;
+    font-size: 0.9rem;
+}
+
+select,
+input[type="search"] {
+    min-width: 250px;
+    width: 100%;
+}
+
+#login-form,
+#register-form {
+    margin-bottom: 1em;
+    flex-direction: column;
+}
+
+#search-filters fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 1em;
+}
+
+.selection input {
+    display: flex;
+    position: relative;
+    opacity: 0; 
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.selection label {
+    display: flex;
+    font-size: 1.1rem;
+    border-radius: 7px; 
+    border: 1px solid var(--gray-secondary-color);
+    padding: 3px 10px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--soft-overlay);
+}
+
+.selection input:checked + label {
+    background-color: var(--secondary-accent-color);
+    border: 1px solid whitesmoke;
+    color: #211E23;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.selection:hover {
+    background-color: var(--soft-overlay);
+}
+
+.selection-look-alike {
+    display: flex;
+    font-size: 1.1rem;
+    border-radius: 7px; 
+    border: 1px solid var(--gray-secondary-color);
+    padding: 3px 10px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-accent-color);
+    border: 1px solid whitesmoke;
+    color: #211E23;
+}
+
+.selection-detail {
+    background-color: var(--gray-secondary-color);
+    color: whitesmoke;
+    padding: 1em;
+    margin: 0 15px;
+    font-size: 0.75rem;
+}
+
+.skill-selection {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-selection p {
+    margin: 0;
+}
+
+.skill-selection h4 {
+    font-size: 1.1rem;
+    margin: 0 0 5px;
+    border-bottom: 1px solid var(--dark-secondary-accent-color);
+}
+
+.fieldset-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--soft-overlay);
+    border: 1px solid var(--dark-secondary-accent-color);
+    border-radius: 5px;
+    padding: 1em;
+    margin-bottom: 0.5em;
+}
+
+.fieldset-container-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: var(--soft-overlay);
+    border: 1px solid var(--dark-secondary-accent-color);
+    border-radius: 5px;
+    padding: 1em;
+    gap: 1em 2em;
+    margin-bottom: 0.5em;
+}
+
+legend {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--background-primary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--dark-secondary-accent-color);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}

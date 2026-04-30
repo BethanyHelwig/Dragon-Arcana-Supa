@@ -7,7 +7,7 @@ export default function Actions(){
                 table lists the game’s main actions, which are defined
                 in more detail in “Rules Glossary.”</p>
             <h4>Actions</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Action</th>

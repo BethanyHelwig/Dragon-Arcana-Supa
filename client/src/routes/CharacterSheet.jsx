@@ -168,72 +168,72 @@ export default function CharacterSheet(){
                     </div>
                 <hr className="divider"></hr>
 
-                {/* TODO: put this is iterative pattern, calculate modifier */}
+                {/* TODO: put this in iterative pattern, calculate modifier */}
                 <div className="flex-row">
                     {/* ABILITY SCORES */}
                     <div className="flex-column">
                         <div>
-                            <div className="ability-score-display">
-                                <h2>STRENGTH</h2>
-                                <div className="ability-score-modifier">
-                                    <h3>{getModifier(strength)}</h3>
+                            <div className="ability-score__display">
+                                <h2 className="ability-score__title">STRENGTH</h2>
+                                <div>
+                                    <h3 className="ability-score__modifier">{getModifier(strength)}</h3>
                                 </div>
-                                <div className="ability-score-number">
+                                <div className="ability-score__value_container">
                                     <span>{strength}</span>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div className="ability-score-display">
-                                <h2>DEXTERITY</h2>
-                                <div className="ability-score-modifier">
-                                    <h3>{getModifier(dexterity)}</h3>
+                            <div className="ability-score__display">
+                                <h2 className="ability-score__title">DEXTERITY</h2>
+                                <div>
+                                    <h3 className="ability-score__modifier">{getModifier(dexterity)}</h3>
                                 </div>
-                                <div className="ability-score-number">
+                                <div className="ability-score__value_container">
                                     <span>{dexterity}</span>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div className="ability-score-display">
-                                <h2>CONSTITUTION</h2>
-                                <div className="ability-score-modifier">
-                                    <h3>{getModifier(constitution)}</h3>
+                            <div className="ability-score__display">
+                                <h2 className="ability-score__title">CONSTITUTION</h2>
+                                <div>
+                                    <h3 className="ability-score__modifier">{getModifier(constitution)}</h3>
                                 </div>
-                                <div className="ability-score-number">
+                                <div className="ability-score__value_container">
                                     <span>{constitution}</span>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div className="ability-score-display">
-                                <h2>INTELLIGENCE</h2>
-                                <div className="ability-score-modifier">
-                                    <h3>{getModifier(intelligence)}</h3>
+                            <div className="ability-score__display">
+                                <h2 className="ability-score__title">INTELLIGENCE</h2>
+                                <div>
+                                    <h3 className="ability-score__modifier">{getModifier(intelligence)}</h3>
                                 </div>
-                                <div className="ability-score-number">
+                                <div className="ability-score__value_container">
                                     <span>{intelligence}</span>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div className="ability-score-display">
-                                <h2>WISDOM</h2>
-                                <div className="ability-score-modifier">
-                                    <h3>{getModifier(wisdom)}</h3>
+                            <div className="ability-score__display">
+                                <h2 className="ability-score__title">WISDOM</h2>
+                                <div>
+                                    <h3 className="ability-score__modifier">{getModifier(wisdom)}</h3>
                                 </div>
-                                <div className="ability-score-number">
+                                <div className="ability-score__value_container">
                                     <span>{wisdom}</span>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div className="ability-score-display">
-                                <h2>CHARISMA</h2>
-                                <div className="ability-score-modifier">
-                                    <h3>{getModifier(charisma)}</h3>
+                            <div className="ability-score__display">
+                                <h2 className="ability-score__title">CHARISMA</h2>
+                                <div>
+                                    <h3 className="ability-score__modifier">{getModifier(charisma)}</h3>
                                 </div>
-                                <div className="ability-score-number">
+                                <div className="ability-score__value_container">
                                     <span>{charisma}</span>
                                 </div>
                             </div>

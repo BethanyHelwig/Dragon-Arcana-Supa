@@ -57,12 +57,12 @@ export default function AbilityScores(){
         const { full_name, name, description } = el
 
         return (
-            <div key={full_name} data-key={full_name.toLowerCase()} className="ability-score-container">
-                <div className="ability-score-header-container">
+            <div key={full_name} data-key={full_name.toLowerCase()} className="ability-score">
+                <div className="ability-score__header">
                     <h3>{full_name}</h3>
                     {/* TODO: have the tooltip adjust so it's always within the viewport and doesn't overflow */}
                     <span className="tooltip"><i className="fa-solid fa-circle-info"></i>
-                        <span className="tooltiptext">{description}</span>
+                        <span className="tooltip_text">{description}</span>
                     </span>
                 </div>
                 {scoreGenerationMethod !== "Point Cost" ? <div 
@@ -79,12 +79,12 @@ export default function AbilityScores(){
                 }
 
 
-                <div className="ability-score-display">
-                    <div className="ability-score-modifier">
-                        <h3>{getModifier(full_name)}</h3>
+                <div className="ability-score__display">
+                    <div>
+                        <h3 className="ability-score__modifier">{getModifier(full_name)}</h3>
                     </div>
                     <span>{name.toUpperCase()}</span>
-                    <div className="ability-score-number">
+                    <div className="ability-score__value_container">
                         <span>{getScore(full_name)}</span>
                     </div>
                 </div>

@@ -33,16 +33,16 @@ export default function Spell({details}){
 
     return (
         <div className="search-result-details">
-            <ul>
-                <li><h4>Name: <span>{full_name}</span></h4></li>
-                <li><h4>Level: <span>{level}</span></h4></li>
-                <li><h4>School of Magic: <span>{school_of_magic.school}</span></h4></li>
-                <li><h4>Available to: <span>{classElements}</span></h4></li>
-                <li><h4>Casting Time: <span>{casting_time}</span></h4></li>
-                <li><h4>Range: <span>{range}</span></h4></li>
-                <li><h4>Components: <span>{components}</span></h4></li>
-                <li><h4>Duration: <span>{duration}</span></h4></li>
-                <li><h4>Description: <span>{descriptionElements}</span></h4></li>
+            <ul className="collapsible__list">
+                <li className="collapsible__list_item"><h4>Name: <span>{full_name}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Level: <span>{level}</span></h4></li>
+                <li className="collapsible__list_item"><h4>School of Magic: <span>{school_of_magic.school}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Available to: <span>{classElements}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Casting Time: <span>{casting_time}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Range: <span>{range}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Components: <span>{components}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Duration: <span>{duration}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Description: <span>{descriptionElements}</span></h4></li>
             </ul>
         </div> 
     )

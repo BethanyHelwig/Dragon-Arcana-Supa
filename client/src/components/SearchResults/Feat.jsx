@@ -19,13 +19,13 @@ export default function Feat({details}){
 
     return (
         <div className="search-result-details">
-            <ul>
-                <li><h4>Name: <span>{full_name}</span></h4></li>
-                <li><h4>Category: <span>{category}</span></h4></li>
-                <li><h4>Prerequisite: <span>{prerequisite ? prerequisite : "--"}</span></h4></li>
-                <li><h4>Repeatable: <span>{repeatable ? "Yes" : "No"}</span></h4></li>
-                {repeatable && <li><h4>Repeatable Constraints: <span>{repeatable_constraints}</span></h4></li>}
-                <li><h4>Benefit: <span>{benefitElements}</span></h4></li>
+            <ul className="collapsible__list">
+                <li className="collapsible__list_item"><h4>Name: <span>{full_name}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Category: <span>{category}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Prerequisite: <span>{prerequisite ? prerequisite : "--"}</span></h4></li>
+                <li className="collapsible__list_item"><h4>Repeatable: <span>{repeatable ? "Yes" : "No"}</span></h4></li>
+                {repeatable && <li className="collapsible__list_item"><h4>Repeatable Constraints: <span>{repeatable_constraints}</span></h4></li>}
+                <li className="collapsible__list_item"><h4>Benefit: <span>{benefitElements}</span></h4></li>
             </ul>
         </div> 
     )

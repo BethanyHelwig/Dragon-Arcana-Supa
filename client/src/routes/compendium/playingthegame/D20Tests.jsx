@@ -64,7 +64,7 @@ export default function D20Tests(){
                 relevant. See the Ability Check Examples table for
                 examples of each check’s use.</p>
             <h4>Ability Check Examples</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Ability</th>
@@ -117,7 +117,7 @@ export default function D20Tests(){
                 Difficulty Classes table presents a range of possible
                 DCs for ability checks.</p>
             <h4>Typical Difficulty Classes</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Task Difficulty</th>
@@ -170,7 +170,7 @@ export default function D20Tests(){
                 used to resist different kinds of effects, as shown on
                 the Saving Throw Examples table.</p>
             <h4>Saving Throw Examples</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Ability</th>
@@ -231,7 +231,7 @@ export default function D20Tests(){
             <p>The Attack Roll Abilities table shows which ability
                 modifier to use for different types of attack rolls.</p>
             <h4>Attack Roll Abilities</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Ability</th>

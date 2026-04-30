@@ -1,0 +1,28 @@
+#search-results {
+    width: 100%;
+    margin-bottom: 2em;
+    padding: 1em 2em;
+}
+
+.search-result-details p {
+    margin: 0 0 1em;
+}
+
+.search-result-details ul {
+    padding-left: 15px;
+    list-style: none;
+}
+
+.search-result-details h4 {
+    margin: 0.6em 0 0.4em;
+}
+
+.search-result-details span {
+    font-weight: normal;
+}
+
+.search-container {
+    max-width: 500px;
+    margin: auto auto;
+    text-align: center;
+}

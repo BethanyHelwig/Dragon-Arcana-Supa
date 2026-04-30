@@ -26,7 +26,7 @@ export default function GlossaryConventions(){
                 in this glossary and elsewhere in the rules.</p>
 
         <div className="flex-row">
-            <table>
+            <table className="table">
                 <tbody>
                     <tr>
                         <td>AC</td>

@@ -173,7 +173,7 @@ export default function Combat(){
             <p>A character’s size is determined by species, and
                 a monster’s size is specified in the monster’s stat block.</p>
             <h4>Creature Size and Space</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Size</th>
@@ -277,7 +277,7 @@ export default function Combat(){
                 Cover and a tree trunk that gives Three-Quarters
                 Cover, the target has Three-Quarters Cover.</p>
             <h4>Cover</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Degree</th>

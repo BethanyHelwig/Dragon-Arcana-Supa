@@ -66,7 +66,7 @@ export default function MonsterDetails(){
                 <p><strong>Initiative</strong> {monster.initiative}</p>
                 {/* ABILITY SCORES */}
                 <div className="flex-row">
-                    <table class="stat-table">
+                    <table class="table--stat">
                     <thead>
                         <tr>
                             <th></th>
@@ -91,7 +91,7 @@ export default function MonsterDetails(){
                     </tbody>
                     </table>
 
-                    <table class="stat-table">
+                    <table class="table--stat">
                     <thead>
                         <tr>
                             <th></th>
@@ -116,7 +116,7 @@ export default function MonsterDetails(){
                     </tbody>
                     </table>
 
-                    <table class="stat-table">
+                    <table class="table--stat">
                     <thead>
                         <tr>
                             <th></th>

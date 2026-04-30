@@ -1,0 +1,51 @@
+/* -- VARIABLES -- */
+
+:root {
+    --background-primary-color: #211f24;
+    --text-primary-color: #d1dddf;
+    --primary-accent-color: #7216a0;
+    --dark-primary-accent-color: #6f378b;
+    --secondary-accent-color: #80c5ff;
+    --dark-secondary-accent-color: #204a64;
+    --compendium-subtitle-color: #80c5ff;
+    --monster-color: #bce0fd;
+    --gray-subtitle: #7c7c7c;
+
+    --button-hover-background: #ebd7f5;
+    --button-hover-text: #7700b3;
+
+    --link-hover-color: #aef6d3;
+    --header-footer-overlay: none;
+    --fieldset-background-color: #2d272e;
+    --soft-overlay: rgba(255, 255, 255, 0.05);
+
+    --gray-secondary-color: #424242;
+    --input-placeholder-color: #9b9b9b;
+    --pale-blue-accent-color: #bbe1ff;
+    --green-accent-color: #aef6d3;
+    --dark-green-accent-color: #496F5D;
+    --background-image: linear-gradient(var(--background-primary-color), var(--background-primary-color));
+    --ability-score-border: url("/ability_score_border_dark_mode.svg");
+}
+
+[data-theme="light"] {
+    --background-primary-color: rgb(209, 198, 179);
+    --text-primary-color: #211E23;
+    --primary-accent-color: #880000;
+    --dark-primary-accent-color: #880000;
+    --secondary-accent-color: #fcf9d4;
+    --dark-secondary-accent-color: #642020;
+    --compendium-subtitle-color: #880000;
+    --monster-color: #642020;
+    --gray-subtitle: #7c7c7c;
+
+    --button-hover-background: #fcf9d4;
+    --button-hover-text: #880000;
+    --fieldset-background-color: rgb(218, 204, 179);
+    --soft-overlay: rgba(255, 255, 255, 0.25);
+    
+    --link-hover-color: #006e5c;
+    --header-footer-overlay: rgba(209, 198, 179, 0.6);
+    --background-image: url("/marble.jpg");
+    --ability-score-border: url("/ability_score_border.svg");
+}

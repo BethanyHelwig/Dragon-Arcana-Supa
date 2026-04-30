@@ -48,11 +48,11 @@ export default function CombatEncounters(){
                 number of characters in the party to get your XP
                 budget for the encounter.</p>
             <h4>XP Budget per Character</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col" rowspan="2">Party's Level</th>
-                        <th scope="col" colspan="3" class="header-span"><span>-- Encounter Difficulty --</span></th>
+                        <th scope="col" colspan="3" class="table__header-span"><span>-- Encounter Difficulty --</span></th>
                     </tr>
                     <tr>
                         <th scope="col">Low</th>

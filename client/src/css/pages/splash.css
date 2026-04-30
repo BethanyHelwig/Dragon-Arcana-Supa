@@ -1,0 +1,35 @@
+.whats-new-content {
+    padding: 1em;
+    border-top: 2px solid var(--dark-primary-accent-color);
+    width: 100%;
+    background-color: var(--soft-overlay);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+#splash-page {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#splash-page .flex-column {
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#splash-page h1 {
+    font-size: 4.2rem;
+    max-width: 600px;
+    margin: 10px 0 0;
+}
+
+#splash-page h2 {
+    margin: 0;
+}
+
+#splash-page h3 {
+    margin: 0;
+}

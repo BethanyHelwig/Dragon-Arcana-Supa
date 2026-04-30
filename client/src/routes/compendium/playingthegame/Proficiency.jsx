@@ -21,7 +21,7 @@ export default function Proficiency(){
                 Test. The bonus is also used for spell attacks and for
                 calculating the DC of saving throws for spells.</p>
             <h4>Proficiency Bonus</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Level or CR</th>
@@ -101,7 +101,7 @@ export default function Proficiency(){
                 If the character lacks that proficiency, they make
                 the check without adding their Proficiency Bonus.</p>
             <h4>Skills</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Skill</th>

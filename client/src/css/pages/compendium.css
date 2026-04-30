@@ -1,0 +1,119 @@
+.compendium-home {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}
+
+.compendium-home-link {
+    background-color: var(--soft-overlay);
+    border: 1px solid var(--gray-secondary-color);
+    border-radius: 7px;
+    padding: 1.5em;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.compendium-home-link:hover {
+    /* background-color: var(--soft-overlay); */
+    border: 1px solid whitesmoke;
+    transition: all 0.4s ease-in-out;
+}
+
+.compendium-container {
+    padding: 1.5em;
+}
+
+.compendium-content {
+    text-align: left;
+    padding: 1.5em;
+    /* min-height: 50vh; */
+}
+
+.compendium-content h2,
+.compendium-content h3,
+.compendium-content h4 {
+    margin: 0;
+}
+
+.compendium-content h4 {
+    color: var(--compendium-subtitle-color);
+}
+
+.search-result-details p,
+.compendium-content p {
+    text-indent: 1em;
+    margin: 0.6em 0;
+}
+
+.compendium-content ol,
+.compendium-content ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.compendium-content-emphasis {
+    background-color: var(--soft-overlay);
+    border-radius: 7px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.459);
+    padding: 1em;
+    margin-bottom: 1.5em;
+}
+
+.compendium-divider {
+    border: none;
+    border-top: 1px solid var(--dark-secondary-accent-color);
+    margin: 5px 0;
+}
+
+.monster-card h3 {
+    margin-top: 10px;
+}
+
+.monster-name {
+    text-transform: uppercase;
+}
+
+.monster-name::first-letter {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.monster-divider {
+  height: 3px;
+  width: 100%;
+  background: var(--dark-primary-accent-color);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  margin: 0 0 6px;
+}
+
+.monster-color {
+    color: var(--monster-color);
+}
+
+.monster-color p {
+    margin: 3px 0;
+    padding: 0;
+    text-indent: 0;
+}
+
+.compendium-content .table--stat tr {
+  border: none;
+}
+
+.compendium-content .table--stat tbody tr:nth-of-type(odd) {
+    background-color: rgb(0,0,0,0);
+}
+
+.compendium-content .table--stat th,
+.compendium-content .table--stat td {
+    text-align: center;
+    min-width: 0;
+    padding: 2px 4px;
+}
+
+.compendium-content .table--stat thead {
+    background-color: rgb(0,0,0,0);
+    border: none;
+    color: var(--gray-subtitle);
+}

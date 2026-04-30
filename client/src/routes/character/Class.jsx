@@ -95,20 +95,20 @@ export default function Class(){
                             {subclass.values.map(feature => {
                                 return (
                                     <Collapsible label={`Level ${feature.level}: ${feature.title}`}>
-                                    <ul>
-                                        {feature.description.map( el => {
-                                            if (el.includes('<strong>')){
-                                                const startIndex = el.search('<strong>') + 8
-                                                const endIndex = el.search('</strong>')
-                        
-                                                return <li><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
-                                            }
-                                            else {
-                                                return <li>{el}</li>
-                                            }
-                                        })}
-                                    </ul>
-                                </Collapsible>
+                                        <ul className="collapsible__list">
+                                            {feature.description.map( el => {
+                                                if (el.includes('<strong>')){
+                                                    const startIndex = el.search('<strong>') + 8
+                                                    const endIndex = el.search('</strong>')
+                            
+                                                    return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                                }
+                                                else {
+                                                    return <li className="collapsible__list_item ">{el}</li>
+                                                }
+                                            })}
+                                        </ul>
+                                    </Collapsible>
                                 )
                             })}
                         </>

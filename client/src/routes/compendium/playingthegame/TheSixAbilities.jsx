@@ -7,7 +7,7 @@ export default function TheSixAbilities(){
                 as shown on the Ability Descriptions table.
             </p>
             <h4>Ability Descriptions</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Ability</th>
@@ -50,7 +50,7 @@ export default function TheSixAbilities(){
                 Scores table summarizes what the scores mean.
             </p>
             <h4>Ability Scores</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Score</th>
@@ -110,7 +110,7 @@ export default function TheSixAbilities(){
 
             <h4>Ability Modifiers</h4>  
             <div className="flex-row">
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Score</th>
@@ -152,7 +152,7 @@ export default function TheSixAbilities(){
                         </tr>
                     </tbody>
                 </table>
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Score</th>

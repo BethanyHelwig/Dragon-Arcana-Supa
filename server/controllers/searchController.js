@@ -651,6 +651,7 @@ export async function getFeats(req, res) {
     
 }
 
+// TODO: add pagination
 export async function getRulesGlossary(req, res) {
     const { term, id } = req.query
 

@@ -169,7 +169,7 @@ export default function Exploration(){
                 that affect which pace you can choose in certain
                 types of terrain.</p>
             <h4>Travel Pace (Distance Traveled Per …)</h4>
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Pace</th>

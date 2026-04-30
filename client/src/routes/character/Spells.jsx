@@ -91,16 +91,16 @@ export default function Spells(){
                                     <span>Components: {spell.components}</span>
                                     <span>Range: {spell.range}</span>
                                 </div>
-                                <ul>
+                                <ul className="collapsible__list">
                                     {spell.description.map(el => {
                                         if (el.includes('<strong>')){
                                             const startIndex = el.search('<strong>') + 8
                                             const endIndex = el.search('</strong>')
                     
-                                            return <li><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                            return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
                                         }
                                         else {
-                                            return <li>{el}</li>
+                                            return <li className="collapsible__list_item ">{el}</li>
                                         }
                                     })}
                                 </ul>

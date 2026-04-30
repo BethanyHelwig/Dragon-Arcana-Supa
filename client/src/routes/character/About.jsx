@@ -118,7 +118,7 @@ export default function About(){
                 {/* ALIGNMENT */}
                     <label htmlFor="alignment">
                         Alignment: <span className="tooltip"><i className="fa-solid fa-circle-info"></i>
-                                        <span className="tooltiptext">A creature’s alignment broadly describes its ethical attitudes and ideals. Alignment is a combination of two factors: one identifies morality (good, evil, or neutral), and the other describes attitudes toward order (lawful, chaotic, or neutral).</span>
+                                        <span className="tooltip_text">A creature’s alignment broadly describes its ethical attitudes and ideals. Alignment is a combination of two factors: one identifies morality (good, evil, or neutral), and the other describes attitudes toward order (lawful, chaotic, or neutral).</span>
                                     </span>
                     </label>
                     <select id="alignment" name="alignment" onChange={handleIDSubmit} value={character.alignment}>
@@ -140,7 +140,7 @@ export default function About(){
                 {/* LIFESTYLE */}
                     <label htmlFor="lifestyle">
                         Lifestyle: <span className="tooltip"><i className="fa-solid fa-circle-info"></i>
-                                        <span className="tooltiptext">Lifestyle expenses summarize the cost of living in a fantasy world. They cover lodging, food, equipment maintenance, and other necessities.</span>
+                                        <span className="tooltip_text">Lifestyle expenses summarize the cost of living in a fantasy world. They cover lodging, food, equipment maintenance, and other necessities.</span>
                                     </span>
                     </label>
                     <select id="lifestyle" name="lifestyle" onChange={handleIDSubmit} value={character.lifestyle}>
