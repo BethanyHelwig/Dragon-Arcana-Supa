@@ -28,6 +28,11 @@
     text-align: center;
 }
 
+.table__title {
+    color: var(--compendium-subtitle-color);
+    margin: 0.5em 0;
+}
+
 /* -- MONSTER STAT TABLE -- */
 
 .table--stat th:first-child {

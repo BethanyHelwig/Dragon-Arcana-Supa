@@ -232,7 +232,10 @@ export async function getClass(req, res) {
                 .from('character_class')
                 .select(`
                     *,
-                    class_features(*),
+                    class_features(
+                        *,
+                        class_features_table(*)
+                    ),
                     subclass(*)
                     `)
                 .ilike('full_name', `%${term}%`)
@@ -249,7 +252,10 @@ export async function getClass(req, res) {
                 .from('character_class')
                 .select(`
                     *,
-                    class_features(*),
+                    class_features(
+                        *,
+                        class_features_table(*)
+                    ),
                     subclass(*)
                     `)
                 .order('full_name')
@@ -578,7 +584,8 @@ export async function getClassFeatures(req, res) {
                     title,
                     description,
                     level,
-                    character_class!class_features_character_class_fkey(full_name)
+                    character_class!class_features_character_class_fkey(full_name),
+                    class_features_table(*)
                     `
                 )
                 .ilike('title', `%${term}%`)
@@ -599,7 +606,8 @@ export async function getClassFeatures(req, res) {
                     title,
                     description,
                     level,
-                    character_class!class_features_character_class_fkey(full_name)
+                    character_class!class_features_character_class_fkey(full_name),
+                    class_features_table(*)
                     `
                 )
                 .order('title')

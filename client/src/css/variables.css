@@ -20,7 +20,9 @@
     --soft-overlay: rgba(255, 255, 255, 0.05);
 
     --gray-secondary-color: #424242;
+    --input-background-color: rgba(99, 99, 99, 0.5);
     --input-placeholder-color: #9b9b9b;
+    --input-border-color: rgba(255, 255, 255, 0.2);
     --pale-blue-accent-color: #bbe1ff;
     --green-accent-color: #aef6d3;
     --dark-green-accent-color: #496F5D;
@@ -38,6 +40,10 @@
     --compendium-subtitle-color: #880000;
     --monster-color: #642020;
     --gray-subtitle: #7c7c7c;
+
+    --input-background-color: rgba(0, 0, 0, 0.1);
+    --input-placeholder-color: #525252;
+    --input-border-color: rgba(0, 0, 0, 0.2);
 
     --button-hover-background: #fcf9d4;
     --button-hover-text: #880000;

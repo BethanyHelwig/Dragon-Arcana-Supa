@@ -27,18 +27,23 @@ input[type="email"],
 input[type="password"],
 input[type="search"],
 textarea {
-    /* width: 250px; */
     min-width: 250px;
-    margin-bottom: 0.625em; /* 10px */
-    background-color: var(--gray-secondary-color);
-    border: 2px solid var(--dark-secondary-accent-color);
+    margin-bottom: 0.625em;
+    background-color: var(--input-background-color);
+    border: 1px solid var(--input-border-color);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 0.5em 0.75em;
-    color: whitesmoke;
+    color: inherit;
 }
 
 input[type="radio"] {
     margin-right: 0.5em;
+}
+
+option {
+    background-color: var(--input-background-color);
+    color: black;
 }
 
 textarea {

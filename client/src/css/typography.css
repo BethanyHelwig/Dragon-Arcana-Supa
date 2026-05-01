@@ -18,7 +18,8 @@ textarea,
 .collapsible__content,
 .cs-box,
 .compendium-content,
-.side-menu {
+.side-menu,
+.class-info {
     font-family: "Roboto", sans-serif;
 }
 

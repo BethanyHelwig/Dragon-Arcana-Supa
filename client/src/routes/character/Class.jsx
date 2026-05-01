@@ -80,39 +80,63 @@ export default function Class(){
                 console.log("checking for subclass match")
                 if(sorted.find(el => el.id === feature.subclass_id)){
                     const index = sorted.findIndex(el => el.id === feature.subclass_id)
-                    console.log(index)
+                    // console.log(index)
                     sorted[index].values.push(feature)
                 } else {
                     sorted[0].values.push(feature)
                 }
             })
 
+            console.log("Sorted", sorted)
             return (
                 sorted.map(subclass => {
-                    return (
-                        <>
-                            <p><strong>{subclass.title !== "Base" ? `${subclass.title} Subclass` : "Class"} Features</strong></p>
-                            {subclass.values.map(feature => {
-                                return (
-                                    <Collapsible label={`Level ${feature.level}: ${feature.title}`}>
-                                        <ul className="collapsible__list">
-                                            {feature.description.map( el => {
-                                                if (el.includes('<strong>')){
-                                                    const startIndex = el.search('<strong>') + 8
-                                                    const endIndex = el.search('</strong>')
-                            
-                                                    return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
-                                                }
-                                                else {
-                                                    return <li className="collapsible__list_item ">{el}</li>
-                                                }
-                                            })}
-                                        </ul>
-                                    </Collapsible>
-                                )
-                            })}
-                        </>
-                    )
+                    return (<>
+                        <p><strong>{subclass.title !== "Base" ? `${subclass.title} Subclass` : "Class"} Features</strong></p>
+                        {subclass.values.map(feature => {
+                            return (
+                                <Collapsible label={`Level ${feature.level}: ${feature.title}`}>
+                                    <ul className="collapsible__list">
+                                        {feature.description.map( el => {
+                                            if (el.includes('<strong>')){
+                                                const startIndex = el.search('<strong>') + 8
+                                                const endIndex = el.search('</strong>')
+                                                
+                                                return <li className="collapsible__list_item"><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                            }
+                                            if (el.includes('<table>')){
+                                                const index = el[7]
+                                                // console.log(index)
+                                                const table = feature.class_features_table.find(table => table.order_number === Number(index))
+                                                const rows = table.rows.map(row => {
+                                                    const rowArray = row.split("|")
+                                                    rowArray.map(item => { return (<tr>{item}</tr>)})
+                                                })
+                                                return (<>
+                                                    <h4 className="table__title">{table.title}</h4>
+                                                    <table className="table">
+                                                        <thead>
+                                                            <tr>{table.headers.map(el => <th>{el}</th>)}</tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {table.rows.map(row => {
+                                                                const rowArray = row.split("|")
+                                                                return (
+                                                                    <tr>{rowArray.map(item => { return (<td>{item}</td>)})}</tr>
+                                                                )
+                                                            })}
+                                                        </tbody>
+                                                    </table>
+                                                </>)
+                                            }
+                                            else {
+                                                return <li className="collapsible__list_item">{el}</li>
+                                            }
+                                        })}
+                                    </ul>
+                                </Collapsible>
+                            )
+                        })}
+                    </>)
                 })
             )
         }
