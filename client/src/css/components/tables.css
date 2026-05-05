@@ -19,7 +19,7 @@
     color: whitesmoke;
 }
 
-.table tr:nth-of-type(odd) {
+.table tbody tr:nth-of-type(even) {
     background-color: var(--soft-overlay);
 }
 

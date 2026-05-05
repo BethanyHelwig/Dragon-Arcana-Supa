@@ -240,6 +240,6 @@
     font-weight: bold;
     border: 1px solid var(--dark-primary-accent-color);
     border-radius: 5px;
-    color: var(--dark-primary-accent-color);
+    color: black;
     background-color: var(--secondary-accent-color);
 }

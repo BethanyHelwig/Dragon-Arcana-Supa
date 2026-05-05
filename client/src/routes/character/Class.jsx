@@ -175,8 +175,24 @@ export default function Class(){
 
                 <p><strong>Weapon Proficiencies:</strong> {weapon_proficiencies}</p>
                 <p><strong>Tool Proficiencies:</strong> {tool_proficiencies ? tool_proficiencies : "n/a"}</p>
-                {/* <h3 className="emphasis"><strong>Class Features</strong></h3> */}
+                
                 <div className="divider"></div>
+                {character.class === 7 && <div className="compendium-content-emphasis">
+                    <h3 style={{margin: 0}}>Breaking Your Oath</h3>
+                    <ul className="collapsible__list">
+                        <li className="collapsible__list_item">A Paladin tries to hold to the highest standards of
+                            conduct, but even the most dedicated are fallible.
+                            Sometimes a Paladin transgresses their oath.</li>
+                        <li className="collapsible__list_item">A Paladin who has broken a vow typically seeks
+                            absolution, spending an all-night vigil as a sign of penitence
+                            or undertaking a fast. After a rite of forgiveness,
+                            the Paladin starts fresh.</li>
+                        <li className="collapsible__list_item">If your Paladin unrepentantly violates their oath,
+                            talk to your GM. Your Paladin should probably take a
+                            more appropriate subclass or even abandon the class
+                            and adopt another one.</li>
+                    </ul>
+                </div>}
                 {subclassesSorted()}
             </>
         )
