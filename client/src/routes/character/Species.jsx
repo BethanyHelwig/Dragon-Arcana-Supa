@@ -36,20 +36,46 @@ export default function Species(){
     function speciesInfo() {
 
         const chosenSpecies = speciesList.filter(element => element.id === character.species)
-        const { full_name, type, size, size_description, speed, traits } = chosenSpecies[0]
+        const { full_name, type, size, size_description, speed, traits, species_table } = chosenSpecies[0]
 
-        const traitElements = traits.map(el => {
+        const traitElements = traits.map(trait => {
+            console.log(trait)
         
-        if (el.includes('<strong>')){
-            const startIndex = el.search('<strong>') + 8
-            const endIndex = el.search('</strong>')
-
-            return <p><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</p>
-        }
-        else {
-            return <p>{el}</p>
-        }
-    })
+            if (trait.includes('<strong>')){
+                const startIndex = trait.search('<strong>') + 8
+                const endIndex = trait.search('</strong>')
+                
+                return <p><strong><i>{trait.substring(startIndex, endIndex)}</i></strong>{trait.substring(endIndex + 9)}</p>
+            }
+            if (trait.includes('<table>')){
+                const index = trait[7]
+                // console.log(index)
+                const table = species_table.find(table => table.order_number === Number(index))
+                const rows = table.rows.map(row => {
+                    const rowArray = row.split("|")
+                    rowArray.map(item => { return (<tr>{item}</tr>)})
+                })
+                return (<>
+                    <h4 className="table__title">{table.title}</h4>
+                    <table className="table">
+                        <thead>
+                            <tr>{table.headers.map(el => <th>{el}</th>)}</tr>
+                        </thead>
+                        <tbody>
+                            {table.rows.map(row => {
+                                const rowArray = row.split("|")
+                                return (
+                                    <tr>{rowArray.map(item => { return (<td>{item}</td>)})}</tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </>)
+            }
+            else {
+                return <p>{trait}</p>
+            }
+        })
 
         return (
             <>

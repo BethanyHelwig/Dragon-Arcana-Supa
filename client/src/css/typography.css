@@ -26,10 +26,15 @@ textarea,
 #hero-title,
 #nav-title,
 .title-glow {
-    background-image: linear-gradient(white 10%, var(--secondary-accent-color));
+    background-image: linear-gradient(white 20%, var(--secondary-accent-color));
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 5px var(--primary-accent-color));
+    /* -webkit-text-stroke: 0.5px var(--primary-accent-color); */
+    
+    filter:
+        drop-shadow(0 0 1px var(--primary-accent-color))
+        drop-shadow(0 0 4px var(--primary-accent-color));
     margin: 0;
     padding: 0;
 }

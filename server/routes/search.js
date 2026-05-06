@@ -16,7 +16,9 @@ import {
     getClassFeatures,
     getFeats,
     getRulesGlossary,
-    getMonsters
+    getMonsters,
+    getMetamagicOptions,
+    getEldritchInvocationOptions
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
@@ -38,3 +40,5 @@ searchRouter.get('/class_features', getClassFeatures)
 searchRouter.get('/feat', getFeats)
 searchRouter.get('/rules_glossary', getRulesGlossary)
 searchRouter.get('/monsters', getMonsters)
+searchRouter.get('/metamagic_options', getMetamagicOptions)
+searchRouter.get('/eldritch_invocation_options', getEldritchInvocationOptions)

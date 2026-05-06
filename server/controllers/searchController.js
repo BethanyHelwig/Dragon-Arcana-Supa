@@ -460,7 +460,8 @@ export async function getSpecies(req, res) {
                 .from('species')
                 .select(`
                     *,
-                    size(creature_size:size)
+                    size(creature_size:size),
+                    species_table(*)
                     `)
                 .ilike('full_name', `%${term}%`)
                 .order('full_name')
@@ -476,7 +477,8 @@ export async function getSpecies(req, res) {
                 .from('species')
                 .select(`
                     *,
-                    size(creature_size:size)
+                    size(creature_size:size),
+                    species_table(*)
                     `)
                 .order('full_name')
 
@@ -776,4 +778,42 @@ export async function getMonsters(req, res) {
         res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
     
+}
+
+export async function getMetamagicOptions(req, res) {
+    try{
+        // gets all metamagic options
+        const { data, error } = await supabase
+            .from('sorcerer_metamagic')
+            .select()
+            .order('title')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+export async function getEldritchInvocationOptions(req, res) {
+    try{
+        // gets all eldritch invocation options
+        const { data, error } = await supabase
+            .from('warlock_eldritch_invocation_options')
+            .select()
+            .order('title')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
 }
