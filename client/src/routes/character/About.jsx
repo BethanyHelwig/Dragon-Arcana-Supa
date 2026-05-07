@@ -18,7 +18,7 @@ export default function About(){
     const lifestyleElements = lifestyles.map(el => <option key={el.full_name} value={el.id}>{el.full_name}</option>)
     //const languageElements = languages.map(el => <option key={el.full_name} value={el.id}>{el.full_name}</option>)
 
-    const chosenLifestyle = lifestyles.filter(el => el.id == character.lifestyle)[0]
+    const chosenLifestyle = lifestyles.find(el => el.id == character.lifestyle)
 
     const languageStandardElements = languages.map(el => {
         if(el.type === "Standard"){
@@ -121,8 +121,13 @@ export default function About(){
                                         <span className="tooltip_text">A creature’s alignment broadly describes its ethical attitudes and ideals. Alignment is a combination of two factors: one identifies morality (good, evil, or neutral), and the other describes attitudes toward order (lawful, chaotic, or neutral).</span>
                                     </span>
                     </label>
-                    <select id="alignment" name="alignment" onChange={handleIDSubmit} value={character.alignment}>
-                        <option disabled selected>-- Select an alignment --</option>
+                    <select 
+                        id="alignment" 
+                        name="alignment" 
+                        onChange={handleIDSubmit} 
+                        value={character.alignment} 
+                        defaultValue="-- Select an alignment --"
+                    >
                         {alignmentElements}
                     </select>
 
@@ -143,8 +148,13 @@ export default function About(){
                                         <span className="tooltip_text">Lifestyle expenses summarize the cost of living in a fantasy world. They cover lodging, food, equipment maintenance, and other necessities.</span>
                                     </span>
                     </label>
-                    <select id="lifestyle" name="lifestyle" onChange={handleIDSubmit} value={character.lifestyle}>
-                        <option disabled selected>-- Select a lifestyle --</option>
+                    <select 
+                        id="lifestyle" 
+                        name="lifestyle" 
+                        onChange={handleIDSubmit} 
+                        value={character.lifestyle} 
+                        defaultValue="-- Select a lifestyle --"
+                    >
                         {lifestyleElements}
                     </select>
                     {character.lifestyle ? <div className="selection-detail font-Roboto">

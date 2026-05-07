@@ -1,6 +1,7 @@
 import React from "react"
 import SearchResult from "/src/components/SearchResult"
 import { Link } from "react-router-dom"
+import FetchJson from "../components/FetchJson"
 
 export default function Search() {
 
@@ -48,7 +49,7 @@ export default function Search() {
         const data = Object.fromEntries(formData.entries())
         const { searchText, searchCategory, filter } = data
 
-        let queryURL = `http://127.0.0.1:8080/api/search/${searchCategory}`
+        let queryURL = `/api/search/${searchCategory}`
 
         if (searchText || filter){
 
@@ -65,13 +66,18 @@ export default function Search() {
 
         console.log(`Fetching: ${queryURL}`)
 
-        fetch(queryURL)
-            .then(res => res.json())
-            .then(data => {                   
-                setSearchResults(data.map(element => ({...element, searchCategory})))
-                setResultCount(`${data.length} results found for "${searchText}". Click on a result to expand details.`)
-            })
-            .catch (err => console.error(err))
+        const fetchSearch = async () => {
+            try {
+                const searchData = await FetchJson(queryURL)
+    
+                setSearchResults(searchData.map(element => ({...element, searchCategory})))
+                setResultCount(`${searchData.length} results found for "${searchText}". Click on a result to expand details.`)  
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchSearch()
     }
 
     const searchResultsElements = searchResults.map(result => {

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import FetchJson from '../components/FetchJson'
 
 const CreationContext = createContext()
 
@@ -23,88 +24,57 @@ export const CreationContextProvider = ({ children }) => {
         {id: 6, score: 8, ability: null},
     ])
 
+    // fetch all required data for character creation options
     useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/character_class')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setClasses(data)
-            })
-    }, [])
+        const fetchData = async () => {
+            try {
+                const [
+                    classData,
+                    speciesData,
+                    alignmentData,
+                    lifestyleData,
+                    abilityData,
+                    backgroundData,
+                    skillData,
+                    languageData
+                ] = await Promise.all([
+                    FetchJson('/api/search/character_class'),
+                    FetchJson('/api/search/species'),
+                    FetchJson('/api/search/alignment'),
+                    FetchJson('/api/search/lifestyle'),
+                    FetchJson('/api/search/ability_score'),
+                    FetchJson('/api/search/background'),
+                    FetchJson('/api/search/skill'),
+                    FetchJson('/api/search/language')
+                ])
+            
+                setClasses(classData)
+                setSpecies(speciesData)
+                setAlignments(alignmentData)
+                setLifestyles(lifestyleData)
+                setAbilityScores(abilityData)
+                setBackgrounds(backgroundData)
+                setSkillList(skillData)
+                setLanguages(languageData)
+                
+            } catch (error) {
+                console.error(error)
+            }
+        }
 
-    useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/species')
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data)
-                setSpecies(data)
-            })
-    }, [])
-
-    useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/alignment')
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data)
-                setAlignments(data)
-            })
-    }, [])
-
-    useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/lifestyle')
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data)
-                setLifestyles(data)
-            })
-    }, [])
-
-    useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/ability_score')
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data)
-                setAbilityScores(data)
-            })
-    }, [])
-
-    useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/background')
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data)
-                setBackgrounds(data)
-            })
-    }, [])
-
-    useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/skill')
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data)
-                setSkillList(data)
-            })
-    }, [])
-
-    useEffect(() => {
-        fetch('http://127.0.0.1:8080/api/search/language')
-            .then(res => res.json())
-            .then(data => {
-                //console.log(data)
-                setLanguages(data)
-            })
-    },[])
+        fetchData()
+    })
 
     useEffect(()=> {
         resetAbilityScores()
     }, [])
 
-    useEffect(()=> {
-        console.log(character)
-    }, [character])
+    // useEffect(()=> {
+    //     console.log(character)
+    // }, [character])
 
     function updateCharacter(key, value) {
-        console.log("update character called")
+        // console.log("update character called")
         setCharacter(prev => ({...prev, [key]: value}))
     }
 

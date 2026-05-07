@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState, useMemo } from 'react'
 import { CreationContext } from '../../context/CreationContext'
 import { Collapsible } from '../../components/Collapsible'
+import FetchJson from '../../components/FetchJson'
 
 export default function Spells(){
 
@@ -11,31 +12,44 @@ export default function Spells(){
     const [ spellList, setSpellList ] = useState([])
     const [ featureList, setFeatureList ] = useState([])
     const [ className, setClassName ] = useState("")
-    // selected level of what spells are displayed
     const [ selectedLevel, setLevel ] = useState("1")
+
+    // loading and error states
+    const [ isLoading, setIsLoading ] = useState(false)
+    const [ error, setError ] = useState(null)
 
     useEffect(() => {
         if (!character?.class) return
 
-        fetch(`http://127.0.0.1:8080/api/search/spell?c_class=${character.class}`)
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                setSpellList(data)
-            })
+        const fetchData = async () => {
+            try {
+                setIsLoading(true)
 
-        const chosenClass = classList.filter(element => element.id === character.class)
-        const { full_name } = chosenClass[0]
+                const chosenClass = classList.find(element => element.id === character.class)
+                if (!chosenClass) return
 
-        setClassName(full_name)
+                const { full_name } = chosenClass
+                setClassName(full_name)
 
-        // need this to be the character name
-        fetch(`http://127.0.0.1:8080/api/search/features/${full_name.toLowerCase()}`)
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                setFeatureList(data)
-            })
+                // fetch both requests at the same time
+                const [spellData, featureData] = await Promise.all([
+                    FetchJson(`/api/search/spell?c_class=${character.class}`),
+                    FetchJson(`/api/search/features/${full_name.toLowerCase()}`)
+                ])
+
+                setSpellList(spellData)
+                setFeatureList(featureData)
+
+            } catch (err) {
+                console.log("Error retreiving data: ", err)
+                setError(err.message) 
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        fetchData()
+
     }, [character?.class])
 
     // group the spells by level
@@ -113,10 +127,11 @@ export default function Spells(){
     return (
         <>
             <h2>Spells Selection</h2>
-            {character.class ? 
+            <h2 className="title-glow">Level {character.level} {className}</h2>
+            {isLoading && <i className="fa-solid fa-spinner spinning-icon"></i>}
+            {!isLoading && character.class ? 
                 <div className="flex-row">
                     <div className="prepared-spells">
-                        <h3 className="title-glow">Level {character.level} {className}</h3>
                         {preparedSpells()}
                     </div>
                     <div className="spells-container">

@@ -29,8 +29,7 @@ export const useApiStore = create((set, get) => ({
             } else {
                 set({ usersSavedCharacters: data })
                 console.log(data)
-            }
-            
+            }     
         }
         catch(err){
             console.log("Error retreiving user's saved characters: ", error)

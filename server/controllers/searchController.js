@@ -539,7 +539,7 @@ export async function getBackground(req, res) {
                 .select(
                     `
                     *,
-                    feat_id(feat:full_name)
+                    feat(feat:full_name)
                     `
                 )
                 .ilike('full_name', `%${term}%`)
@@ -818,7 +818,8 @@ export async function getEldritchInvocationOptions(req, res) {
     }
 }
 
-// CLASS SPECIFIC FEATURES
+// ** CLASS SPECIFIC FEATURES
+// BARBARIAN
 export async function getBarbarianFeatures(req, res){
     try{
         // gets all class features
