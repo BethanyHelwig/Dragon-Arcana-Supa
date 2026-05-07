@@ -57,3 +57,10 @@
 .table--stat tr:nth-child(2) {
     border-top: 1px solid var(--soft-overlay);
 }
+
+/* -- Prepared Spells Table -- */
+.table--spells th,
+.table--spells td {
+    padding: 5px 10px;
+    min-width: 1px;
+}

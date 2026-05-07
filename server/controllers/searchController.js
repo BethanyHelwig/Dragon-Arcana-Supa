@@ -817,3 +817,243 @@ export async function getEldritchInvocationOptions(req, res) {
         res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
 }
+
+// CLASS SPECIFIC FEATURES
+export async function getBarbarianFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_barbarian')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// BARD
+export async function getBardFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_bard')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// CLERIC
+export async function getClericFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_cleric')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// DRUID
+export async function getDruidFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_druid')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// FIGHTER
+export async function getFighterFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_fighter')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// MONK
+export async function getMonkFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_monk')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// PALADIN
+export async function getPaladinFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_paladin')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// RANGER
+export async function getRangerFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_ranger')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// ROGUE
+export async function getRogueFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_rogue')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// SORCERER
+export async function getSorcererFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_sorcerer')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// WARLOCK
+export async function getWarlockFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_warlock')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+// WIZARD
+export async function getWizardFeatures(req, res){
+    try{
+        // gets all class features
+        const { data, error } = await supabase
+            .from('class_features_wizard')
+            .select()
+            .order('level')
+
+        if (error) {
+            throw error
+        }
+        res.status(200).json(data)
+        
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}

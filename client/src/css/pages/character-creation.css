@@ -243,3 +243,8 @@
     color: black;
     background-color: var(--secondary-accent-color);
 }
+
+.prepared-spells {
+    min-width: 300px;
+    text-align: left;
+}

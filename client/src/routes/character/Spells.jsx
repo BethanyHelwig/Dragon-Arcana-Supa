@@ -4,9 +4,14 @@ import { Collapsible } from '../../components/Collapsible'
 
 export default function Spells(){
 
+    // context values
     const { character, classList } = useContext(CreationContext)
 
+    // state values
     const [ spellList, setSpellList ] = useState([])
+    const [ featureList, setFeatureList ] = useState([])
+    const [ className, setClassName ] = useState("")
+    // selected level of what spells are displayed
     const [ selectedLevel, setLevel ] = useState("1")
 
     useEffect(() => {
@@ -15,11 +20,25 @@ export default function Spells(){
         fetch(`http://127.0.0.1:8080/api/search/spell?c_class=${character.class}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setSpellList(data)
+            })
+
+        const chosenClass = classList.filter(element => element.id === character.class)
+        const { full_name } = chosenClass[0]
+
+        setClassName(full_name)
+
+        // need this to be the character name
+        fetch(`http://127.0.0.1:8080/api/search/features/${full_name.toLowerCase()}`)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                setFeatureList(data)
             })
     }, [character?.class])
 
+    // group the spells by level
     const collapsibleArray = useMemo(() => {
         if (!Array.isArray(spellList) || spellList.length === 0) {
             return {};
@@ -49,17 +68,56 @@ export default function Spells(){
     const sortedCollapsibles = Object.keys(collapsibleArray)
         .sort((a, b) => Number(a) - Number(b));
 
+    // changes what the selected level is for what spells are displayed
     function changeLevel(e){
         setLevel(e.target.value)
     }
 
+    function preparedSpells(){
+        const obj = featureList[character.level - 1]
+        if (!obj) return null
+
+        // extract all spell slot keys that actually exist
+        const levels = Object.keys(obj)
+            .filter(key => key.startsWith("spell_slots_spell_level_"))
+            .map(key => Number(key.split("_").pop()))
+            .filter(num => !isNaN(num));                          
+
+        return  (
+            <>
+            <h4>Choose your prepared Cantrips ({featureList[character.level-1]?.cantrips}):</h4>
+            <h4>Choose your prepared spells ({featureList[character.level-1]?.prepared_spells}):</h4>
+            <table className="table table--spells">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan={levels.length} class="table__header-span"><span>-- Spell Slots per Spell Level --</span></th>
+                    </tr>
+                    <tr>
+                        {levels.map(el => <th scope="col" key={`header_${el}`}>{el}</th>)}
+                    </tr>
+                </thead>
+                <tbody>
+                    {levels.map(level => {
+                        const value = obj?.[`spell_slots_spell_level_${level}`]
+                        return (
+                            <td key={level}>{value ?? "--"}</td>
+                        )
+                    })}
+                </tbody>
+            </table>
+            </>
+        )
+    }
+
+// ** RETURNED UI **
     return (
         <>
-            <h2>Spells {character.class ? " ": ""}</h2>
+            <h2>Spells Selection</h2>
             {character.class ? 
                 <div className="flex-row">
-                    <div>
-                        <h3>Choose your prepared spells:</h3>
+                    <div className="prepared-spells">
+                        <h3 className="title-glow">Level {character.level} {className}</h3>
+                        {preparedSpells()}
                     </div>
                     <div className="spells-container">
                         <h3>View Spells</h3>

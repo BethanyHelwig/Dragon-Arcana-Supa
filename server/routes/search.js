@@ -18,7 +18,19 @@ import {
     getRulesGlossary,
     getMonsters,
     getMetamagicOptions,
-    getEldritchInvocationOptions
+    getEldritchInvocationOptions,
+    getBarbarianFeatures,
+    getBardFeatures,
+    getClericFeatures,
+    getDruidFeatures,
+    getFighterFeatures,
+    getMonkFeatures,
+    getPaladinFeatures,
+    getRangerFeatures,
+    getRogueFeatures,
+    getSorcererFeatures,
+    getWarlockFeatures,
+    getWizardFeatures
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
@@ -42,3 +54,17 @@ searchRouter.get('/rules_glossary', getRulesGlossary)
 searchRouter.get('/monsters', getMonsters)
 searchRouter.get('/metamagic_options', getMetamagicOptions)
 searchRouter.get('/eldritch_invocation_options', getEldritchInvocationOptions)
+
+// ** CLASS SPECIFIC FEATURES **
+searchRouter.get('/features/barbarian', getBarbarianFeatures)
+searchRouter.get('/features/bard', getBardFeatures)
+searchRouter.get('/features/cleric', getClericFeatures)
+searchRouter.get('/features/druid', getDruidFeatures)
+searchRouter.get('/features/fighter', getFighterFeatures)
+searchRouter.get('/features/monk', getMonkFeatures)
+searchRouter.get('/features/paladin', getPaladinFeatures)
+searchRouter.get('/features/ranger', getRangerFeatures)
+searchRouter.get('/features/rogue', getRogueFeatures)
+searchRouter.get('/features/sorcerer', getSorcererFeatures)
+searchRouter.get('/features/warlock', getWarlockFeatures)
+searchRouter.get('/features/wizard', getWizardFeatures)
