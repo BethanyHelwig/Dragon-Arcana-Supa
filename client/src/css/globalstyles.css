@@ -16,6 +16,7 @@
 @import "./components/tables.css";
 @import "./components/images.css";
 @import "./components/ability_score.css";
+@import "./components/modal.css";
 
 @import "./layout/footer.css";
 @import "./layout/navigation.css";

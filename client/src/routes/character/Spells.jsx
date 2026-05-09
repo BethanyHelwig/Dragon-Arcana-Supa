@@ -2,6 +2,7 @@ import { useContext, useEffect, useState, useMemo } from 'react'
 import { CreationContext } from '../../context/CreationContext'
 import { Collapsible } from '../../components/Collapsible'
 import FetchJson from '../../components/FetchJson'
+import Modal from '../../components/SearchResults/Modal'
 
 export default function Spells(){
 
@@ -11,30 +12,39 @@ export default function Spells(){
     // state values
     const [ spellList, setSpellList ] = useState([])
     const [ featureList, setFeatureList ] = useState([])
-    const [ className, setClassName ] = useState("")
+    // const [ className, setClassName ] = useState("")
     const [ selectedLevel, setLevel ] = useState("1")
+    const [ isModalOpen, setIsModalOpen ] = useState(false)
 
     // loading and error states
     const [ isLoading, setIsLoading ] = useState(false)
     const [ error, setError ] = useState(null)
 
+    const className = useMemo(() => {
+        const chosenClass = classList.find(
+            element => element.id === character.class
+        )
+
+        return chosenClass?.full_name || ""
+    }, [character.class])
+
     useEffect(() => {
-        if (!character?.class) return
+        if (!character?.class || !className) return
 
         const fetchData = async () => {
             try {
                 setIsLoading(true)
 
-                const chosenClass = classList.find(element => element.id === character.class)
-                if (!chosenClass) return
+                // const chosenClass = classList.find(element => element.id === character.class)
+                // if (!chosenClass) return
 
-                const { full_name } = chosenClass
-                setClassName(full_name)
+                // const { full_name } = chosenClass
+                // setClassName(full_name)
 
                 // fetch both requests at the same time
                 const [spellData, featureData] = await Promise.all([
                     FetchJson(`/api/search/spell?c_class=${character.class}`),
-                    FetchJson(`/api/search/features/${full_name.toLowerCase()}`)
+                    FetchJson(`/api/search/features/${className.toLowerCase()}`)
                 ])
 
                 setSpellList(spellData)
@@ -87,6 +97,8 @@ export default function Spells(){
         setLevel(e.target.value)
     }
 
+    console.log(sortedCollapsibles)
+
     function preparedSpells(){
         const obj = featureList[character.level - 1]
         if (!obj) return null
@@ -99,24 +111,43 @@ export default function Spells(){
 
         return  (
             <>
-            <h4>Choose your prepared Cantrips ({featureList[character.level-1]?.cantrips}):</h4>
-            <h4>Choose your prepared spells ({featureList[character.level-1]?.prepared_spells}):</h4>
+            <h4>Cantrips (Select {featureList[character.level-1]?.cantrips}):</h4>
+            <button onClick={() => setIsModalOpen(true)}>
+                Select your cantrips
+            </button>
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title="Example Modal"
+            >
+                {collapsibleArray["Cantrip"]?.map(cantrip => {
+                    return (
+                        <p>{cantrip.full_name}</p>
+                    )
+                })}
+            </Modal>
+            <h4>Prepared spells (Select {featureList[character.level-1]?.prepared_spells}):</h4>
+            <button onClick={() => setIsModalOpen(true)}>
+                Select your prepared spells
+            </button>
             <table className="table table--spells">
                 <thead>
                     <tr>
-                        <th scope="col" colspan={levels.length} class="table__header-span"><span>-- Spell Slots per Spell Level --</span></th>
+                        <th scope="col" colspan={levels.length} className="table__header-span"><span>-- Spell Slots per Spell Level --</span></th>
                     </tr>
                     <tr>
                         {levels.map(el => <th scope="col" key={`header_${el}`}>{el}</th>)}
                     </tr>
                 </thead>
                 <tbody>
-                    {levels.map(level => {
-                        const value = obj?.[`spell_slots_spell_level_${level}`]
-                        return (
-                            <td key={level}>{value ?? "--"}</td>
-                        )
-                    })}
+                    <tr>
+                        {levels.map(level => {
+                            const value = obj?.[`spell_slots_spell_level_${level}`]
+                            return (
+                                <td key={level}>{value ?? "--"}</td>
+                            )
+                        })}
+                    </tr>
                 </tbody>
             </table>
             </>

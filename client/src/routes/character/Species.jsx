@@ -39,7 +39,6 @@ export default function Species(){
         const { full_name, type, size, size_description, speed, traits, species_table } = chosenSpecies[0]
 
         const traitElements = traits.map(trait => {
-            console.log(trait)
         
             if (trait.includes('<strong>')){
                 const startIndex = trait.search('<strong>') + 8
@@ -49,7 +48,6 @@ export default function Species(){
             }
             if (trait.includes('<table>')){
                 const index = trait[7]
-                // console.log(index)
                 const table = species_table.find(table => table.order_number === Number(index))
                 const rows = table.rows.map(row => {
                     const rowArray = row.split("|")

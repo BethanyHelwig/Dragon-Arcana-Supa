@@ -1,11 +1,23 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react'
 import FetchJson from '../components/FetchJson'
 
 const CreationContext = createContext()
 
+const defaultCharacter = {
+    level: 1,
+    skill_proficiencies: [],
+    languages: [],
+    charisma: 8,
+    constitution: 8,
+    dexterity: 8,
+    intelligence: 8,
+    strength: 8,
+    wisdom: 8
+}
+
 export const CreationContextProvider = ({ children }) => {
 
-    const [ character, setCharacter ] = useState({skill_proficiencies: [], level: 1, languages: []})
+    const [character, setCharacter] = useState(defaultCharacter)
     const [ classList, setClasses ] = useState([])
     const [ speciesList, setSpecies ] = useState([])
     const [ alignments, setAlignments ] = useState([])
@@ -63,71 +75,105 @@ export const CreationContextProvider = ({ children }) => {
         }
 
         fetchData()
-    })
+    },[])
 
     useEffect(()=> {
-        resetAbilityScores()
+        console.log(character)
+    }, [character])
+
+    const updateCharacter = useCallback((key, value) => {
+        console.log("update character called")
+        setCharacter(prev => ({...prev, [key]: value}))
     }, [])
 
-    // useEffect(()=> {
-    //     console.log(character)
-    // }, [character])
+    // function updateCharacter(key, value) {
+    //     // console.log("update character called")
+    //     setCharacter(prev => ({...prev, [key]: value}))
+    // }
 
-    function updateCharacter(key, value) {
-        // console.log("update character called")
-        setCharacter(prev => ({...prev, [key]: value}))
-    }
+    const updateArrayInCharacter = useCallback((key, value) => {
+        setCharacter(prev => {
+            const currentArray = prev[key] || []
 
-    function updateArrayInCharacter(key, value) {
-        if(character.hasOwnProperty(key)){
-            var updatedArray = character[key]
-            if(updatedArray.includes(value)){
-                updatedArray = updatedArray.filter(item => item !== value)
+            const updatedArray = currentArray.includes(value)
+                ? currentArray.filter(item => item !== value)
+                : [...currentArray, value]
+
+            return {
+                ...prev,
+                [key]: updatedArray
             }
-            else {
-                updatedArray.push(value)
-            }
+        })
+    }, [])
 
-            setCharacter(prev => (
-                {...prev, [key] : updatedArray}
-            ))
-        }
-        else {
-            setCharacter(prev => (
-                {...prev, [key]: [value]}
-            ))
-        }
-    }
+    // function updateArrayInCharacter(key, value) {
+    //     if(character.hasOwnProperty(key)){
+    //         var updatedArray = character[key]
+    //         if(updatedArray.includes(value)){
+    //             updatedArray = updatedArray.filter(item => item !== value)
+    //         }
+    //         else {
+    //             updatedArray.push(value)
+    //         }
 
-    function resetAbilityScores(){
-        updateCharacter("charisma", 8)
-        updateCharacter("constitution", 8)
-        updateCharacter("dexterity", 8)
-        updateCharacter("intelligence", 8)
-        updateCharacter("strength", 8)
-        updateCharacter("wisdom", 8)
-    }
+    //         setCharacter(prev => (
+    //             {...prev, [key] : updatedArray}
+    //         ))
+    //     }
+    //     else {
+    //         setCharacter(prev => (
+    //             {...prev, [key]: [value]}
+    //         ))
+    //     }
+    // }
+
+    const resetAbilityScores = useCallback(() => {
+        setCharacter(prev => ({
+            ...prev,
+            charisma: 8,
+            constitution: 8,
+            dexterity: 8,
+            intelligence: 8,
+            strength: 8,
+            wisdom: 8
+        }))
+    }, [])
+
+    const contextValues = useMemo(() => ({
+        character, 
+        updateCharacter,
+        updateArrayInCharacter,
+        classList, 
+        speciesList, 
+        alignments, 
+        lifestyles, 
+        abilityScores,
+        scoreGenerationMethod,
+        setScoreGenerationMethod,
+        generatedScores,
+        setGeneratedScores,
+        resetAbilityScores,
+        backgrounds,
+        skillList,
+        languages
+    }),[character, 
+        classList, 
+        speciesList, 
+        alignments, 
+        lifestyles, 
+        abilityScores,
+        scoreGenerationMethod,
+        generatedScores,
+        backgrounds,
+        skillList,
+        languages,
+        updateCharacter,
+        updateArrayInCharacter,
+        resetAbilityScores
+    ])
 
     return (
-        <CreationContext.Provider 
-            value={{ 
-                character, 
-                updateCharacter,
-                updateArrayInCharacter,
-                classList, 
-                speciesList, 
-                alignments, 
-                lifestyles, 
-                abilityScores,
-                scoreGenerationMethod,
-                setScoreGenerationMethod,
-                generatedScores,
-                setGeneratedScores,
-                resetAbilityScores,
-                backgrounds,
-                skillList,
-                languages
-            }}>
+        <CreationContext.Provider value={contextValues}>
             {children}
         </CreationContext.Provider>
     )
