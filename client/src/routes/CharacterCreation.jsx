@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContextProvider } from '../context/CreationContext'
+import { CreationLookupContextProvider } from '../context/CreationLookupContext'
 import StatusOfCreation from './character/StatusOfCreation'
 
 export default function CharacterCreation(){
@@ -18,12 +19,14 @@ export default function CharacterCreation(){
                     <NavLink to="spells" className={({isActive}) => isActive ? "submenu-active-link" : null}>Spells</NavLink>
                     <NavLink to="about" className={({isActive}) => isActive ? "submenu-active-link" : null}>About</NavLink>
                 </div>
-                    <CreationContextProvider>
-                        <div className="gradient-border creation-outlet-div">
-                            <Outlet />
-                        </div>
-                        <StatusOfCreation />
-                    </CreationContextProvider>
+                    <CreationLookupContextProvider>
+                        <CreationContextProvider>
+                            <div className="gradient-border creation-outlet-div">
+                                <Outlet />
+                            </div>
+                            <StatusOfCreation />
+                        </CreationContextProvider>
+                    </CreationLookupContextProvider>
             </section>
         </main>
     )

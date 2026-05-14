@@ -178,3 +178,39 @@ legend {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin: 0;
 }
+
+.selection--spells {
+    display: flex;
+    font-size: 1.1rem;
+    border-radius: 7px; 
+    border: 1px solid var(--gray-secondary-color);
+    padding: 3px 10px;
+    margin-top: 0.4em;
+    cursor: pointer;
+    align-items: left;
+    background-color: var(--spell-selection-color);
+}
+.selection--spells input[type="checkbox"] {
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.selection--spells:has(input[type="checkbox"]:checked) {
+    border: 1px solid var(--dark-primary-accent-color);
+    background-color: color-mix(in srgb, var(--dark-primary-accent-color) 20%, transparent);
+    transition: all 0.3s ease-in-out;
+}
+
+.selection--spells__details {
+    border: 1px solid var(--dark-secondary-accent-color);
+    border-top: none;
+    padding: 0.5em 1em;
+    margin: 0 0.3em;
+    font-size: 0.9rem;
+}
+
+.selection--spells__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

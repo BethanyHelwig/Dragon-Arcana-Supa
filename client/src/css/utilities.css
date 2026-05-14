@@ -59,6 +59,13 @@
     /* height: 100%; */
 }
 
+.flex-row__between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+}
+
 .divider {
     border: none;
     border-top: 1px solid var(--dark-secondary-accent-color);
@@ -80,4 +87,10 @@
     background-color: var(--dark-green-accent-color);
     border-radius: 3px;
     color: whitesmoke;
+}
+
+.scroll-window {
+    min-height: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
 }

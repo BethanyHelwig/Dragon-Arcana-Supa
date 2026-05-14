@@ -206,7 +206,7 @@
 }
 
 .spell-attributes span {
-    background-color: var(--soft-overlay);
+    background-color: var(--attribute-span-color);
     border-radius: 5px;
     padding: 2px 8px;
     margin: 0 10px 10px 0;

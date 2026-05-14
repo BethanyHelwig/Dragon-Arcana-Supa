@@ -28,6 +28,9 @@
     --dark-green-accent-color: #496F5D;
     --background-image: linear-gradient(var(--background-primary-color), var(--background-primary-color));
     --ability-score-border: url("/ability_score_border_dark_mode.svg");
+
+    --spell-selection-color: color-mix(in srgb, #80c5ff 20%, transparent);
+    --attribute-span-color: color-mix(in srgb, #80c5ff 10%, transparent);
 }
 
 [data-theme="light"] {
@@ -54,4 +57,7 @@
     --header-footer-overlay: rgba(209, 198, 179, 0.6);
     --background-image: url("/marble.jpg");
     --ability-score-border: url("/ability_score_border.svg");
+
+    --spell-selection-color: color-mix(in srgb, #fcf9d4 50%, transparent);
+    --attribute-span-color: color-mix(in srgb, #fcf9d4 30%, transparent);
 }

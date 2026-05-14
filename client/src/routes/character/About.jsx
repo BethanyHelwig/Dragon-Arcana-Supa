@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
+import { CreationLookupContext } from '../../context/CreationLookupContext'
 import { toast } from 'react-hot-toast'
 
 export default function About(){
@@ -8,15 +9,17 @@ export default function About(){
     const { 
         character, 
         updateCharacter, 
-        alignments, 
-        lifestyles, 
-        languages, 
         updateArrayInCharacter 
     } = useContext(CreationContext)
 
+    const { 
+        alignments, 
+        lifestyles, 
+        languages
+    } = useContext(CreationLookupContext)
+
     const alignmentElements = alignments.map(el => <option key={el.full_name} value={el.id}>{el.full_name}</option>)
     const lifestyleElements = lifestyles.map(el => <option key={el.full_name} value={el.id}>{el.full_name}</option>)
-    //const languageElements = languages.map(el => <option key={el.full_name} value={el.id}>{el.full_name}</option>)
 
     const chosenLifestyle = lifestyles.find(el => el.id == character.lifestyle)
 
@@ -56,7 +59,7 @@ export default function About(){
         }
     })
 
-    // Handles and checks proficiencies tied to class selection
+    // Handles and checks languages against limit
     function handleLanguageSubmit(e){
         console.log("Calling handleLanguageSubmit")
         if(character[e.target.name].length >= 2) {

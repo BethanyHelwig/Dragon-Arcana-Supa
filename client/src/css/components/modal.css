@@ -13,14 +13,16 @@
 }
 
 .modal-content {
-    width: min(90%, 600px);
-    max-height: 85vh;
+    min-width: 400px;
+    max-width: 90%;
+    /* max-height: 85vh; */
+    min-height: 600px;
 
-    background: #1f1f1f;
-    color: white;
+    background: var(--background-primary-color);
+    color: var(--text-primary-color);
 
     border-radius: 16px;
-    overflow: hidden;
+    /* overflow: hidden; */
 
     box-shadow:
         0 0 30px rgba(0, 0, 0, 0.5);
@@ -59,7 +61,8 @@
 
 .modal-body {
     padding: 1.25rem;
-    overflow-y: auto;
+    min-height: 600px;
+    /* overflow-y: auto; */
 }
 
 @keyframes fadeIn {

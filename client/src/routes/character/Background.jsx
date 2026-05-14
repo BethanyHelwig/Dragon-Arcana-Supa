@@ -1,9 +1,11 @@
 import { useContext } from 'react'
 import { CreationContext } from '../../context/CreationContext'
+import { CreationLookupContext } from '../../context/CreationLookupContext'
 
 export default function Background(){
 
-    const { character, backgrounds, updateCharacter } = useContext(CreationContext)
+    const { character, updateCharacter } = useContext(CreationContext)
+    const { backgrounds } = useContext(CreationLookupContext)
 
     // Chosen background is added to character in Creation Context
     function handleSubmit(e){

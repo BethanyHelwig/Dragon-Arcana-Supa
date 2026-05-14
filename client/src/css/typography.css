@@ -19,7 +19,8 @@ textarea,
 .cs-box,
 .compendium-content,
 .side-menu,
-.class-info {
+.class-info,
+.selection--spells__details {
     font-family: "Roboto", sans-serif;
 }
 

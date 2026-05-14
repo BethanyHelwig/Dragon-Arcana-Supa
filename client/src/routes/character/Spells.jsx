@@ -1,20 +1,24 @@
-import { useContext, useEffect, useState, useMemo } from 'react'
+import { useContext, useEffect, useState, useMemo, Fragment } from 'react'
 import { CreationContext } from '../../context/CreationContext'
+import { CreationLookupContext } from '../../context/CreationLookupContext'
 import { Collapsible } from '../../components/Collapsible'
 import FetchJson from '../../components/FetchJson'
-import Modal from '../../components/SearchResults/Modal'
+import Modal from '../../components/Modal'
+import toast from 'react-hot-toast'
 
 export default function Spells(){
 
     // context values
-    const { character, classList } = useContext(CreationContext)
+    const { character, updateCharacter } = useContext(CreationContext)
+    const { classList } = useContext(CreationLookupContext)
 
     // state values
     const [ spellList, setSpellList ] = useState([])
     const [ featureList, setFeatureList ] = useState([])
-    // const [ className, setClassName ] = useState("")
     const [ selectedLevel, setLevel ] = useState("1")
-    const [ isModalOpen, setIsModalOpen ] = useState(false)
+    const [ activeModal, setActiveModal ] = useState(null)
+    const [ preparedCantripsList, setPreparedCantripsList ] = useState([])
+    const [ preparedSpellsList, setPreparedSpellsList ] = useState([])
 
     // loading and error states
     const [ isLoading, setIsLoading ] = useState(false)
@@ -28,18 +32,15 @@ export default function Spells(){
         return chosenClass?.full_name || ""
     }, [character.class])
 
+    const cantripLimit = featureList[character.level-1]?.cantrips || 0
+    const spellLimit = featureList[character.level-1]?.prepared_spells || 0
+
     useEffect(() => {
         if (!character?.class || !className) return
 
         const fetchData = async () => {
             try {
                 setIsLoading(true)
-
-                // const chosenClass = classList.find(element => element.id === character.class)
-                // if (!chosenClass) return
-
-                // const { full_name } = chosenClass
-                // setClassName(full_name)
 
                 // fetch both requests at the same time
                 const [spellData, featureData] = await Promise.all([
@@ -61,6 +62,27 @@ export default function Spells(){
         fetchData()
 
     }, [character?.class])
+
+    // Handles and checks cantrip selections against limit in state held values
+    function handleCantripSelection(e){
+        const { value, checked } = e.target
+        console.log("Calling handleCantripSubmit")
+        setPreparedCantripsList(prev => {
+            // remove cantrip if unchecking
+            if (!checked) {
+                return prev.filter(el => el !== value)
+            }
+
+            // limit reached, cannot add more
+            if (prev.length >= cantripLimit){
+                toast.error(`Cannot select more than ${cantripLimit} cantrips.`)
+                return prev
+            }
+
+            // add cantrip
+            return [...prev, value]
+        })
+    }
 
     // group the spells by level
     const collapsibleArray = useMemo(() => {
@@ -97,7 +119,15 @@ export default function Spells(){
         setLevel(e.target.value)
     }
 
-    console.log(sortedCollapsibles)
+    // handle the submit of selected prepared cantrips
+    function handleCantripSubmit(formData){
+        setActiveModal(null)
+        updateCharacter("preparedCantrips", preparedCantripsList)
+        // const data = formData.getAll("prepared-cantrips")
+        console.log("Cantrips submitted." + data)
+    }
+
+    // console.log(sortedCollapsibles)
 
     function preparedSpells(){
         const obj = featureList[character.level - 1]
@@ -111,25 +141,85 @@ export default function Spells(){
 
         return  (
             <>
-            <h4>Cantrips (Select {featureList[character.level-1]?.cantrips}):</h4>
-            <button onClick={() => setIsModalOpen(true)}>
+            <h4>Cantrips (Select {cantripLimit}):</h4>
+            <button onClick={() => setActiveModal("cantrips")}>
                 Select your cantrips
             </button>
+            {/* Cantrip selection modal */}
             <Modal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                title="Example Modal"
+                isOpen={activeModal === "cantrips"}
+                onClose={() => setActiveModal(null)}
+                title="Cantrips"
             >
-                {collapsibleArray["Cantrip"]?.map(cantrip => {
+                <form>
+                    <legend className="flex-row__between">
+                        <span>Select {cantripLimit} cantrips from the list below.</span>
+                        <span>{preparedCantripsList.length}/{cantripLimit} Selected</span>
+                    </legend>
+                    <div className="scroll-window">
+                        {collapsibleArray["Cantrip"]?.map(cantrip => {
+                            return (
+                                <Fragment key={cantrip.id}>
+                                    <div className="selection--spells">
+                                        <input 
+                                            type="checkbox"
+                                            name="prepared-cantrips"
+                                            id={cantrip.id}
+                                            value={cantrip.full_name}
+                                            checked={preparedCantripsList.includes(cantrip.full_name)}
+                                            onChange={handleCantripSelection}
+                                        />
+                                        <label htmlFor={cantrip.id}>
+                                                {cantrip.full_name}
+                                        </label>
+                                    </div>
+                                        <div className="selection--spells__details">
+                                            <div className="spell-attributes">
+                                                <span>School: {cantrip.school_of_magic.school}</span>
+                                                <span>Casting Time: {cantrip.casting_time}</span>
+                                                <span>Duration: {cantrip.duration}</span>
+                                                <span>Components: {cantrip.components}</span>
+                                                <span>Range: {cantrip.range}</span>
+                                            </div>
+                                            <ul className="selection--spells__list">
+                                                {cantrip.description.map(el => {
+                                                    if (el.includes('<strong>')){
+                                                        const startIndex = el.search('<strong>') + 8
+                                                        const endIndex = el.search('</strong>')
+                                
+                                                        return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                                    }
+                                                    else {
+                                                        return <li className="collapsible__list_item ">{el}</li>
+                                                    }
+                                                })}
+                                            </ul>
+                                        </div>
+                                </Fragment>
+                            )
+                        })}
+                    </div>
+                    <button onClick={handleCantripSubmit}>Save</button>
+                </form>
+            </Modal>
+
+            <h4>Prepared spells (Select {spellLimit}):</h4>
+            <button onClick={() => setActiveModal("spells")}>
+                Select your prepared spells
+            </button>
+            {/* Prepared spell selection modal */}
+            <Modal
+                isOpen={activeModal === "spells"}
+                onClose={() => setActiveModal(null)}
+                title="Spells"
+            >
+                Spells
+                {/* {collapsibleArray["Cantrip"]?.map(cantrip => {
                     return (
                         <p>{cantrip.full_name}</p>
                     )
-                })}
+                })} */}
             </Modal>
-            <h4>Prepared spells (Select {featureList[character.level-1]?.prepared_spells}):</h4>
-            <button onClick={() => setIsModalOpen(true)}>
-                Select your prepared spells
-            </button>
             <table className="table table--spells">
                 <thead>
                     <tr>

@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
 import { CreationContext } from '../../context/CreationContext'
+import { CreationLookupContext } from '../../context/CreationLookupContext'
 import toast from "react-hot-toast"
 import { Collapsible } from '../../components/Collapsible'
 
 export default function Class(){
 
-    const { character, updateCharacter, classList } = useContext(CreationContext)
+    const { character, updateCharacter } = useContext(CreationContext)
+    const { classList } = useContext(CreationLookupContext)
     // special sorcerer metamagic options
     const [ metamagic, setMetamagic ] = useState([])
     // special warlock eldritch invocation options

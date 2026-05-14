@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
+import { CreationLookupContext } from '../../context/CreationLookupContext'
 
 export default function Species(){
 
-    const { character, speciesList, updateCharacter } = useContext(CreationContext)
+    const { character, updateCharacter } = useContext(CreationContext)
+    const { speciesList } = useContext(CreationLookupContext)
 
     // Submits species selection to character in Creation Context
     function handleSubmit(e){

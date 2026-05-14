@@ -1,19 +1,23 @@
 import { useContext, useEffect, useState } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
+import { CreationLookupContext } from '../../context/CreationLookupContext'
 
 export default function AbilityScores(){
 
     const { 
         character, 
         updateCharacter, 
-        abilityScores, 
         scoreGenerationMethod, 
         setScoreGenerationMethod,
         resetAbilityScores,
         generatedScores,
         setGeneratedScores
     } = useContext(CreationContext)
+
+    const {
+        abilityScores
+    } = useContext(CreationLookupContext)
 
     const [ randomGenerationResults, setRandomGenerationResults ] = useState([])
     const [ pointsAvailable, setpointsAvailable ] = useState(27)

@@ -1,20 +1,24 @@
 import { useContext, useEffect } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
+import { CreationLookupContext } from '../../context/CreationLookupContext'
 import { toast } from "react-hot-toast"
 
 export default function Skills(){
 
     const { 
         character, 
-        skillList, 
-        classList, 
         updateArrayInCharacter, 
-        backgrounds,
         generatedScores, 
-        speciesList, 
         updateCharacter 
     } = useContext(CreationContext)
+
+    const { 
+        skillList, 
+        classList, 
+        backgrounds,
+        speciesList, 
+    } = useContext(CreationLookupContext)
 
     // Gets the available skills for the chosen class
     function classInformation() {
