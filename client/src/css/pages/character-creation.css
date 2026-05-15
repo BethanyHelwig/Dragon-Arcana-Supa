@@ -212,6 +212,7 @@
 .spell-attributes {
     display: flex;
     flex-wrap: wrap;
+    font-size: 0.9em;
 }
 
 .spell-attributes span {

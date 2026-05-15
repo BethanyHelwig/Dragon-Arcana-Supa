@@ -115,6 +115,47 @@ export default function Spells(){
     const sortedCollapsibles = Object.keys(collapsibleArray)
         .sort((a, b) => Number(a) - Number(b));
 
+
+    // Selected cantrips are looked up in the spell list and returned formatted
+    const preparedCantripsFormatted = useMemo(() => {
+        if (!character?.preparedCantrips?.length) return null 
+        
+        return character?.preparedCantrips.map(cantrip => {
+            const cantripObj = spellList.find(element => element.full_name === cantrip)
+            if (cantripObj !== undefined){
+                return (
+                    <Fragment key={cantripObj.id}>
+                        <div className="selection--spells">
+                            <h4>{cantripObj.full_name}</h4>
+                        </div>
+                            <div className="selection--spells__details">
+                                <div className="spell-attributes">
+                                    <span>{cantripObj.school_of_magic.school}</span>
+                                    <span>{cantripObj.casting_time}</span>
+                                    <span>{cantripObj.duration}</span>
+                                    <span>{cantripObj.components}</span>
+                                    <span>{cantripObj.range}</span>
+                                </div>
+                                <ul className="selection--spells__list">
+                                    {cantripObj.description.map(el => {
+                                        if (el.includes('<strong>')){
+                                            const startIndex = el.search('<strong>') + 8
+                                            const endIndex = el.search('</strong>')
+                    
+                                            return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                        }
+                                        else {
+                                            return <li className="collapsible__list_item ">{el}</li>
+                                        }
+                                    })}
+                                </ul>
+                            </div>
+                    </Fragment>
+                )
+            }
+        })
+    },[character?.preparedCantrips, spellList])
+
     // changes what the selected level is for what spells are displayed
     function changeLevel(e){
         setLevel(e.target.value)
@@ -124,7 +165,6 @@ export default function Spells(){
     function handleCantripSubmit(formData){
         setActiveModal(null)
         updateCharacter("preparedCantrips", preparedCantripsList)
-        console.log("Cantrips submitted." + data)
     }
 
     // console.log(sortedCollapsibles)
@@ -300,11 +340,10 @@ export default function Spells(){
     function selectedSpells() {
         return (
             <div>
-                <h3>Selected Prepared Spells</h3>
-                <h4>Cantrips</h4>
+                <h3>Prepared Cantrips</h3>
                 {!character?.preparedCantrips && <p>You have not selected any cantrips yet.</p>}
-                {character?.preparedCantrips && character.preparedCantrips}
-                <h4>Spells</h4>
+                {character?.preparedCantrips && preparedCantripsFormatted}
+                <h3>Prepared Spells</h3>
                 <p>You have not selected any spells yet.</p>
             </div>
         )

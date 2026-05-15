@@ -20,7 +20,8 @@ textarea,
 .compendium-content,
 .side-menu,
 .class-info,
-.selection--spells__details {
+.selection--spells__details,
+.spell-attributes span {
     font-family: "Roboto", sans-serif;
 }
 
