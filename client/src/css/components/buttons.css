@@ -92,3 +92,17 @@ a:active {
     margin: 0 auto 0 0;
     justify-self: start;
 }
+
+.submenu__spell-selection button {
+    font-weight: normal;
+    background-color: var(--soft-overlay);
+    /* border: 1px solid var(--spell-selection-color); */
+    padding: 0.5em 1.5em;
+    color: inherit;
+}
+
+.submenu__spell-selection .submenu__spell-selection__active {
+    color: var(--button-hover-text);
+    border: 1px solid white;
+    background-color: var(--button-hover-background);
+}

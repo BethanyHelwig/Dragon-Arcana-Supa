@@ -19,6 +19,7 @@ export default function Spells(){
     const [ activeModal, setActiveModal ] = useState(null)
     const [ preparedCantripsList, setPreparedCantripsList ] = useState([])
     const [ preparedSpellsList, setPreparedSpellsList ] = useState([])
+    const [ selectedContainer, setSelectedContainer ] = useState("allSpells")
 
     // loading and error states
     const [ isLoading, setIsLoading ] = useState(false)
@@ -123,7 +124,6 @@ export default function Spells(){
     function handleCantripSubmit(formData){
         setActiveModal(null)
         updateCharacter("preparedCantrips", preparedCantripsList)
-        // const data = formData.getAll("prepared-cantrips")
         console.log("Cantrips submitted." + data)
     }
 
@@ -207,6 +207,7 @@ export default function Spells(){
             <button onClick={() => setActiveModal("spells")}>
                 Select your prepared spells
             </button>
+
             {/* Prepared spell selection modal */}
             <Modal
                 isOpen={activeModal === "spells"}
@@ -244,6 +245,71 @@ export default function Spells(){
         )
     }
 
+    // container showing all available class spells
+    function viewAllSpells() {
+        return (
+            <div>
+                <h3>All Class Spells</h3>
+                <h4>Select a Level:</h4>
+                <form>
+                    {sortedCollapsibles.map(level => {
+                        return (
+                            <div className="selection">
+                                <input 
+                                    type="radio"
+                                    name="level"
+                                    id={level}
+                                    value={level}
+                                    checked={level === selectedLevel}
+                                    onChange={changeLevel}
+                                />
+                                <label htmlFor={level}>{level}</label>
+                            </div>
+                        )
+                    })}
+                </form>
+
+                {collapsibleArray && collapsibleArray[selectedLevel]?.map(spell =>(
+                    <Collapsible key={`spell-${spell.id}`} label={spell.full_name}>
+                        <div className="spell-attributes">
+                            <span>School: {spell.school_of_magic.school}</span>
+                            <span>Casting Time: {spell.casting_time}</span>
+                            <span>Duration: {spell.duration}</span>
+                            <span>Components: {spell.components}</span>
+                            <span>Range: {spell.range}</span>
+                        </div>
+                        <ul className="collapsible__list">
+                            {spell.description.map(el => {
+                                if (el.includes('<strong>')){
+                                    const startIndex = el.search('<strong>') + 8
+                                    const endIndex = el.search('</strong>')
+            
+                                    return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                }
+                                else {
+                                    return <li className="collapsible__list_item ">{el}</li>
+                                }
+                            })}
+                        </ul>
+                    </Collapsible>
+                ))}
+            </div>
+    )}
+
+    // container showing the cantrips and spells the user has selected
+    function selectedSpells() {
+        return (
+            <div>
+                <h3>Selected Prepared Spells</h3>
+                <h4>Cantrips</h4>
+                {!character?.preparedCantrips && <p>You have not selected any cantrips yet.</p>}
+                {character?.preparedCantrips && character.preparedCantrips}
+                <h4>Spells</h4>
+                <p>You have not selected any spells yet.</p>
+            </div>
+        )
+    }
+
 // ** RETURNED UI **
     return (
         <>
@@ -255,53 +321,24 @@ export default function Spells(){
                     <div className="prepared-spells">
                         {preparedSpells()}
                     </div>
-                    <div className="spells-container">
-                        <h3>View Spells</h3>
-                        <h4>Select a Level:</h4>
-                        <form>
-                            {sortedCollapsibles.map(level => {
-                                return (
-                                    <div className="selection">
-                                        <input 
-                                            type="radio"
-                                            name="level"
-                                            id={level}
-                                            value={level}
-                                            checked={level === selectedLevel}
-                                            onChange={changeLevel}
-                                        />
-                                        <label htmlFor={level}>{level}</label>
-                                    </div>
-                                )
-                            })}
-                        </form>
-
-                        {collapsibleArray && collapsibleArray[selectedLevel]?.map(spell =>(
-                            <Collapsible key={`spell-${spell.id}`} label={spell.full_name}>
-                                <div className="spell-attributes">
-                                    <span>School: {spell.school_of_magic.school}</span>
-                                    <span>Casting Time: {spell.casting_time}</span>
-                                    <span>Duration: {spell.duration}</span>
-                                    <span>Components: {spell.components}</span>
-                                    <span>Range: {spell.range}</span>
-                                </div>
-                                <ul className="collapsible__list">
-                                    {spell.description.map(el => {
-                                        if (el.includes('<strong>')){
-                                            const startIndex = el.search('<strong>') + 8
-                                            const endIndex = el.search('</strong>')
-                    
-                                            return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
-                                        }
-                                        else {
-                                            return <li className="collapsible__list_item ">{el}</li>
-                                        }
-                                    })}
-                                </ul>
-                            </Collapsible>
-                        ))}
-
-                    </div>
+                    <section className="spells-container">
+                        <div className="submenu__spell-selection">
+                            <button 
+                                onClick={() => setSelectedContainer("selectedSpells")}
+                                className={selectedContainer === "selectedSpells" ? "submenu__spell-selection__active" : null}
+                            >
+                                Selected Spells
+                            </button>
+                            <button 
+                                onClick={() => setSelectedContainer("allSpells")}
+                                className={selectedContainer === "allSpells" ? "submenu__spell-selection__active" : null}
+                            >
+                                All Class Spells
+                            </button>
+                        </div>
+                        {selectedContainer === "selectedSpells" && selectedSpells()}
+                        {selectedContainer === "allSpells" && viewAllSpells()}
+                    </section>
                 </div>
                 : <p>Please choose a class in order to display available spells.</p>
             }

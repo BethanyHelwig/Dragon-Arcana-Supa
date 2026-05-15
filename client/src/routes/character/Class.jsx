@@ -334,14 +334,15 @@ export default function Class(){
                         {classesFormatted}
                     </div>
                 </div>
-            <div className="class-info">
-                {character.class ? classInfo()
-                    : (<>
-                        <h3>Class Information</h3>
-                        <p className="font-Roboto">Choose a class to see its details.</p>
-                    </>
-                )}
-            </div>
+                
+                <div className="class-info">
+                    {character.class ? classInfo()
+                        : (<>
+                            <h3>Class Information</h3>
+                            <p className="font-Roboto">Choose a class to see its details.</p>
+                        </>
+                    )}
+                </div>
             </div>
         </>
     )

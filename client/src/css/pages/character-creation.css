@@ -9,6 +9,13 @@
    padding: 0.75em 1.25em;
 }
 
+.submenu__spell-selection {
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+    gap: 1em;
+}
+
 .level-input {
     display: flex;
     justify-content: center;
@@ -60,7 +67,7 @@
 .spells-container,
 .skill-display,
 .class-info {
-    min-width: 250px;
+    min-width: 300px;
     border-left: 1px solid var(--gray-secondary-color);
     padding-left: 1.5em;
     text-align: left;
@@ -186,11 +193,13 @@
 
 .spells-container {
     text-align: center;
+    width: 100%;
 }
 
 .spells-container form {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 1em;
     margin: 15px 0;
     justify-content: center;
