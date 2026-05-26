@@ -67,7 +67,7 @@ export default function Spells(){
     // Handles and checks cantrip selections against limit in state held values
     function handleCantripSelection(e){
         const { value, checked } = e.target
-        console.log("Calling handleCantripSubmit")
+        console.log("Calling handleCantripSelection")
         setPreparedCantripsList(prev => {
             // remove cantrip if unchecking
             if (!checked) {
@@ -77,6 +77,27 @@ export default function Spells(){
             // limit reached, cannot add more
             if (prev.length >= cantripLimit){
                 toast.error(`Cannot select more than ${cantripLimit} cantrips.`)
+                return prev
+            }
+
+            // add cantrip
+            return [...prev, value]
+        })
+    }
+
+    // Handles and checks spell selections against limit in state held values
+    function handleSpellSelection(e){
+        const { value, checked } = e.target
+        console.log("Calling handleSpellSelection")
+        setPreparedSpellsList(prev => {
+            // remove spell if unchecking
+            if (!checked) {
+                return prev.filter(el => el !== value)
+            }
+
+            // limit reached, cannot add more
+            if (prev.length >= spellLimit){
+                toast.error(`Cannot select more than ${spellLimit} spells.`)
                 return prev
             }
 
@@ -156,6 +177,46 @@ export default function Spells(){
         })
     },[character?.preparedCantrips, spellList])
 
+    // Selected spells are looked up in the spell list and returned formatted
+    const preparedSpellsFormatted = useMemo(() => {
+        if (!character?.preparedSpells?.length) return null 
+        
+        return character?.preparedSpells.map(spell => {
+            const spellObj = spellList.find(element => element.full_name === spell)
+            if (spellObj !== undefined){
+                return (
+                    <Fragment key={spellObj.id}>
+                        <div className="selection--spells">
+                            <h4>{spellObj.full_name} (Level {spellObj.level})</h4>
+                        </div>
+                            <div className="selection--spells__details">
+                                <div className="spell-attributes">
+                                    <span>{spellObj.school_of_magic.school}</span>
+                                    <span>{spellObj.casting_time}</span>
+                                    <span>{spellObj.duration}</span>
+                                    <span>{spellObj.components}</span>
+                                    <span>{spellObj.range}</span>
+                                </div>
+                                <ul className="selection--spells__list">
+                                    {spellObj.description.map(el => {
+                                        if (el.includes('<strong>')){
+                                            const startIndex = el.search('<strong>') + 8
+                                            const endIndex = el.search('</strong>')
+                    
+                                            return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                        }
+                                        else {
+                                            return <li className="collapsible__list_item ">{el}</li>
+                                        }
+                                    })}
+                                </ul>
+                            </div>
+                    </Fragment>
+                )
+            }
+        })
+    },[character?.preparedSpells, spellList])
+
     // changes what the selected level is for what spells are displayed
     function changeLevel(e){
         setLevel(e.target.value)
@@ -165,6 +226,14 @@ export default function Spells(){
     function handleCantripSubmit(formData){
         setActiveModal(null)
         updateCharacter("preparedCantrips", preparedCantripsList)
+        setSelectedContainer("selectedSpells")
+    }
+
+    // handle the submit of selected prepared spells
+    function handleSpellSubmit(formData){
+        setActiveModal(null)
+        updateCharacter("preparedSpells", preparedSpellsList)
+        setSelectedContainer("selectedSpells")
     }
 
     // console.log(sortedCollapsibles)
@@ -177,7 +246,7 @@ export default function Spells(){
         const levels = Object.keys(obj)
             .filter(key => key.startsWith("spell_slots_spell_level_"))
             .map(key => Number(key.split("_").pop()))
-            .filter(num => !isNaN(num));                          
+            .filter(num => !isNaN(num));  
 
         return  (
             <>
@@ -254,13 +323,64 @@ export default function Spells(){
                 onClose={() => setActiveModal(null)}
                 title="Spells"
             >
-                Spells
-                {/* {collapsibleArray["Cantrip"]?.map(cantrip => {
-                    return (
-                        <p>{cantrip.full_name}</p>
-                    )
-                })} */}
+                <form>
+                    <legend className="flex-row__between">
+                        <span>Select {spellLimit} spells from the list below.</span>
+                        <span>{preparedSpellsList.length}/{spellLimit} Selected</span>
+                    </legend>
+                    <div className="scroll-window">
+                        {levels
+                            .filter(level => obj?.[`spell_slots_spell_level_${level}`] != null)
+                            .map(level => {
+                                return collapsibleArray[`${level}`]?.map(spell => {
+                                    return (
+                                        <Fragment key={spell.id}>
+                                            <div className="selection--spells">
+                                                <input 
+                                                    type="checkbox"
+                                                    name="prepared-spells"
+                                                    id={spell.id}
+                                                    value={spell.full_name}
+                                                    checked={preparedSpellsList.includes(spell.full_name)}
+                                                    onChange={handleSpellSelection}
+                                                />
+                                                <label htmlFor={spell.id}>
+                                                        {level} - {spell.full_name}
+                                                </label>
+                                            </div>
+                                                <div className="selection--spells__details">
+                                                    <div className="spell-attributes">
+                                                        <span>School: {spell.school_of_magic.school}</span>
+                                                        <span>Casting Time: {spell.casting_time}</span>
+                                                        <span>Duration: {spell.duration}</span>
+                                                        <span>Components: {spell.components}</span>
+                                                        <span>Range: {spell.range}</span>
+                                                    </div>
+                                                    <ul className="selection--spells__list">
+                                                        {spell.description.map(el => {
+                                                            if (el.includes('<strong>')){
+                                                                const startIndex = el.search('<strong>') + 8
+                                                                const endIndex = el.search('</strong>')
+                                        
+                                                                return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                                            }
+                                                            else {
+                                                                return <li className="collapsible__list_item ">{el}</li>
+                                                            }
+                                                        })}
+                                                    </ul>
+                                                </div>
+                                        </Fragment>
+                                    )
+                                })  
+                            })
+                        }
+                    </div>
+                    <button onClick={handleSpellSubmit}>Save</button>
+                </form>
             </Modal>
+
+            {/* Features table */}
             <table className="table table--spells">
                 <thead>
                     <tr>
@@ -341,10 +461,11 @@ export default function Spells(){
         return (
             <div>
                 <h3>Prepared Cantrips</h3>
-                {!character?.preparedCantrips && <p>You have not selected any cantrips yet.</p>}
+                {!character?.preparedCantrips || character?.preparedCantrips.length == 0 && <p>You have not selected any cantrips yet.</p>}
                 {character?.preparedCantrips && preparedCantripsFormatted}
                 <h3>Prepared Spells</h3>
-                <p>You have not selected any spells yet.</p>
+                {!character?.preparedSpells || character?.preparedSpells.length == 0 && <p>You have not selected any spells yet.</p>}
+                {character?.preparedSpells && preparedSpellsFormatted}
             </div>
         )
     }
