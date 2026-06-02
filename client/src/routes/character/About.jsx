@@ -237,7 +237,7 @@ export default function About(){
                             type="text" 
                             name="hair" 
                             onChange={handleSubmit} 
-                            value={character.skin} 
+                            value={character.hair} 
                             placeholder="Describe your hair..."
                         ></input>
                     </div>

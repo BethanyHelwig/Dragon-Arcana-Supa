@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContextProvider } from '../context/CreationContext'
 import { CreationLookupContextProvider } from '../context/CreationLookupContext'
+import { StatusContextProvider } from '../context/StatusContext'
 import StatusOfCreation from './character/StatusOfCreation'
 
 export default function CharacterCreation(){
@@ -21,10 +22,12 @@ export default function CharacterCreation(){
                 </div>
                     <CreationLookupContextProvider>
                         <CreationContextProvider>
-                            <div className="gradient-border creation-outlet-div">
-                                <Outlet />
-                            </div>
-                            <StatusOfCreation />
+                            <StatusContextProvider>
+                                <div className="gradient-border creation-outlet-div">
+                                    <Outlet />
+                                </div>
+                                <StatusOfCreation />
+                            </StatusContextProvider>
                         </CreationContextProvider>
                     </CreationLookupContextProvider>
             </section>

@@ -81,32 +81,51 @@ export const useApiStore = create((set, get) => ({
                 .insert(
                     {
                         user_id: user.id,
-                        name: info.name,
+                        // ** CLASS SECTION **
                         class_id: info.class,
-                        alignment_id: info.alignment, // FK alignment id
-                        // armor_class: info.armor_class,
-                        // initiative: info.initiative,
-                        // speed: info.speed,
+                        level: info.level,
+                        // ** SPECIES SECTION **
+                        species: info.species, // FK id
+                        // ** BACKGROUND SECTION **
+                        background: info.background, // FK id
+                        // ** ABILITY SCORES SECTION **
                         strength: abilityScores.strength,
                         dexterity: abilityScores.dexterity,
                         constitution: abilityScores.constitution,
                         intelligence: abilityScores.intelligence,
                         wisdom: abilityScores.wisdom,
                         charisma: abilityScores.charisma,
-                        // skill_proficiencies: info.skill_proficiencies, // ARRAY
-                        // pronouns: info.pronouns,
-                        // faith: info.faith,
-                        // lifestyle: info.lifestyle,
-                        // age: info.age,
-                        // height: info.height,
-                        // weight: info.weight,
-                        // eyes: info.eyes,
-                        // skin: info.skin,
-                        // hair: info.hair,
-                        // gender: info.gender,
-                        species: info.species, // FK species id
-                        level: info.level,
-                        languages: info.languages // ARRAY
+                        // ** SKILLS SECTION **
+                        skill_proficiencies: info.skill_proficiencies, // array
+                        // ** SPELLS SECTION **
+                        prepared_spells: info.preparedSpells, // array
+                        prepared_cantrips: info.preparedCantrips, // array
+                        // ** ABOUT SECTION **
+                        name: info.name,
+                        pronouns: info.pronouns,
+                        alignment_id: info.alignment, // FK alignment id
+                        faith: info.faith,
+                        lifestyle: info.lifestyle,
+                        age: info.age,
+                        height: info.height,
+                        weight: info.weight,
+                        eyes: info.eyes,
+                        skin: info.skin,
+                        hair: info.hair,
+                        gender: info.gender,
+                        languages: info.languages, // array
+                        bonds: info.bonds,
+                        flaws: info.flaws,
+                        ideals: info.ideals,
+                        traits: info.traits,
+                        organizations: info.organizations,
+                        allies: info.allies,
+                        enemies: info.enemies,
+                        backstory: info.backstory,
+                        other: info.other
+                        // armor_class: info.armor_class,
+                        // initiative: info.initiative,
+                        // speed: info.speed,
                     }
                 )
             if (error) throw error
