@@ -35,7 +35,7 @@ export default function AbilityScores(){
             <p>In the Random Generation method, for each score you roll four d6s, drop the lowest roll, and total the rest.</p>
             <h3>Roll to generate scores:</h3>
             <button onClick={randomGeneration}><span><i className="fa-solid fa-dice"></i> Roll!</span></button>
-            <p>{randomGenerationResultsElements}</p>
+            <div>{randomGenerationResultsElements}</div>
         </div>
 
     const pointCostBlock = 
@@ -182,8 +182,6 @@ export default function AbilityScores(){
 
     // Resets the generated scores to base values for each method
     function resetGeneratedScores(e){
-        console.log(e.type)
-        console.log(e)
         const switchArgument = e.type === "click" ? scoreGenerationMethod : e
 
         switch (switchArgument) {

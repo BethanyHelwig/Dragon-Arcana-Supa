@@ -167,11 +167,11 @@ export default function Skills(){
                 <span>{el.ability_score.name}</span>
 
                 {/* SCORE */}
-                <span>{modifier > 0 ? "+": ""}{modifier === 0 ? "-" : modifier}</span>
+                <span>{modifier > 0 ? "+": ""}{modifier === 0 ? "0" : modifier}</span>
 
                 {/* PROFICIENCY */}
                 {/* This scales with the character's level, starting at +2 and going up to +9 */}
-                <span>{bonus === 0 ? "--" : bonus}</span>
+                <span>{bonus > 0 ? "+": ""}{bonus === 0 ? "--" : bonus}</span>
 
                 {/* TOTAL */}
                 <span className="skill-display-total">{modifier + bonus > 0 ? "+" : ""}{modifier + bonus}</span>

@@ -7,18 +7,16 @@ const defaultCharacter = {
     level: 1,
     skill_proficiencies: [],
     languages: [],
-    charisma: 8,
-    constitution: 8,
-    dexterity: 8,
-    intelligence: 8,
-    strength: 8,
-    wisdom: 8
 }
 
 export const CreationContextProvider = ({ children }) => {
 
+    // all character attributes (except ability scores) are stored here
     const [ character, setCharacter ] = useState(defaultCharacter)
+    // the method by which ability scores are generated and assigned
     const [ scoreGenerationMethod, setScoreGenerationMethod ] = useState("Standard Array")
+    // array assigning ability scores
+    // default is set using the Standard Array
     const [ generatedScores, setGeneratedScores ] = useState([
         {id: 1, score: 15, ability: null},
         {id: 2, score: 14, ability: null},
@@ -28,20 +26,24 @@ export const CreationContextProvider = ({ children }) => {
         {id: 6, score: 8, ability: null},
     ])
 
+    // -- DEBUGGER: log to console whenever the character state is updated
     useEffect(()=> {
         console.log(character)
     }, [character])
 
+    // -- DEBUGGER: log to console whenever the ability score array or method is updated
+    useEffect(()=> {
+        console.log(generatedScores)
+        console.log("Score method: ", scoreGenerationMethod)
+    }, [generatedScores, scoreGenerationMethod])
+
+    // updates the character state
     const updateCharacter = useCallback((key, value) => {
         console.log("update character called")
         setCharacter(prev => ({...prev, [key]: value}))
     }, [])
 
-    // function updateCharacter(key, value) {
-    //     // console.log("update character called")
-    //     setCharacter(prev => ({...prev, [key]: value}))
-    // }
-
+    // updates an array in the character state
     const updateArrayInCharacter = useCallback((key, value) => {
         setCharacter(prev => {
             const currentArray = prev[key] || []
@@ -57,18 +59,6 @@ export const CreationContextProvider = ({ children }) => {
         })
     }, [])
 
-    const resetAbilityScores = useCallback(() => {
-        setCharacter(prev => ({
-            ...prev,
-            charisma: 8,
-            constitution: 8,
-            dexterity: 8,
-            intelligence: 8,
-            strength: 8,
-            wisdom: 8
-        }))
-    }, [])
-
     const contextValues = useMemo(() => ({
         character, 
         updateCharacter,
@@ -77,13 +67,11 @@ export const CreationContextProvider = ({ children }) => {
         setScoreGenerationMethod,
         generatedScores,
         setGeneratedScores,
-        resetAbilityScores,
     }),[character, 
         scoreGenerationMethod,
         generatedScores,
         updateCharacter,
         updateArrayInCharacter,
-        resetAbilityScores
     ])
 
     return (

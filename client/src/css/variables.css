@@ -2,7 +2,7 @@
 
 :root {
     --background-primary-color: #211f24;
-    --text-primary-color: #d1dddf;
+    --text-primary-color: #e3e3e3;
     --primary-accent-color: #7216a0;
     --dark-primary-accent-color: #6f378b;
     --secondary-accent-color: #80c5ff;
@@ -35,7 +35,7 @@
 
 [data-theme="light"] {
     --background-primary-color: rgb(209, 198, 179);
-    --text-primary-color: #211E23;
+    --text-primary-color: #201f20;
     --primary-accent-color: #880000;
     --dark-primary-accent-color: #880000;
     --secondary-accent-color: #fcf9d4;

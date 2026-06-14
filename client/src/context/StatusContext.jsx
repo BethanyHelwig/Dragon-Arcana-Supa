@@ -33,9 +33,10 @@ export const StatusContextProvider = ({children }) => {
 
     useEffect(() =>{
         if(scoreGenerationMethod !== "Point Cost"){
-
+            const isComplete = generatedScores.some(score => score.ability === null)
+            console.log("Is ability scores section complete?", !isComplete)
+            setAbilityScoresComplete(!isComplete)
         }
-        
     },[generatedScores, scoreGenerationMethod])
 
     return (
