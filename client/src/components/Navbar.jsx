@@ -39,6 +39,17 @@ export default function Navbar() {
         )
     }
 
+    const loginContainer = () => {
+        return (
+            <li>
+                <div id="profile-link-div">
+                    <NavLink to="login" className={({isActive}) => isActive ? "active-link" : null}>
+                        Log In
+                    </NavLink>
+                </div>
+            </li>
+        )
+    }
 
     return (
         <nav>
@@ -76,6 +87,7 @@ export default function Navbar() {
                     </li>
                 )}
                 {session && profileContainer()}
+                {!session && loginContainer()}
                 
                 <li>
                     <button id="theme-toggle-btn" onClick={toggleTheme}>

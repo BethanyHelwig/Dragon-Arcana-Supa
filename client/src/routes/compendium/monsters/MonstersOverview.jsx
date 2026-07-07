@@ -123,7 +123,7 @@ export default function MonstersOverview(){
                 by Size table.</p>
 
             <h4>Hit Dice by Size</h4>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Monster Size</th>
@@ -297,7 +297,7 @@ export default function MonstersOverview(){
                 the XP noted in its stat block.</p>
             <h4>Experience Points by Challenge Rating</h4>
             <div className="flex-row">
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">CR</th>
@@ -375,7 +375,7 @@ export default function MonstersOverview(){
                         </tr>
                     </tbody>
                 </table>
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">CR</th>
@@ -461,7 +461,7 @@ export default function MonstersOverview(){
                 throws, skills, and other statistics where the monster’s
                 exceptional aptitude is a factor.</p>
             <h4>Proficiency Bonus by Challenge Rating</h4>
-            <table>
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">CR</th>

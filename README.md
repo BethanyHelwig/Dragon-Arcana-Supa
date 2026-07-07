@@ -1,6 +1,6 @@
 # Dragon Arcana
 
-<img src="client/src/assets/logo_dark_mode.png" width="100px">  
+<img src="client/public/logo_dark_mode.png" width="100px">  
 An online gaming portal to play Dungeons & Dragons, save characters, and run games.
 
 ## Features
