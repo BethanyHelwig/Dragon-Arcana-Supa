@@ -11,7 +11,7 @@ export default function Monsters(){
         fetch('http://127.0.0.1:8080/api/search/monsters')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 setMonsterList(data)
             })
     }, [])
@@ -30,7 +30,7 @@ export default function Monsters(){
             return acc;
         }, {});
     }, [monsterList]);
-
+    console.log(collapsibleArray)
     const sortedCollapsibles = Object.keys(collapsibleArray).sort()
 
     return (
@@ -42,6 +42,7 @@ export default function Monsters(){
             <div className="flex-row">
                 <div className="side-menu">
                     <NavLink to="." end className={({isActive}) => isActive ? "side-menu-active-link" : null}>Overview</NavLink>
+                    {!collapsibleArray || Object.keys(collapsibleArray).length === 0 && <i className="fa-solid fa-spinner spinning-icon"></i>}
                     {collapsibleArray && sortedCollapsibles.map(letter => (
                         <Collapsible key={letter} label={letter}>
                                 {collapsibleArray[letter].map(el =>(

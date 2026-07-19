@@ -54,7 +54,7 @@ export default function Navbar() {
     return (
         <nav>
             <Link to="/" className="logo-link">
-                <img id="nav-logo" src={theme === 'dark' ? "/logo_dark_mode.png" : "/logo_light_mode.png"} />
+                <img id="nav-logo" src={theme === 'dark' ? "/logo_dark_mode.png" : "/logo_light_mode.png"} alt="Dragon Aracana logo" />
                 <h2 id="nav-title">Dragon Arcana</h2>
             </Link>
             <button className="hamburger" data-btn="hamburger">&#9776;</button>

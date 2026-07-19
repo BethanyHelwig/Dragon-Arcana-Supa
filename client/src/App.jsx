@@ -39,12 +39,17 @@ import PlayingTheGame from './routes/compendium/PlayingTheGame'
 import RulesGlossary from './routes/compendium/RulesGlossary'
 import GameplayToolbox from './routes/compendium/GameplayToolbox'
 import Monsters from './routes/compendium/Monsters'
+import Animals from './routes/compendium/Animals';
+import MagicItems from './routes/compendium/MagicItems';
 /* Rules Glossary sub routes */
 import GlossaryConventions from './routes/compendium/glossary/GlossaryConventions'
 import GlossaryTerm from './routes/compendium/glossary/GlossaryTerm'
 /* Monsters sub routes */
 import MonstersOverview from './routes/compendium/monsters/MonstersOverview'
 import MonsterDetails from './routes/compendium/monsters/MonsterDetails'
+/* Animals sub routes */
+import AnimalsOverview from './routes/compendium/animals/AnimalsOverview';
+import AnimalDetails from './routes/compendium/animals/AnimalDetails';
 /* Compendium/PlayingTheGame sub routes */
 import RhythmOfPlay from './routes/compendium/playingthegame/RhythmOfPlay'
 import TheSixAbilities from './routes/compendium/playingthegame/TheSixAbilities'
@@ -64,6 +69,15 @@ import FearAndMentalStress from "./routes/compendium/gameplaytoolbox/FearAndMent
 import Poison from "./routes/compendium/gameplaytoolbox/Poison"
 import Traps from "./routes/compendium/gameplaytoolbox/Traps"
 import TravelPace from "./routes/compendium/gameplaytoolbox/TravelPace"
+/* Magic Items sub routes */
+import MagicItemCategories from './routes/compendium/magic_items/MagicItemCategories';
+import MagicItemRarity from './routes/compendium/magic_items/MagicItemRarity';
+import ActivatingAMagicItem from './routes/compendium/magic_items/ActivatingAMagicItem';
+import TheNextDawn from './routes/compendium/magic_items/TheNextDawn';
+import CursedItems from './routes/compendium/magic_items/CursedItems';
+import MagicItemResilience from './routes/compendium/magic_items/MagicItemResilience';
+import CraftingMagicItems from './routes/compendium/magic_items/CraftingMagicItems';
+import SentientMagicItems from './routes/compendium/magic_items/SentientMagicItems';
 
 function App() {
 
@@ -81,6 +95,20 @@ function App() {
 								<Route path="monsters" element={<Monsters />}>
 									<Route index element={<MonstersOverview />}/>
 									<Route path=":id" element={<MonsterDetails />}/>
+								</Route>
+								<Route path="animals" element={<Animals />}>
+									<Route index element={<AnimalsOverview />}/>
+									<Route path=":id" element={<AnimalDetails />}/>
+								</Route>
+								<Route path="magic_items" element={<MagicItems />}>
+									<Route index element={<MagicItemCategories />}/>
+									<Route path="magic_item_rarity" element={<MagicItemRarity />}/>
+									<Route path="activating_a_magic_item" element={<ActivatingAMagicItem />}/>
+									<Route path="the_next_dawn" element={<TheNextDawn />}/>
+									<Route path="cursed_items" element={<CursedItems />}/>
+									<Route path="magic_item_resilience" element={<MagicItemResilience />}/>
+									<Route path="crafting_magic_items" element={<CraftingMagicItems />}/>
+									<Route path="sentient_magic_items" element={<SentientMagicItems />}/>
 								</Route>
 								<Route path="gameplay_toolbox" element={<GameplayToolbox />}>
 									<Route index element={<CombatEncounters/>}/>

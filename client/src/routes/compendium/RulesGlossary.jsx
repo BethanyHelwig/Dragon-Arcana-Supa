@@ -41,6 +41,7 @@ export default function RulesGlossary(){
             <div className="flex-row">
                 <div className="side-menu">
                     <NavLink to="." end className={({isActive}) => isActive ? "side-menu-active-link" : null}>Glossary Conventions</NavLink>
+                    {!collapsibleArray || Object.keys(collapsibleArray).length === 0 && <i className="fa-solid fa-spinner spinning-icon"></i>}
                     {collapsibleArray && sortedCollapsibles.map(letter => (
                         <Collapsible key={letter} label={letter}>
                                 {collapsibleArray[letter].map(el =>(

@@ -1,16 +1,15 @@
-
 import { useParams, useOutletContext } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-export default function MonsterDetails(){
+export default function AnimalDetails(){
     const { id } = useParams()
-    const { monsterList } = useOutletContext()
-    const [ monster, setMonster ] = useState()
+    const { animalList } = useOutletContext()
+    const [ animal, setAnimal ] = useState()
 
     useEffect(() => {
-        const monsterObj = monsterList.find(monster => monster.id === Number(id))
-        console.log(monsterObj)
-        setMonster(monsterObj)
+        const animalObj = animalList.find(animal => animal.id === Number(id))
+        console.log(animalObj)
+        setAnimal(animalObj)
     }, [id])
 
     function formatted(text){
@@ -54,16 +53,16 @@ export default function MonsterDetails(){
       
     return (
         <div className="monster-card">
-            {monster && 
+            {animal && 
             <>
             <div className="monster-color">
-                <h2 className="monster-name">{monster.name}</h2>
+                <h2 className="monster-name">{animal.name}</h2>
                 <div className="monster-divider"></div>
-                <span style={{fontStyle: "italic"}}>{monster.size.creature_size} {monster.type}, {monster.alignment.full_name}</span>
-                <p><strong>Armor Class</strong> {monster.ac}</p>
-                <p><strong>Hit Points</strong> {monster.hp}</p>
-                <p><strong>Speed</strong> {monster.speed}</p>
-                <p><strong>Initiative</strong> {monster.initiative}</p>
+                <span style={{fontStyle: "italic"}}>{animal.size.creature_size} {animal.type}, {animal.alignment.full_name}</span>
+                <p><strong>Armor Class</strong> {animal.ac}</p>
+                <p><strong>Hit Points</strong> {animal.hp}</p>
+                <p><strong>Speed</strong> {animal.speed}</p>
+                <p><strong>Initiative</strong> {animal.initiative}</p>
                 {/* ABILITY SCORES */}
                 <div className="flex-row">
                     <table class="table--stat">
@@ -78,15 +77,15 @@ export default function MonsterDetails(){
                     <tbody>
                         <tr>
                             <th scope="row" className="monster-name">STR</th>
-                            <td>{monster.str}</td>
-                            <td>{monster.str_mod}</td>
-                            <td>{monster.str_save}</td>
+                            <td>{animal.str}</td>
+                            <td>{animal.str_mod}</td>
+                            <td>{animal.str_save}</td>
                         </tr>
                         <tr>
                             <th scope="row" className="monster-name">INT</th>
-                            <td>{monster.int}</td>
-                            <td>{monster.int_mod}</td>
-                            <td>{monster.int_save}</td>
+                            <td>{animal.int}</td>
+                            <td>{animal.int_mod}</td>
+                            <td>{animal.int_save}</td>
                         </tr>
                     </tbody>
                     </table>
@@ -103,15 +102,15 @@ export default function MonsterDetails(){
                     <tbody>
                         <tr>
                             <th scope="row" className="monster-name">DEX</th>
-                            <td>{monster.dex}</td>
-                            <td>{monster.dex_mod}</td>
-                            <td>{monster.dex_save}</td>
+                            <td>{animal.dex}</td>
+                            <td>{animal.dex_mod}</td>
+                            <td>{animal.dex_save}</td>
                         </tr>
                         <tr>
                             <th scope="row" className="monster-name">WIS</th>
-                            <td>{monster.wis}</td>
-                            <td>{monster.wis_mod}</td>
-                            <td>{monster.wis_save}</td>
+                            <td>{animal.wis}</td>
+                            <td>{animal.wis_mod}</td>
+                            <td>{animal.wis_save}</td>
                         </tr>
                     </tbody>
                     </table>
@@ -128,55 +127,55 @@ export default function MonsterDetails(){
                     <tbody>
                         <tr>
                             <th scope="row" className="monster-name">CON</th>
-                            <td>{monster.con}</td>
-                            <td>{monster.con_mod}</td>
-                            <td>{monster.con_save}</td>
+                            <td>{animal.con}</td>
+                            <td>{animal.con_mod}</td>
+                            <td>{animal.con_save}</td>
                         </tr>
                         <tr>
                             <th scope="row" className="monster-name">CHA</th>
-                            <td>{monster.cha}</td>
-                            <td>{monster.cha_mod}</td>
-                            <td>{monster.cha_save}</td>
+                            <td>{animal.cha}</td>
+                            <td>{animal.cha_mod}</td>
+                            <td>{animal.cha_save}</td>
                         </tr>
                     </tbody>
                     </table>
                 </div>
-                {monster.skills && <p><strong>Skills</strong> {monster.skills}</p>}
-                {monster.resistances && <p><strong>Resistances</strong> {monster.resistances}</p>}
-                {monster.vulnerabilities && <p><strong>Vulnerabilities</strong> {monster.vulnerabilities}</p>}
-                {monster.immunities && <p><strong>Immunities</strong> {monster.immunities}</p>}
-                {monster.senses && <p><strong>Senses</strong> {monster.senses}</p>}
-                {monster.languages && <p><strong>Languages</strong> {monster.languages}</p>}
-                {monster.gear && <p><strong>Gear</strong> {monster.gear}</p>}
-                {monster.cr && <p><strong>CR</strong> {monster.cr}</p>}
+                {animal.skills && <p><strong>Skills</strong> {animal.skills}</p>}
+                {animal.resistances && <p><strong>Resistances</strong> {animal.resistances}</p>}
+                {animal.vulnerabilities && <p><strong>Vulnerabilities</strong> {animal.vulnerabilities}</p>}
+                {animal.immunities && <p><strong>Immunities</strong> {animal.immunities}</p>}
+                {animal.senses && <p><strong>Senses</strong> {animal.senses}</p>}
+                {animal.languages && <p><strong>Languages</strong> {animal.languages}</p>}
+                {animal.gear && <p><strong>Gear</strong> {animal.gear}</p>}
+                {animal.cr && <p><strong>CR</strong> {animal.cr}</p>}
 
             </div>    
-                {monster.traits && 
+                {animal.traits && 
                 <>
                     <h3 className="monster-name">Traits</h3>
                     <div className="monster-divider"></div>
-                    {formatted(monster.traits)}
+                    {formatted(animal.traits)}
                 </>
                 }
-                {monster.actions &&
+                {animal.actions &&
                 <>
                     <h3 className="monster-name">Actions</h3>
                     <div className="monster-divider"></div>
-                    {formatted(monster.actions)}
+                    {formatted(animal.actions)}
                 </>
                 }
-                {monster.bonus_actions &&
+                {animal.bonus_actions &&
                 <>
                     <h3 className="monster-name">Bonus Actions</h3>
                     <div className="monster-divider"></div>
-                    {formatted(monster.bonus_actions)}
+                    {formatted(animal.bonus_actions)}
                 </>
                 }
-                {monster.legendary_actions &&
+                {animal.legendary_actions &&
                 <>
                     <h3 className="monster-name">Legendary Actions</h3>
                     <div className="monster-divider"></div>
-                    {formatted(monster.legendary_actions)}
+                    {formatted(animal.legendary_actions)}
                 </>
                 }
             </>

@@ -30,13 +30,15 @@ import {
     getRogueFeatures,
     getSorcererFeatures,
     getWarlockFeatures,
-    getWizardFeatures
+    getWizardFeatures,
+    getAnimals
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
 
 searchRouter.get('/ability_score', getAbilityScores)
 searchRouter.get('/alignment', getAlignment)
+searchRouter.get('/animals', getAnimals)
 searchRouter.get('/character_class', getClass)
 searchRouter.get('/language', getLanguage)
 searchRouter.get('/school_of_magic', getSchoolOfMagic)
@@ -52,6 +54,8 @@ searchRouter.get('/class_features', getClassFeatures)
 searchRouter.get('/feat', getFeats)
 searchRouter.get('/rules_glossary', getRulesGlossary)
 searchRouter.get('/monsters', getMonsters)
+
+// ** special class options **
 searchRouter.get('/metamagic_options', getMetamagicOptions)
 searchRouter.get('/eldritch_invocation_options', getEldritchInvocationOptions)
 
