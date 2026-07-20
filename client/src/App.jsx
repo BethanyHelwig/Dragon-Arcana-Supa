@@ -41,15 +41,19 @@ import GameplayToolbox from './routes/compendium/GameplayToolbox'
 import Monsters from './routes/compendium/Monsters'
 import Animals from './routes/compendium/Animals';
 import MagicItems from './routes/compendium/MagicItems';
-/* Rules Glossary sub routes */
+import Classes from './routes/compendium/Classes';
+/* Compendium/Rules Glossary sub routes */
 import GlossaryConventions from './routes/compendium/glossary/GlossaryConventions'
 import GlossaryTerm from './routes/compendium/glossary/GlossaryTerm'
-/* Monsters sub routes */
+/* Compendium/Monsters sub routes */
 import MonstersOverview from './routes/compendium/monsters/MonstersOverview'
 import MonsterDetails from './routes/compendium/monsters/MonsterDetails'
-/* Animals sub routes */
+/* Compendium/Animals sub routes */
 import AnimalsOverview from './routes/compendium/animals/AnimalsOverview';
 import AnimalDetails from './routes/compendium/animals/AnimalDetails';
+/* Compendium/Classes sub routes */
+import ClassesOverview from './routes/compendium/classes/ClassesOverview';
+import ClassDetails from './routes/compendium/classes/ClassDetails';
 /* Compendium/PlayingTheGame sub routes */
 import RhythmOfPlay from './routes/compendium/playingthegame/RhythmOfPlay'
 import TheSixAbilities from './routes/compendium/playingthegame/TheSixAbilities'
@@ -60,7 +64,7 @@ import SocialInteraction from './routes/compendium/playingthegame/SocialInteract
 import Exploration from './routes/compendium/playingthegame/Exploration'
 import Combat from './routes/compendium/playingthegame/Combat'
 import DamageAndHealing from './routes/compendium/playingthegame/DamageAndHealing'
-/* Gameplay Toolbox sub routes */
+/* Compendium/Gameplay Toolbox sub routes */
 import CombatEncounters from './routes/compendium/gameplaytoolbox/CombatEncounters'
 import CreatingABackground from "./routes/compendium/gameplaytoolbox/CreatingABackground"
 import CursesAndMagicalContagions from "./routes/compendium/gameplaytoolbox/CursesAndMagicalContagions"
@@ -69,7 +73,7 @@ import FearAndMentalStress from "./routes/compendium/gameplaytoolbox/FearAndMent
 import Poison from "./routes/compendium/gameplaytoolbox/Poison"
 import Traps from "./routes/compendium/gameplaytoolbox/Traps"
 import TravelPace from "./routes/compendium/gameplaytoolbox/TravelPace"
-/* Magic Items sub routes */
+/* Compendium/Magic Items sub routes */
 import MagicItemCategories from './routes/compendium/magic_items/MagicItemCategories';
 import MagicItemRarity from './routes/compendium/magic_items/MagicItemRarity';
 import ActivatingAMagicItem from './routes/compendium/magic_items/ActivatingAMagicItem';
@@ -99,6 +103,10 @@ function App() {
 								<Route path="animals" element={<Animals />}>
 									<Route index element={<AnimalsOverview />}/>
 									<Route path=":id" element={<AnimalDetails />}/>
+								</Route>
+								<Route path="classes" element={<Classes />}>
+									<Route index element={<ClassesOverview />}/>
+									<Route path=":id" element={<ClassDetails />}/>
 								</Route>
 								<Route path="magic_items" element={<MagicItems />}>
 									<Route index element={<MagicItemCategories />}/>

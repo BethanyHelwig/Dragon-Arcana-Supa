@@ -7,6 +7,8 @@ export default function AnimalDetails(){
     const [ animal, setAnimal ] = useState()
 
     useEffect(() => {
+        // TODO: if going straight to this page, there will not be an animalList
+        // so need to look up the object directly if there is no list
         const animalObj = animalList.find(animal => animal.id === Number(id))
         console.log(animalObj)
         setAnimal(animalObj)
