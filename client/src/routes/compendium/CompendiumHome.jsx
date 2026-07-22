@@ -21,8 +21,8 @@ export default function CompendiumHome(){
                 <Link to="animals">
                     <div className="compendium-home-link">Animals</div>
                 </Link>
-                <Link to="character_creation">
-                    <div className="compendium-home-link">Character Creation</div>
+                <Link to="creation_guide">
+                    <div className="compendium-home-link">Character Creation Guide</div>
                 </Link>
                 <Link to="classes">
                     <div className="compendium-home-link">Classes</div>

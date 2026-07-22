@@ -98,7 +98,7 @@ export default function GlossaryConventions(){
                     </tr>
                 </tbody>
             </table>
-            <table>
+            <table className="table">
                 <tbody>
                     <tr>
                         <td>LG</td>

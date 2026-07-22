@@ -42,6 +42,8 @@ import Monsters from './routes/compendium/Monsters'
 import Animals from './routes/compendium/Animals';
 import MagicItems from './routes/compendium/MagicItems';
 import Classes from './routes/compendium/Classes';
+import CreationGuide from './routes/compendium/CreationGuide';
+import Equipment from './routes/compendium/Equipment';
 /* Compendium/Rules Glossary sub routes */
 import GlossaryConventions from './routes/compendium/glossary/GlossaryConventions'
 import GlossaryTerm from './routes/compendium/glossary/GlossaryTerm'
@@ -54,6 +56,28 @@ import AnimalDetails from './routes/compendium/animals/AnimalDetails';
 /* Compendium/Classes sub routes */
 import ClassesOverview from './routes/compendium/classes/ClassesOverview';
 import ClassDetails from './routes/compendium/classes/ClassDetails';
+/* Compendium/CreationGuide sub routes */
+import CreationOverview from './routes/compendium/creation/CreationOverview';
+import CreateYourCharacter from './routes/compendium/creation/CreateYourCharacter';
+import LevelAdvancement from './routes/compendium/creation/LevelAdvancement';
+import StartingAtHigherLevels from './routes/compendium/creation/StartingAtHigherLevels';
+import Multiclassing from './routes/compendium/creation/Multiclassing';
+import Trinkets from './routes/compendium/creation/Trinkets';
+/* Compendium/Equipment sub routes */
+import Coins from './routes/compendium/equipment/Coins';
+import AdventuringGear from './routes/compendium/equipment/AdventuringGear'
+import Armor from './routes/compendium/equipment/Armor'
+import BrewingPotions from './routes/compendium/equipment/BrewingPotions'
+import CraftingNonmagicalItems from './routes/compendium/equipment/CraftingNonmagicalItems';
+import FoodDrinkAndLodging from './routes/compendium/equipment/FoodDrinkAndLodging';
+import Hirelings from './routes/compendium/equipment/Hirelings';
+import LifestyleExpenses from './routes/compendium/equipment/LifestyleExpenses';
+import MagicItemsEquipment from './routes/compendium/equipment/MagicItemsEquipment';
+import MountsAndVehicles from './routes/compendium/equipment/MountsAndVehicles';
+import ScribingSpellScrolls from './routes/compendium/equipment/ScribingSpellScrolls';
+import SpellcastingForHire from './routes/compendium/equipment/SpellcastingForHire'
+import Tools from './routes/compendium/equipment/Tools';
+import Weapons from './routes/compendium/equipment/Weapons';
 /* Compendium/PlayingTheGame sub routes */
 import RhythmOfPlay from './routes/compendium/playingthegame/RhythmOfPlay'
 import TheSixAbilities from './routes/compendium/playingthegame/TheSixAbilities'
@@ -107,6 +131,30 @@ function App() {
 								<Route path="classes" element={<Classes />}>
 									<Route index element={<ClassesOverview />}/>
 									<Route path=":id" element={<ClassDetails />}/>
+								</Route>
+								<Route path="creation_guide" element={<CreationGuide />}>
+									<Route index element={<CreationOverview />}/>
+									<Route path="create_your_character" element={<CreateYourCharacter />}/>
+									<Route path="level_advancement" element={<LevelAdvancement />}/>
+									<Route path="starting_at_higher_levels" element={<StartingAtHigherLevels />}/>
+									<Route path="multiclassing" element={<Multiclassing />}/>
+									<Route path="trinkets" element={<Trinkets />}/>
+								</Route>
+								<Route path="equipment" element={<Equipment />}>
+									<Route index element={<AdventuringGear />}/>
+									<Route path="coins" element={<Coins />}/>
+									<Route path="armor" element={<Armor />}/>
+									<Route path="brewing_potions" element={<BrewingPotions />}/>
+									<Route path="crafting_nonmagical_items" element={<CraftingNonmagicalItems />}/>
+									<Route path="food_drink_and_lodging" element={<FoodDrinkAndLodging />}/>
+									<Route path="hirelings" element={<Hirelings />}/>
+									<Route path="lifestyle_expenses" element={<LifestyleExpenses />}/>
+									<Route path="magic_items" element={<MagicItemsEquipment />}/>
+									<Route path="mounts_and_vehicles" element={<MountsAndVehicles />}/>
+									<Route path="scribing_spell_scrolls" element={<ScribingSpellScrolls />}/>
+									<Route path="spellcasting_for_hire" element={<SpellcastingForHire />}/>
+									<Route path="tools" element={<Tools />}/>
+									<Route path="weapons" element={<Weapons />}/>
 								</Route>
 								<Route path="magic_items" element={<MagicItems />}>
 									<Route index element={<MagicItemCategories />}/>

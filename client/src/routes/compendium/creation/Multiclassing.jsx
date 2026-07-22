@@ -1,0 +1,170 @@
+export default function Multiclassing(){
+    return(
+        <div>
+            <h2>Multiclassing</h2>
+            <p>Multiclassing allows you to gain levels in multiple
+                classes. With this rule, you have the option of gaining
+                a level in a new class whenever you advance in
+                level instead of gaining a level in your current class.
+                Doing so lets you mix the abilities of those classes
+                to realize a character concept that might not be reflected
+                in a single class.</p>
+
+            <h3>Prerequisites</h3>
+            <div className="compendium-divider"></div>
+            <p>To qualify for a new class, you must have a score of
+                at least 13 in the primary ability of the new class
+                and your current classes. For example, a Barbarian
+                who decides to multiclass into the Druid class must
+                have Strength and Wisdom scores of 13 or higher,
+                since Strength is the primary ability for Barbarians
+                and Wisdom is the primary ability for Druids.</p>
+
+            <h3>Experience Points</h3>
+            <div className="compendium-divider"></div>
+            <p>The Experience Point cost to gain a level is based on
+                your total character level, not your level in a particular
+                class, as shown in the Character Advancement
+                table in “Character Creation.” For example, if you
+                are a level 6 Cleric / level 1 Fighter, you must gain
+                enough XP to reach level 8 before you can take your
+                second level as a Fighter or your seventh level as a Cleric.</p>
+            
+            <h3>Hit Points and Hit Point Dice</h3>
+            <div className="compendium-divider"></div>
+            <p>You gain the Hit Points from your new class as described
+                for levels after 1. You gain the level 1 Hit
+                Points for a class only when your total character
+                level is 1.</p>
+            <p>Add together the Hit Dice granted by all your
+                classes to form your pool of Hit Dice. If these dice
+                are the same die type, you can pool them together.
+                For example, both the Fighter and the Paladin have
+                a d10 Hit Die, so if you are a level 5 Fighter / level 5
+                Paladin, you have ten d10 Hit Dice. If your classes
+                give you Hit Dice of different types, track them separately.
+                If you are a level 5 Cleric / level 5 Paladin,
+                for example, you have five d8 Hit Dice and five d10 Hit Dice.</p>
+
+            <h3>Proficiency Bonus</h3>
+            <div className="compendium-divider"></div>
+            <p>Your Proficiency Bonus is based on your total character
+                level, not your level in a particular class, as
+                shown in the Character Advancement table. For
+                example, if you are a level 3 Fighter / level 2 Rogue,
+                you have the Proficiency Bonus of a level 5 character,
+                which is +3.</p>
+
+            <h3>Proficiencies</h3>
+            <div className="compendium-divider"></div>
+            <p>When you gain your first level in a class other than
+                your initial class, you gain only some of the new
+                class’s starting proficiencies, as detailed in each
+                class’s description in “Classes.”</p>
+
+            <h3>Class Features</h3>
+            <div className="compendium-divider"></div>
+            <p>When you gain a new level in a class, you get its features
+                for that level. A few features have additional
+                rules when you’re multiclassing. Check the information
+                about multiclassing included in each of your
+                classes’ descriptions.</p>
+            <p>Special rules apply to Extra Attack, Spellcasting,
+                and features (such as Unarmored Defense) that give
+                you alternative ways to calculate your Armor Class.</p>
+            <h4>Armor Class</h4>
+            <p>If you have multiple ways to calculate your Armor
+                Class, you can benefit from only one at a time.
+                For example, a Monk/Sorcerer with a Monk’s
+                Unarmored Defense feature and a Sorcerer’s Draconic
+                Resilience feature must choose only one of
+                those features as a way to calculate Armor Class.</p>
+            <h4>Extra Attack</h4>
+            <p>If you gain the Extra Attack feature from more than
+                one class, the features don’t stack. You can’t make
+                more than two attacks with this feature unless you
+                have a feature that says you can (such as the Fighter’s
+                Two Extra Attacks feature).</p>
+            <p>Similarly, the Warlock’s Thirsting Blade invocation,
+                which grants you the Extra Attack feature
+                with your pact weapon, doesn’t give you additional
+                attacks if you also have Extra Attack.</p>
+            <h4>Spellcasting</h4>
+            <p>Your capacity for spellcasting depends partly on
+                your combined levels in all your spellcasting classes
+                and partly on your individual levels in those classes.
+                Once you have the Spellcasting feature from more
+                than one class, use the rules below. If you multiclass
+                but have the Spellcasting feature from only one
+                class, follow the rules for that class.</p>
+            <p><strong>Spells Prepared.</strong> You determine what spells you
+                can prepare for each class individually, as if you
+                were a single-classed member of that class. If you
+                are a level 4 Ranger / level 3 Sorcerer, for example,
+                you can prepare five level 1 Ranger spells, and you
+                can prepare six Sorcerer spells of level 1 or 2 (as
+                well as four Sorcerer cantrips).</p>
+            <p>Each spell you prepare is associated with one of
+                your classes, and you use the spellcasting ability of
+                that class when you cast the spell.</p>
+            <p><strong>Cantrips.</strong> If a cantrip of yours increases in power
+                at higher levels, the increase is based on your total
+                character level, not your level in a particular class,
+                unless the spell says otherwise.</p>
+            <p><strong>Spell Slots.</strong> You determine your available spell
+                slots by adding together the following:</p>
+            <ul>
+                <li>All your levels in the Bard, Cleric, Druid, Sorcerer, and Wizard classes</li>
+                <li>Half your levels (round up) in the Paladin and Ranger classes</li>
+            </ul>
+            <p>Then look up this total level in the Level column of
+                the Multiclass Spellcaster table. You use the slots for
+                that level to cast spells of an appropriate level from
+                any class whose Spellcasting feature you have.</p>
+            <p>This table might give you spell slots of a higher
+                level than the spells you prepare. You can use those
+                slots but only to cast your lower-level spells. If a
+                lower-level spell that you cast, like Burning Hands,
+                has an enhanced effect when cast at a higher level,
+                you can use the enhanced effect as normal.</p>
+            <p>For example, if you are a level 4 Ranger / level 3
+                Sorcerer, you count as a level 5 character when determining
+                your spell slots, counting all your levels
+                as a Sorcerer and half your Ranger levels. As shown
+                in the Multiclass Spellcaster table, you have four
+                level 1 spell slots, three level 2 slots, and two level 3
+                slots. However, you can’t prepare any level 3 spells,
+                nor can you prepare any level 2 Ranger spells. You
+                can use the spell slots of those levels to cast the
+                spells you do prepare—and potentially enhance
+                their effects.</p>
+            <p><strong>Pact Magic.</strong> If you have the Pact Magic feature
+                from the Warlock class and the Spellcasting feature,
+                you can use the spell slots you gain from Pact Magic
+                to cast spells you have prepared from classes with
+                the Spellcasting feature, and you can use the spell
+                slots you gain from the Spellcasting feature to cast
+                Warlock spells you have prepared.</p>
+            <h4>Multiclass Spellcaster: Spell Slots per Spell Level</h4>
+            <table className="table table--spells">
+                <thead>
+                    <tr>
+                        <th scope="col">Level</th>
+                        <th scope="col">1</th>
+                        <th scope="col">2</th>
+                        <th scope="col">3</th>
+                        <th scope="col">4</th>
+                        <th scope="col">5</th>
+                        <th scope="col">6</th>
+                        <th scope="col">7</th>
+                        <th scope="col">8</th>
+                        <th scope="col">9</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {/* TODO: Add DB pull to fill the table */}
+                </tbody>
+            </table>
+        </div>
+    )
+}
