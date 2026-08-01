@@ -79,13 +79,13 @@ export default function Navbar() {
                         Compendium <i className="fa-solid fa-book-atlas"></i>
                     </NavLink>
                 </li>
-                {session && (
+                {/* {session && (
                     <li>
                         <NavLink to="dashboard" className={({isActive}) => isActive ? "active-link" : null}>
                             Dashboard
                         </NavLink>
                     </li>
-                )}
+                )} */}
                 {session && profileContainer()}
                 {!session && loginContainer()}
                 

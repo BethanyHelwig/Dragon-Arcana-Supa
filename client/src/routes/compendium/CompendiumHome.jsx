@@ -36,7 +36,7 @@ export default function CompendiumHome(){
                 <Link to="magic_items">
                     <div className="compendium-home-link">Magic Items</div>
                 </Link>
-                <Link to="spells">
+                <Link to="spells_compendium">
                     <div className="compendium-home-link">Spells</div>
                 </Link>
             </div>

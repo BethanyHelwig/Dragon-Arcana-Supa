@@ -51,7 +51,7 @@ export default function MagicItems(){
                     <NavLink to="magic_item_resilience" className={({isActive}) => isActive ? "side-menu-active-link" : null}>Magic Item Resilience</NavLink>
                     <NavLink to="crafting_magic_items" className={({isActive}) => isActive ? "side-menu-active-link" : null}>Crafting Magic Items</NavLink>
                     <NavLink to="sentient_magic_items" className={({isActive}) => isActive ? "side-menu-active-link" : null}>Sentient Magic Items</NavLink>
-                    <NavLink to="travel_pace" className={({isActive}) => isActive ? "side-menu-active-link" : null}>Magic Items A-Z</NavLink>
+                    <NavLink to="#" className={({isActive}) => isActive ? "side-menu-active-link" : null}>Magic Items A-Z</NavLink>
                 </div>
                 <section className="gradient-border width-100">
                     <Outlet />

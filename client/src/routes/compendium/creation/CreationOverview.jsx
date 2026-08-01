@@ -11,14 +11,6 @@ export default function CreationOverview(){
                 printed character sheet, a digital character sheet, or
                 plain paper. Choose whichever style of sheet works
                 for you, and then embark on creating a character!</p>
-            <h3>Sections of Creation:</h3>
-            <ul>
-                <li><Link to="create_your_character">Create Your Character</Link></li>
-                <li><Link to="level_advancement">Level Advancement</Link></li>
-                <li><Link to="starting_at_higher_levels">Starting at Higher Levels</Link></li>
-                <li><Link to="multiclassing">Multiclassing</Link></li>
-                <li><Link to="trinkets">Trinkets</Link></li>
-            </ul>
         </div>
     )
 }

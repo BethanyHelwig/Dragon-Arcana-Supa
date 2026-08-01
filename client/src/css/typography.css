@@ -25,6 +25,10 @@ textarea,
     font-family: "Roboto", sans-serif;
 }
 
+.footer--logo {
+    font-family: "Amarante", serif;
+}
+
 #hero-title,
 #nav-title,
 .title-glow {

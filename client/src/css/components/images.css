@@ -3,6 +3,11 @@
     padding: 5px;
 }
 
+#footer-logo {
+    height: 100px;
+    padding: 5px;
+}
+
 .profile-avatar {
     display: flex;
     justify-content: center;

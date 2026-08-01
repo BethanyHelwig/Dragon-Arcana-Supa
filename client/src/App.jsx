@@ -44,6 +44,7 @@ import MagicItems from './routes/compendium/MagicItems';
 import Classes from './routes/compendium/Classes';
 import CreationGuide from './routes/compendium/CreationGuide';
 import Equipment from './routes/compendium/Equipment';
+import SpellsCompendium from './routes/compendium/SpellsCompendium';
 /* Compendium/Rules Glossary sub routes */
 import GlossaryConventions from './routes/compendium/glossary/GlossaryConventions'
 import GlossaryTerm from './routes/compendium/glossary/GlossaryTerm'
@@ -106,6 +107,10 @@ import CursedItems from './routes/compendium/magic_items/CursedItems';
 import MagicItemResilience from './routes/compendium/magic_items/MagicItemResilience';
 import CraftingMagicItems from './routes/compendium/magic_items/CraftingMagicItems';
 import SentientMagicItems from './routes/compendium/magic_items/SentientMagicItems';
+/* Compendium/SpellsCompendium sub routes */
+import GainingSpells from './routes/compendium/spells/GainingSpells';
+import CastingSpells from './routes/compendium/spells/CastingSpells';
+import SpellDescriptions from './routes/compendium/spells/SpellDescriptions';
 
 function App() {
 
@@ -190,6 +195,11 @@ function App() {
 									<Route path="exploration" element={<Exploration />} />
 									<Route path="combat" element={<Combat />} />
 									<Route path="damage_and_healing" element={<DamageAndHealing />} />
+								</Route>
+								<Route path="spells_compendium" element={<SpellsCompendium />}>
+									<Route index element={<GainingSpells />}/>
+									<Route path="casting_spells" element={<CastingSpells />}/>
+									<Route path="spell_descriptions" element={<SpellDescriptions />}/>
 								</Route>
 							</Route>
 							<Route element={<ProtectedRoute/>}>
