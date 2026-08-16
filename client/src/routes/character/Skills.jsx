@@ -1,7 +1,8 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
 import { CreationLookupContext } from '../../context/CreationLookupContext'
+import { StatusContext } from '../../context/StatusContext'
 import { toast } from "react-hot-toast"
 
 export default function Skills(){
@@ -20,11 +21,47 @@ export default function Skills(){
         speciesList, 
     } = useContext(CreationLookupContext)
 
+    const { skillsComplete, setSkillsComplete } = useContext(StatusContext)
+
+    // if a class has been selected, and the number of skills selected matches
+    // the allowed limit, return true
+    const classProficiency = character.class &&
+        classList.find(element => element.id === character.class)?.skill_proficiency_allowance ===
+        character.skill_proficiencies.length
+
+    const speciesProficiency = () => {
+        // if species has not been selected, return false
+        if (!character.species) return false
+
+        // find the selected species and if it has no skills to choose from, return true
+        // as that means this proficiency is completed
+        const chosenSpeciesSkills = speciesList.find(element => element.id === character.species)?.skills
+        if (!chosenSpeciesSkills) return true
+
+        // if the selected species does have skills to choose from,
+        // return true if a skill is chosen
+        // return false is a skill has not been chosen
+        if (chosenSpeciesSkills && character.species_skills != null) return true
+        if (chosenSpeciesSkills && character.species_skills == null) return false
+
+    }
+
+    // just need to check if a background has been selected for this to be marked completed
+    const backgroundProficiency = character.background != null
+
+    // check that each of the 3 areas for skills has been completed
+    if (classProficiency && speciesProficiency() && backgroundProficiency){
+        setSkillsComplete(true)
+    }
+    else {
+        setSkillsComplete(false)
+    }
+
     // Gets the available skills for the chosen class
     function classInformation() {
-        const chosenClass = classList.filter(element => element.id === character.class)
+        const chosenClass = classList.find(element => element.id === character.class)
 
-        const { skill_proficiencies, skill_proficiency_allowance } = chosenClass[0]
+        const { skill_proficiencies, skill_proficiency_allowance } = chosenClass
 
         return (
             <>
@@ -52,9 +89,9 @@ export default function Skills(){
 
     // Gets the available skills for the chosen species
     function speciesInformation() {
-        const chosenSpecies = speciesList.filter(element => element.id === character.species)
+        const chosenSpecies = speciesList.find(element => element.id === character.species)
 
-        const { skills } = chosenSpecies[0]
+        const { skills } = chosenSpecies
 
         if (skills){
             return (
@@ -91,9 +128,9 @@ export default function Skills(){
 
     // Gets the available skills for the chosen background
     function backgroundInformation() {
-        const chosenBackground = backgrounds.filter(element => element.id === character.background)
+        const chosenBackground = backgrounds.find(element => element.id === character.background)
 
-        const { skill_proficiencies } = chosenBackground[0]
+        const { skill_proficiencies } = chosenBackground
 
         if (skill_proficiencies){
             return (
@@ -181,7 +218,7 @@ export default function Skills(){
 
     // Handles and checks proficiencies tied to class selection
     function handleProficiencySubmit(e, allowance){
-        console.log("Calling handleProficiencySubmit")
+        //console.log("Calling handleProficiencySubmit")
         if(character[e.target.name].length >= allowance) {
             if(character[e.target.name].includes(e.target.value)){
                 console.log("Allowance met but removing item.")
@@ -194,7 +231,9 @@ export default function Skills(){
         } else {
             console.log("Submitting skill proficiency update to character.")
             updateArrayInCharacter(e.target.name, e.target.value)
-        } 
+        }
+
+
     }
 
     // Handles the proficiency choice tied to species selection

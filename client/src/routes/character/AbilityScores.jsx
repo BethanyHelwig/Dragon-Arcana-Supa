@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContext } from '../../context/CreationContext'
 import { CreationLookupContext } from '../../context/CreationLookupContext'
+import { StatusContext } from '../../context/StatusContext'
 
 export default function AbilityScores(){
 
@@ -19,10 +20,24 @@ export default function AbilityScores(){
         abilityScores
     } = useContext(CreationLookupContext)
 
+    // send to Status Context if ability score is complete when using Point Cost
+    const { abilityScoresComplete, setAbilityScoresComplete } = useContext(StatusContext)
+
     const [ randomGenerationResults, setRandomGenerationResults ] = useState([])
     const [ pointsAvailable, setpointsAvailable ] = useState(27)
 
     const randomGenerationResultsElements = randomGenerationResults.map(el => {return <div><p>{el}</p></div>})
+
+    // when Point Cost, determines if to hoist the completion flag
+    useEffect(()=>{
+        if (pointsAvailable === 0){
+            setAbilityScoresComplete(true)
+            console.log("Ability score (Point Cost) is complete.")
+        }
+        else {
+            setAbilityScoresComplete(false)
+        }
+    },[pointsAvailable])
 
     // ... Text and choices for each method of calculating ability scores
     const standardArrayBlock = 

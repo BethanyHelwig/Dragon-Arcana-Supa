@@ -9,7 +9,7 @@ export default function Class(){
 
     const { character, updateCharacter } = useContext(CreationContext)
     const { classList } = useContext(CreationLookupContext)
-    const { classComplete, updateClassComplete } = useContext(StatusContext)
+    //const { classComplete, updateClassComplete } = useContext(StatusContext)
 
     // special sorcerer metamagic options
     const [ metamagic, setMetamagic ] = useState([])

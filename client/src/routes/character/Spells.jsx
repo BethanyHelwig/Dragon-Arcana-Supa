@@ -2,6 +2,7 @@ import { useContext, useEffect, useState, useMemo, Fragment } from 'react'
 import { CreationContext } from '../../context/CreationContext'
 import { CreationLookupContext } from '../../context/CreationLookupContext'
 import { Collapsible } from '../../components/Collapsible'
+import { StatusContext } from '../../context/StatusContext'
 import FetchJson from '../../components/FetchJson'
 import Modal from '../../components/Modal'
 import toast from 'react-hot-toast'
@@ -11,6 +12,7 @@ export default function Spells(){
     // context values
     const { character, updateCharacter } = useContext(CreationContext)
     const { classList } = useContext(CreationLookupContext)
+    const { spellsComplete, setSpellsComplete } = useContext(StatusContext)
 
     // state values
     const [ spellList, setSpellList ] = useState([])
@@ -35,6 +37,17 @@ export default function Spells(){
 
     const cantripLimit = featureList[character.level-1]?.cantrips || 0
     const spellLimit = featureList[character.level-1]?.prepared_spells || 0
+
+    const cantripsSelected = cantripLimit === preparedCantripsList.length
+    const spellsSelected = spellLimit === preparedSpellsList.length
+
+    if (cantripsSelected && spellsSelected){
+        setSpellsComplete(true)
+        console.log("All spells complete")
+    }
+    else{
+        setSpellsComplete(false)
+    }
 
     useEffect(() => {
         if (!character?.class || !className) return

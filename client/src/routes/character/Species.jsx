@@ -9,9 +9,11 @@ export default function Species(){
     const { speciesList } = useContext(CreationLookupContext)
 
     // Submits species selection to character in Creation Context
+    // and resets any selected species skills
     function handleSubmit(e){
         console.log(e.target.name, e.target.value)
         updateCharacter(e.target.name, parseInt(e.target.value))
+        updateCharacter("species_skills", null)
     }
 
     // Displays each selectable species
@@ -37,8 +39,8 @@ export default function Species(){
     // Generates additional information of the chosen species in the right pane 
     function speciesInfo() {
 
-        const chosenSpecies = speciesList.filter(element => element.id === character.species)
-        const { full_name, type, size, size_description, speed, traits, species_table } = chosenSpecies[0]
+        const chosenSpecies = speciesList.find(element => element.id === character.species)
+        const { full_name, type, size, size_description, speed, traits, species_table } = chosenSpecies
 
         const traitElements = traits.map(trait => {
         

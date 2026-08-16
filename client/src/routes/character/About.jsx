@@ -97,7 +97,7 @@ export default function About(){
                     <legend>Character</legend>
 
                 {/* CHARACTER NAME */}
-                    <label htmlFor="name">Character Name:</label>
+                    <label htmlFor="name">Character Name*:</label>
                     <input 
                         type="text" 
                         name="name" 
