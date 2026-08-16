@@ -31,6 +31,7 @@ import Background from "./routes/character/Background"
 import About from "./routes/character/About"
 import AbilityScores from "./routes/character/AbilityScores"
 import Spells from "./routes/character/Spells"
+import Review from "./routes/character/Review"
 
 /* Compendium and sub routes */
 import Compendium from './routes/Compendium'
@@ -215,6 +216,7 @@ function App() {
 									<Route path="about" element={<About />} />
 									<Route path="species" element={<Species />} />
 									<Route path="spells" element={<Spells />} />
+									<Route path="review" element={<Review />} />
 								</Route>
 								<Route path="friends" element={<Friends />} />
 								<Route path="games" element={<Games />} />

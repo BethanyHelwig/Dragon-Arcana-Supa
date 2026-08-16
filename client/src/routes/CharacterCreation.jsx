@@ -19,6 +19,7 @@ export default function CharacterCreation(){
                     <NavLink to="skills" className={({isActive}) => isActive ? "submenu-active-link" : null}>Skills</NavLink>
                     <NavLink to="spells" className={({isActive}) => isActive ? "submenu-active-link" : null}>Spells</NavLink>
                     <NavLink to="about" className={({isActive}) => isActive ? "submenu-active-link" : null}>About</NavLink>
+                    <NavLink to="review" className={({isActive}) => isActive ? "submenu-active-link" : null}>Review</NavLink>
                 </div>
                     <CreationLookupContextProvider>
                         <CreationContextProvider>

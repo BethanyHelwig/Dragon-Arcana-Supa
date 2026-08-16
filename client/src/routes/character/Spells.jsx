@@ -361,28 +361,28 @@ export default function Spells(){
                                                         {level} - {spell.full_name}
                                                 </label>
                                             </div>
-                                                <div className="selection--spells__details">
-                                                    <div className="spell-attributes">
-                                                        <span>School: {spell.school_of_magic.school}</span>
-                                                        <span>Casting Time: {spell.casting_time}</span>
-                                                        <span>Duration: {spell.duration}</span>
-                                                        <span>Components: {spell.components}</span>
-                                                        <span>Range: {spell.range}</span>
-                                                    </div>
-                                                    <ul className="selection--spells__list">
-                                                        {spell.description.map(el => {
-                                                            if (el.includes('<strong>')){
-                                                                const startIndex = el.search('<strong>') + 8
-                                                                const endIndex = el.search('</strong>')
-                                        
-                                                                return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
-                                                            }
-                                                            else {
-                                                                return <li className="collapsible__list_item ">{el}</li>
-                                                            }
-                                                        })}
-                                                    </ul>
+                                            <div className="selection--spells__details">
+                                                <div className="spell-attributes">
+                                                    <span>School: {spell.school_of_magic.school}</span>
+                                                    <span>Casting Time: {spell.casting_time}</span>
+                                                    <span>Duration: {spell.duration}</span>
+                                                    <span>Components: {spell.components}</span>
+                                                    <span>Range: {spell.range}</span>
                                                 </div>
+                                                <ul className="selection--spells__list">
+                                                    {spell.description.map(el => {
+                                                        if (el.includes('<strong>')){
+                                                            const startIndex = el.search('<strong>') + 8
+                                                            const endIndex = el.search('</strong>')
+                                    
+                                                            return <li className="collapsible__list_item "><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</li>
+                                                        }
+                                                        else {
+                                                            return <li className="collapsible__list_item ">{el}</li>
+                                                        }
+                                                    })}
+                                                </ul>
+                                            </div>
                                         </Fragment>
                                     )
                                 })  

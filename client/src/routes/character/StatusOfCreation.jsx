@@ -18,21 +18,6 @@ export default function StatusOfCreation() {
         aboutComplete
     } = useContext(StatusContext)
 
-    function characterSubmitCheck(){
-
-        console.log("Class complete: ", classComplete)
-        console.log("Species complete: ", speciesComplete)
-        console.log("Ability scores complete: ", abilityScoresComplete)
-        console.log("Skills complete: ", skillsComplete)
-        console.log("Spells complete: ", spellsComplete),
-        console.log("Background complete: ", backgroundComplete)
-        console.log("About complete: ", aboutComplete)
-
-        const formattedScores = Object.fromEntries(generatedScores.map(item => [item.ability, item.score]))
-
-        //createCharacter(character, formattedScores)
-    }
-
     return (        
         <div className="status-of-creation">
             <div className={classComplete ? "container complete" : "container"}>
@@ -64,16 +49,7 @@ export default function StatusOfCreation() {
                 <span className="hidden">About</span>
             </div>
 
-    {/* TODO: Change this to Review Character and send to review page before creation */}
-            <button 
-                onClick={characterSubmitCheck}
-                disabled={isCreateCharacterLoading}
-            >
-                {isCreateCharacterLoading 
-                    ? <i className="fa-solid fa-spinner spinning-icon"></i>
-                    : "Create Character"
-                } 
-            </button>
+            <Link to ="/character_creation/review" className="btn-lookalike">Review Character</Link>
         </div>
     )
     
