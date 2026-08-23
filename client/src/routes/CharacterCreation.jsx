@@ -3,6 +3,7 @@ import { Outlet, Link, NavLink } from 'react-router-dom'
 import { CreationContextProvider } from '../context/CreationContext'
 import { CreationLookupContextProvider } from '../context/CreationLookupContext'
 import { StatusContextProvider } from '../context/StatusContext'
+import { SpellLookupContextProvider } from '../context/SpellLookupContext'
 import StatusOfCreation from './character/StatusOfCreation'
 
 export default function CharacterCreation(){
@@ -23,12 +24,14 @@ export default function CharacterCreation(){
                 </div>
                     <CreationLookupContextProvider>
                         <CreationContextProvider>
-                            <StatusContextProvider>
-                                <div className="gradient-border creation-outlet-div">
-                                    <Outlet />
-                                </div>
-                                <StatusOfCreation />
-                            </StatusContextProvider>
+                            <SpellLookupContextProvider>
+                                <StatusContextProvider>
+                                    <div className="gradient-border creation-outlet-div">
+                                        <Outlet />
+                                    </div>
+                                    <StatusOfCreation />
+                                </StatusContextProvider>
+                            </SpellLookupContextProvider>
                         </CreationContextProvider>
                     </CreationLookupContextProvider>
             </section>

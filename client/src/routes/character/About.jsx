@@ -129,8 +129,8 @@ export default function About(){
                         name="alignment" 
                         onChange={handleIDSubmit} 
                         value={character.alignment} 
-                        defaultValue="-- Select an alignment --"
                     >
+                        <option value={-1}>-- Select an alignment --</option>
                         {alignmentElements}
                     </select>
 
@@ -156,8 +156,8 @@ export default function About(){
                         name="lifestyle" 
                         onChange={handleIDSubmit} 
                         value={character.lifestyle} 
-                        defaultValue="-- Select a lifestyle --"
                     >
+                        <option value={-1}>-- Select an lifestyle --</option>
                         {lifestyleElements}
                     </select>
                     {character.lifestyle ? <div className="selection-detail font-Roboto">

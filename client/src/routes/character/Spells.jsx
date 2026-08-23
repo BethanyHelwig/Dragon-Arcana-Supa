@@ -3,6 +3,7 @@ import { CreationContext } from '../../context/CreationContext'
 import { CreationLookupContext } from '../../context/CreationLookupContext'
 import { Collapsible } from '../../components/Collapsible'
 import { StatusContext } from '../../context/StatusContext'
+import { SpellLookupContext } from '../../context/SpellLookupContext'
 import FetchJson from '../../components/FetchJson'
 import Modal from '../../components/Modal'
 import toast from 'react-hot-toast'
@@ -10,113 +11,67 @@ import toast from 'react-hot-toast'
 export default function Spells(){
 
     // context values
-    const { character, updateCharacter } = useContext(CreationContext)
+    const { character, updateCharacter, updateArrayInCharacter } = useContext(CreationContext)
     const { classList } = useContext(CreationLookupContext)
+    const { spellList, featureList, className } = useContext(SpellLookupContext)
     const { spellsComplete, setSpellsComplete } = useContext(StatusContext)
 
     // state values
-    const [ spellList, setSpellList ] = useState([])
-    const [ featureList, setFeatureList ] = useState([])
     const [ selectedLevel, setLevel ] = useState("1")
     const [ activeModal, setActiveModal ] = useState(null)
-    const [ preparedCantripsList, setPreparedCantripsList ] = useState([])
-    const [ preparedSpellsList, setPreparedSpellsList ] = useState([])
     const [ selectedContainer, setSelectedContainer ] = useState("allSpells")
 
     // loading and error states
     const [ isLoading, setIsLoading ] = useState(false)
     const [ error, setError ] = useState(null)
-
-    const className = useMemo(() => {
-        const chosenClass = classList.find(
-            element => element.id === character.class
-        )
-
-        return chosenClass?.full_name || ""
-    }, [character.class])
-
+    
     const cantripLimit = featureList[character.level-1]?.cantrips || 0
     const spellLimit = featureList[character.level-1]?.prepared_spells || 0
 
-    const cantripsSelected = cantripLimit === preparedCantripsList.length
-    const spellsSelected = spellLimit === preparedSpellsList.length
+    // checks if the selected cantrips and spells match the allowed limit
+    // then lets the status know if it's complete or not
+    useEffect(() =>{
+        const cantripsComplete = cantripLimit === character.preparedCantrips?.length || false
+        const spellsComplete = spellLimit === character.preparedSpells?.length || false
 
-    if (cantripsSelected && spellsSelected){
-        setSpellsComplete(true)
-        console.log("All spells complete")
-    }
-    else{
-        setSpellsComplete(false)
-    }
+        setSpellsComplete(cantripsComplete && spellsComplete)
 
-    useEffect(() => {
-        if (!character?.class || !className) return
-
-        const fetchData = async () => {
-            try {
-                setIsLoading(true)
-
-                // fetch both requests at the same time
-                const [spellData, featureData] = await Promise.all([
-                    FetchJson(`/api/search/spell?c_class=${character.class}`),
-                    FetchJson(`/api/search/features/${className.toLowerCase()}`)
-                ])
-
-                setSpellList(spellData)
-                setFeatureList(featureData)
-
-            } catch (err) {
-                console.log("Error retreiving data: ", err)
-                setError(err.message) 
-            } finally {
-                setIsLoading(false)
-            }
-        }
-
-        fetchData()
-
-    }, [character?.class])
+    },[cantripLimit, spellLimit, character.preparedCantrips?.length, character.preparedSpells?.length])
 
     // Handles and checks cantrip selections against limit in state held values
     function handleCantripSelection(e){
         const { value, checked } = e.target
-        console.log("Calling handleCantripSelection")
-        setPreparedCantripsList(prev => {
-            // remove cantrip if unchecking
-            if (!checked) {
-                return prev.filter(el => el !== value)
-            }
 
-            // limit reached, cannot add more
-            if (prev.length >= cantripLimit){
-                toast.error(`Cannot select more than ${cantripLimit} cantrips.`)
-                return prev
-            }
-
-            // add cantrip
-            return [...prev, value]
-        })
+        // if unchecking, go ahead
+        if (!checked){
+            updateArrayInCharacter("preparedCantrips", value)
+        }
+        // if adding this is over the limit, stop
+        else if (character.preparedCantrips.length >= cantripLimit){
+            toast.error(`Cannot select more than ${cantripLimit} cantrips.`)
+        }
+        // otherwise, let it add the new selection
+        else {
+            updateArrayInCharacter("preparedCantrips", value)
+        }
     }
 
     // Handles and checks spell selections against limit in state held values
     function handleSpellSelection(e){
         const { value, checked } = e.target
-        console.log("Calling handleSpellSelection")
-        setPreparedSpellsList(prev => {
-            // remove spell if unchecking
-            if (!checked) {
-                return prev.filter(el => el !== value)
-            }
 
-            // limit reached, cannot add more
-            if (prev.length >= spellLimit){
-                toast.error(`Cannot select more than ${spellLimit} spells.`)
-                return prev
-            }
-
-            // add cantrip
-            return [...prev, value]
-        })
+        // if unchecking, go ahead
+        if (!checked){
+            updateArrayInCharacter("preparedSpells", value)
+        }
+        // if adding this is over the limit, stop
+        else if (character.preparedSpells.length >= spellLimit){
+            toast.error(`Cannot select more than ${spellLimit} spells.`)
+        }
+        // otherwise, let it add the new selection
+        else {
+            updateArrayInCharacter("preparedSpells", value)
+        }
     }
 
     // group the spells by level
@@ -148,7 +103,6 @@ export default function Spells(){
 
     const sortedCollapsibles = Object.keys(collapsibleArray)
         .sort((a, b) => Number(a) - Number(b));
-
 
     // Selected cantrips are looked up in the spell list and returned formatted
     const preparedCantripsFormatted = useMemo(() => {
@@ -235,21 +189,11 @@ export default function Spells(){
         setLevel(e.target.value)
     }
 
-    // handle the submit of selected prepared cantrips
-    function handleCantripSubmit(formData){
+    // handle the "save" button of the modal to close it
+    function handleModalClose(){
         setActiveModal(null)
-        updateCharacter("preparedCantrips", preparedCantripsList)
         setSelectedContainer("selectedSpells")
     }
-
-    // handle the submit of selected prepared spells
-    function handleSpellSubmit(formData){
-        setActiveModal(null)
-        updateCharacter("preparedSpells", preparedSpellsList)
-        setSelectedContainer("selectedSpells")
-    }
-
-    // console.log(sortedCollapsibles)
 
     function preparedSpells(){
         const obj = featureList[character.level - 1]
@@ -276,7 +220,7 @@ export default function Spells(){
                 <form>
                     <legend className="flex-row__between">
                         <span>Select {cantripLimit} cantrips from the list below.</span>
-                        <span>{preparedCantripsList.length}/{cantripLimit} Selected</span>
+                        <span>{character.preparedCantrips.length}/{cantripLimit} Selected</span>
                     </legend>
                     <div className="scroll-window">
                         {collapsibleArray["Cantrip"]?.map(cantrip => {
@@ -288,7 +232,7 @@ export default function Spells(){
                                             name="prepared-cantrips"
                                             id={cantrip.id}
                                             value={cantrip.full_name}
-                                            checked={preparedCantripsList.includes(cantrip.full_name)}
+                                            checked={character.preparedCantrips.includes(cantrip.full_name)}
                                             onChange={handleCantripSelection}
                                         />
                                         <label htmlFor={cantrip.id}>
@@ -321,7 +265,7 @@ export default function Spells(){
                             )
                         })}
                     </div>
-                    <button onClick={handleCantripSubmit}>Save</button>
+                    <button onClick={handleModalClose}>Save</button>
                 </form>
             </Modal>
 
@@ -339,7 +283,7 @@ export default function Spells(){
                 <form>
                     <legend className="flex-row__between">
                         <span>Select {spellLimit} spells from the list below.</span>
-                        <span>{preparedSpellsList.length}/{spellLimit} Selected</span>
+                        <span>{character.preparedSpells.length}/{spellLimit} Selected</span>
                     </legend>
                     <div className="scroll-window">
                         {levels
@@ -354,7 +298,7 @@ export default function Spells(){
                                                     name="prepared-spells"
                                                     id={spell.id}
                                                     value={spell.full_name}
-                                                    checked={preparedSpellsList.includes(spell.full_name)}
+                                                    checked={character.preparedSpells.includes(spell.full_name)}
                                                     onChange={handleSpellSelection}
                                                 />
                                                 <label htmlFor={spell.id}>
@@ -389,7 +333,7 @@ export default function Spells(){
                             })
                         }
                     </div>
-                    <button onClick={handleSpellSubmit}>Save</button>
+                    <button onClick={handleModalClose}>Save</button>
                 </form>
             </Modal>
 
@@ -397,7 +341,7 @@ export default function Spells(){
             <table className="table table--spells">
                 <thead>
                     <tr>
-                        <th scope="col" colspan={levels.length} className="table__header-span"><span>-- Spell Slots per Spell Level --</span></th>
+                        <th scope="col" colSpan={levels.length} className="table__header-span"><span>-- Spell Slots per Spell Level --</span></th>
                     </tr>
                     <tr>
                         {levels.map(el => <th scope="col" key={`header_${el}`}>{el}</th>)}

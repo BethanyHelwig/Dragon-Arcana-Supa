@@ -66,6 +66,8 @@ export default function Class(){
         updateCharacter(e.target.name, parseInt(e.target.value))
         updateCharacter("starting_equipment", null)
         updateCharacter("skill_proficiencies", [])
+        updateCharacter("preparedCantrips", [])
+        updateCharacter("preparedSpells", [])
         //document.getElementById("starting_equipment").selectedIndex = 0
     }
 
