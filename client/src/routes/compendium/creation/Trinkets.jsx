@@ -1,4 +1,30 @@
+import { useState, useEffect, useMemo } from 'react'
+
 export default function Trinkets(){
+
+    const [ trinketList, setTrinketList ] = useState([])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/trinket')
+            .then(res => res.json())
+            .then(data => {
+                setTrinketList(data)
+            })
+    }, [])
+
+    const trinketsFormatted = useMemo(() => {
+        if (!trinketList) return {}
+
+        return trinketList.map(obj => {
+            return (
+                <tr key={obj.d100}>
+                    <td>{obj.d100}</td>
+                    <td>{obj.description}</td>
+                </tr>
+            )
+        })
+    },[trinketList])
+
     return(
         <div>
             <h2>Trinkets</h2>
@@ -15,7 +41,7 @@ export default function Trinkets(){
                     <th span="col">Trinket</th>
                 </thead>
                 <tbody>
-                    {/* TODO: Add DB pull of trinkets and put in table */}
+                    {trinketsFormatted}
                 </tbody>
             </table>
         </div>

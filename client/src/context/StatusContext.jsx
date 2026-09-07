@@ -17,7 +17,7 @@ export const StatusContextProvider = ({children }) => {
     const [ aboutComplete, setAboutComplete ] = useState(false)
 
     useEffect(() =>{
-        if (character.class) {
+        if (character.class && character.starting_equipment) {
             setClassComplete(true)
             //console.log("Class is complete.")
         }

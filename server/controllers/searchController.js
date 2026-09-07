@@ -380,6 +380,41 @@ export async function getSchoolOfMagic(req, res) {
     }   
 }
 
+export async function getTrinket(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('trinket')
+                .select()
+                .ilike('description', `%${term}%`)
+                .order('description')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('trinket')
+                .select()
+                .order('d100')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    } 
+}
+
 export async function getAlignment(req, res) {
     const { term } = req.query
 
@@ -659,6 +694,46 @@ export async function getFeats(req, res) {
         res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
     
+}
+
+export async function getAdventuringGear(req, res){
+    const { term } = req.query
+
+    try{
+        // search for specific
+        if (term){
+            const { data, error } = await supabase
+                .from('adventuring_gear')
+                .select(`
+                    *,
+                    adventuring_gear_table(*)
+                    `)
+                .ilike('name', `%${term}%`)
+                .order('name')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all 
+        else {
+            const { data, error } = await supabase
+                .from('adventuring_gear')
+                .select(`
+                    *,
+                    adventuring_gear_table(*)
+                    `)
+                .order('name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
 }
 
 // TODO: add pagination

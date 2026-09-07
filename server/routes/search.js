@@ -31,29 +31,33 @@ import {
     getSorcererFeatures,
     getWarlockFeatures,
     getWizardFeatures,
-    getAnimals
+    getAnimals,
+    getTrinket,
+    getAdventuringGear
     } from '../controllers/searchController.js'
 
 export const searchRouter = express.Router()
 
 searchRouter.get('/ability_score', getAbilityScores)
+searchRouter.get('/adventuring_gear', getAdventuringGear)
 searchRouter.get('/alignment', getAlignment)
 searchRouter.get('/animals', getAnimals)
-searchRouter.get('/character_class', getClass)
-searchRouter.get('/language', getLanguage)
-searchRouter.get('/school_of_magic', getSchoolOfMagic)
-searchRouter.get('/skill', getSkills)
-searchRouter.get('/spell', getSpell)
-searchRouter.get('/weapon', getWeapons)
-searchRouter.get('/weapon_property', getWeaponProperties)
-searchRouter.get('/weapon_mastery_property', getMastery)
-searchRouter.get('/species', getSpecies)
-searchRouter.get('/lifestyle', getLifestyle)
 searchRouter.get('/background', getBackground)
+searchRouter.get('/character_class', getClass)
 searchRouter.get('/class_features', getClassFeatures)
 searchRouter.get('/feat', getFeats)
-searchRouter.get('/rules_glossary', getRulesGlossary)
+searchRouter.get('/language', getLanguage)
+searchRouter.get('/lifestyle', getLifestyle)
 searchRouter.get('/monsters', getMonsters)
+searchRouter.get('/rules_glossary', getRulesGlossary)
+searchRouter.get('/school_of_magic', getSchoolOfMagic)
+searchRouter.get('/skill', getSkills)
+searchRouter.get('/species', getSpecies)
+searchRouter.get('/spell', getSpell)
+searchRouter.get('/trinket', getTrinket)
+searchRouter.get('/weapon', getWeapons)
+searchRouter.get('/weapon_mastery_property', getMastery)
+searchRouter.get('/weapon_property', getWeaponProperties)
 
 // ** special class options **
 searchRouter.get('/metamagic_options', getMetamagicOptions)

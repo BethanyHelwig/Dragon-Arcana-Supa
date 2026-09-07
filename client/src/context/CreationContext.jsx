@@ -5,6 +5,7 @@ const CreationContext = createContext()
 
 const defaultCharacter = {
     level: 1,
+    proficiency_bonus: 2,
     skill_proficiencies: [],
     languages: [],
 }

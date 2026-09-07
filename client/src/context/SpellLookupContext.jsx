@@ -58,7 +58,7 @@ export const SpellLookupContextProvider = ({ children }) => {
     }),[spellList,
         featureList,
         className,
-        isLoading 
+        isLoading
     ])
 
     return (

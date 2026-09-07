@@ -10,7 +10,7 @@ import Modal from '../../components/Modal'
 
 export default function Review(){
 
-    const { character, generatedScores } = useContext(CreationContext)
+    const { character, generatedScores, updateCharacter } = useContext(CreationContext)
     const {
         classList, 
         speciesList, 
@@ -34,12 +34,8 @@ export default function Review(){
     } = useContext(StatusContext)
 
     const formattedScores = Object.fromEntries(generatedScores?.map(item => [item.ability, item.score]))
-    console.log("Formatted scores: ", formattedScores)
 
     function characterSubmitCheck(){
-
-        // const formattedScores = Object.fromEntries(generatedScores.map(item => [item.ability, item.score]))
-
         if (classComplete 
             && speciesComplete
             && abilityScoresComplete
@@ -75,8 +71,6 @@ export default function Review(){
         }
     }
 
-    console.log("Alignment: ", character.alignment)
-
     // for about section
     function aboutInformation(){
         return (
@@ -103,11 +97,64 @@ export default function Review(){
         )
     }
 
+    function hitPointsInformation(){
+        if (!character.class) return "Select a class and constitution ability score to calculate this."
+
+        // get the constitution score
+        const result = formattedScores.constitution
+        if (result == undefined) {
+            return `Select your constitution ability score to calculate this.`
+        }
+
+        // barbarian
+        if (character.class === 1) {
+            const modifier = Math.floor((result - 10) / 2)
+            const hitPoints = 12 + modifier
+            //updateCharacter("hit_points", hitPoints)
+            return hitPoints
+        }
+
+        // fighter, paladin, ranger
+        if (character.class === 5 || character.class === 7 || character.class === 8) {
+            const modifier = Math.floor((result - 10) / 2)
+            const hitPoints = 10 + modifier
+            //updateCharacter("hit_points", hitPoints)
+            return hitPoints
+        }
+
+        // bard, cleric, druid, monk, rogue, warlock
+        if (character.class === 2 || 
+            character.class === 3 || 
+            character.class === 4 ||
+            character.class === 6 ||
+            character.class === 9 ||
+            character.class === 11) {
+            const modifier = Math.floor((result - 10) / 2)
+            const hitPoints = 8 + modifier
+            //updateCharacter("hit_points", hitPoints)
+            return hitPoints
+        }
+
+        // sorcerer, wizard
+        if (character.class === 10 || character.class === 12) {
+            const modifier = Math.floor((result - 10) / 2)
+            const hitPoints = 6 + modifier
+            //updateCharacter("hit_points", hitPoints)
+            return hitPoints
+        }
+
+        else return "Error"
+    }
+
     return(
         <>
             <h2>Review</h2>
             <div className="compendium-content">
                 <h2 className="title-glow">{character.name ? character.name : "[Insert epic name here]"}</h2>
+                <p></p>
+                <p><b>Hit Points: </b>{hitPointsInformation()}</p>
+                <p><b>Proficiency Bonus: +</b>{character.proficiency_bonus}</p>
+                <p><b>Armor Class: </b>{}</p>
 
                 {/* CLASS completion detail */}
                 <div className={`two-col ${classComplete ? " container complete" : " container"}`}>
@@ -115,6 +162,7 @@ export default function Review(){
                     <i className={classComplete ? "fa-solid fa-check" : "fa-solid fa-circle-exclamation"}></i>
                 </div>
                 <p>Level {character.level} {classList?.find(el => el.id === character.class)?.full_name}</p>
+                <p><b>Starting Equipment:</b> {character.starting_equipment}</p>
 
                 {/* SPECIES completion detail */}
                 <div className={`two-col ${speciesComplete ? " container complete" : " container"}`}>

@@ -76,6 +76,10 @@ export default function Class(){
         const newValue = parseInt(e.target.value) + character.level;
         if (newValue >= 1 && newValue <= 30){
             updateCharacter("level", parseInt(e.target.value) + character.level)
+
+            // proficiency bonus is calculated off the level
+            const proficiencyBonus = Math.ceil((newValue + 4) / 4)
+            updateCharacter("proficiency_bonus", proficiencyBonus)
         }
     }
 
