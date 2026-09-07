@@ -1,4 +1,85 @@
+import { useState, useEffect, useMemo } from 'react'
+import FetchJson from '../../../components/FetchJson'
+
 export default function MountsAndVehicles(){
+
+    const [ mountList, setMountList ] = useState([])
+    const [ vehicleList, setVehicleList ] = useState([])
+    const [ airWaterVehicleList, setAirWaterVehicleList ] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [ 
+                    mountData, 
+                    vehicleData,
+                    airWaterVehicleData 
+                ] = await Promise.all([
+                    FetchJson('/api/search/mounts'),
+                    FetchJson('/api/search/tack_harness_vehicles'),
+                    FetchJson('/api/search/airborne_waterborne_vehicles')
+                ])
+
+                setMountList(mountData)
+                setVehicleList(vehicleData)
+                setAirWaterVehicleList(airWaterVehicleData)
+            }
+            catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchData()
+    }, [])
+
+    const mountsFormatted = useMemo(() => {
+        if (!mountList) return <tr></tr>
+
+        return mountList.map(mount => {
+            return (
+                <tr>
+                    <td>{mount.name}</td>
+                    <td>{mount.carrying_capacity}</td>
+                    <td>{mount.cost}</td>
+                </tr>
+            )
+        })
+    }, [mountList])
+
+    const vehiclesFormatted = useMemo(() => {
+        if (!vehicleList) return <tr></tr>
+
+        return vehicleList.map(item => {
+            return (
+                <tr>
+                    <td>{item.item}</td>
+                    <td>{item.weight}</td>
+                    <td>{item.cost}</td>
+                </tr>
+            )
+        })
+    })
+
+    const airWaterVehiclesFormatted = useMemo(() => {
+        if (!airWaterVehicleList) return <tr></tr>
+
+        return airWaterVehicleList.map(vehicle => {
+            return (
+                <tr>
+                    <td>{vehicle.ship}</td>
+                    <td>{vehicle.speed}</td>
+                    <td>{vehicle.crew}</td>
+                    <td>{vehicle.passengers ? vehicle.passengers : "--"}</td>
+                    <td>{vehicle.cargo_tons ? vehicle.cargo_tons : "--"}</td>
+                    <td>{vehicle.AC}</td>
+                    <td>{vehicle.HP}</td>
+                    <td>{vehicle.damage_threshold ? vehicle.damage_threshold : "--"}</td>
+                    <td>{vehicle.cost}</td>
+                </tr>
+            )
+        })
+    })
+
     return(
         <div>
             <h2>Mounts and Vehicles</h2>
@@ -32,7 +113,6 @@ export default function MountsAndVehicles(){
                 required for riding an aquatic or a flying mount.</p>
 
             <h4>Mounts and Other Animals</h4>
-            {/* TODO: fill from DB */}
             <table className="table">
                 <thead>
                     <tr>
@@ -42,16 +122,11 @@ export default function MountsAndVehicles(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {mountsFormatted}
                 </tbody>
             </table>
 
             <h4>Tack, Harness, and Drawn Vehicles</h4>
-            {/* TODO: fill from DB */}
             <table className="table">
                 <thead>
                     <tr>
@@ -61,11 +136,7 @@ export default function MountsAndVehicles(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {vehiclesFormatted}
                 </tbody>
             </table>
 
@@ -87,7 +158,6 @@ export default function MountsAndVehicles(){
                 weighs 100 pounds.</p>
 
             <h4>Airborne and Waterborne Vehicles</h4>
-            {/* TODO: fill from DB */}
             <table className="table">
                 <thead>
                     <tr>
@@ -103,11 +173,7 @@ export default function MountsAndVehicles(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {airWaterVehiclesFormatted}
                 </tbody>
             </table>
 

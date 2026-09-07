@@ -1,4 +1,37 @@
+import { useState, useEffect, useMemo } from 'react'
+
 export default function Multiclassing(){
+
+    const [ multiclassSpellcasterList, setmulticlassSpellcasterList ] = useState([])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/multiclass_spellcaster')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setmulticlassSpellcasterList(data)
+            })
+    }, [])
+
+    const multiclassSpellcasterFormatted = useMemo(() => {
+        return multiclassSpellcasterList.map(item => {
+            return (
+                <tr key={item.id}>
+                    <td>{item.level}</td>
+                    <td>{item[1]}</td>
+                    <td>{item[2] ? item[2] : "--"}</td>
+                    <td>{item[3] ? item[3] : "--"}</td>
+                    <td>{item[4] ? item[4] : "--"}</td>
+                    <td>{item[5] ? item[5] : "--"}</td>
+                    <td>{item[6] ? item[6] : "--"}</td>
+                    <td>{item[7] ? item[7] : "--"}</td>
+                    <td>{item[8] ? item[8] : "--"}</td>
+                    <td>{item[9] ? item[9] : "--"}</td>
+                </tr>
+            )
+        })
+    })
+
     return(
         <div>
             <h2>Multiclassing</h2>
@@ -162,7 +195,7 @@ export default function Multiclassing(){
                     </tr>
                 </thead>
                 <tbody>
-                {/* TODO: Add DB pull to fill the table */}
+                    {multiclassSpellcasterFormatted}
                 </tbody>
             </table>
         </div>

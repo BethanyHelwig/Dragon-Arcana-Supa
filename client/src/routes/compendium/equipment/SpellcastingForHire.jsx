@@ -1,4 +1,30 @@
+import { useState, useEffect, useMemo } from 'react'
+
 export default function SpellcastingForHire(){
+
+    const [ spellServiceList, setSpellServiceList ] = useState([])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/spellcasting_service')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setSpellServiceList(data)
+            })
+    }, [])
+
+    const spellServiceFormatted = useMemo(() => {
+        return spellServiceList.map(item => {
+            return (
+                <tr key={item.id}>
+                    <td>{item.spell_level}</td>
+                    <td>{item.availability}</td>
+                    <td>{item.cost}</td>
+                </tr>
+            )
+        })
+    })
+
     return(
         <div>
             <h2>Spellcasting For Hire</h2>
@@ -18,13 +44,8 @@ export default function SpellcastingForHire(){
                         <th scope="col">Cost</th>
                     </tr>
                 </thead>
-                {/* TODO: fill from DB */}
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {spellServiceFormatted}
                 </tbody>
             </table>
         </div>

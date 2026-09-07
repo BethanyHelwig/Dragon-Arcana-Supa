@@ -1,4 +1,29 @@
+import { useState, useEffect, useMemo } from 'react'
+
 export default function Hirelings(){
+
+const [ hirelingList, setHirelingList ] = useState([])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/hirelings')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setHirelingList(data)
+            })
+    }, [])
+
+    const hirelingsFormatted = useMemo(() => {
+        return hirelingList.map(el => {
+            return (
+                <tr>
+                    <td>{el.service}</td>
+                    <td>{el.cost}</td>
+                </tr>
+            )
+        })
+    })
+
     return(
         <div>
             <h2>Hirelings</h2>
@@ -19,12 +44,8 @@ export default function Hirelings(){
                         <th scope="col">Cost</th>
                     </tr>
                 </thead>
-                {/* TODO: fill from DB */}
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {hirelingsFormatted}
                 </tbody>
             </table>
         </div>

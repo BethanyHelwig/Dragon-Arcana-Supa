@@ -1,4 +1,52 @@
+import { useState, useEffect, useMemo } from 'react'
+
 export default function Tools(){
+
+    const [ toolList, setToolList ] = useState([])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/tools')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setToolList(data)
+            })
+    }, [])
+
+    const artisanToolsFormatted = useMemo(() => {
+        return toolList.map(item => {
+            if (item.type === 'Artisan') {
+                return (
+                    <div key={item.id}>
+                        <h4>{item.name} ({item.cost})</h4>
+                        <p><b>Ability:</b> {item.ability}</p>
+                        <p><b>Weight:</b> {item.weight ? item.weight : "--"}</p>
+                        {item.utilize ? <p><b>Utilize:</b> {item.utilize}</p> : ""}
+                        {item.craft ? <p><b>Craft:</b> {item.craft}</p> : ""}
+                        {item.variants ? <p><b>Variants:</b> {item.variants}</p> : ""}
+                    </div>
+                )
+            }
+        })
+    })
+
+    const otherToolsFormatted = useMemo(() => {
+        return toolList.map(item => {
+            if (item.type === 'Other') {
+                return (
+                    <div key={item.id}>
+                        <h4>{item.name} ({item.cost})</h4>
+                        <p><b>Ability:</b> {item.ability}</p>
+                        <p><b>Weight:</b> {item.weight ? item.weight : "--"}</p>
+                        {item.utilize ? <p><b>Utilize:</b> {item.utilize}</p> : ""}
+                        {item.craft ? <p><b>Craft:</b> {item.craft}</p> : ""}
+                        {item.variants ? <p><b>Variants:</b> {item.variants}</p> : ""}
+                    </div>
+                )
+            }
+        })
+    })
+
     return(
         <div>
             <h2>Tools</h2>
@@ -33,11 +81,11 @@ export default function Tools(){
             <p>Artisan’s Tools are each focused on crafting items
                 and pursuing a trade. Each of these tools requires a
                 separate proficiency.</p>
-            {/* TODO: fill from DB */}
+            {artisanToolsFormatted}
 
             <h3>Other Tools</h3>
             <div className="compendium-divider"></div>
-            {/* TODO: fill from DB */}
+            {otherToolsFormatted}
         </div>
     )
 }

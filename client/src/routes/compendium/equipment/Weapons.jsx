@@ -1,4 +1,40 @@
+import { useState, useEffect, useMemo } from 'react'
+
 export default function Weapons(){
+
+    const [ weaponList, setWeaponList ] = useState([])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/weapon')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setWeaponList(data)
+            })
+    }, [])
+
+    const weaponsFormatted = useMemo(() => {
+        return weaponList.map(item => {
+            return (
+                <tr key={item.id}>
+                    <td>{item.full_name}</td>
+                    <td>{item.damage}</td>
+                    {/* properties */}
+                    <td>{item.weapon_property.map((el, index) => {
+                            return `${el.property}
+                                ${item.weapon_property_junction[index].range ? ` (${item.weapon_property_junction[index].range})` : ""}
+                                ${item.weapon_property_junction[index].ammunition_type ? ` (${item.weapon_property_junction[index].ammunition_type})` : ""}
+                                ${item.weapon_property_junction[index].versatile_damage ? ` (${item.weapon_property_junction[index].versatile_damage})` : ""}
+                                ` 
+                        }).join(", ")}</td> 
+                    <td>{item.weapon_mastery_property.weapon_mastery}</td> 
+                    <td>{item.weight}</td> 
+                    <td>{item.cost}</td> 
+                </tr>
+            )
+        })
+    })
+
     return(
         <div>
             <h2>Weapons</h2>
@@ -171,7 +207,25 @@ export default function Weapons(){
                 to the creature, you have Advantage on your
                 next attack roll against that creature before the end
                 of your next turn.</p>
-                {/* TODO: Pull from DB to fill weapons table */}
+            
+            <h3>Weapons A-Z</h3>
+            <div className="compendium-divider"></div>
+
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Damage</th>
+                        <th scope="col">Properties</th>
+                        <th scope="col">Mastery</th>
+                        <th scope="col">Weight</th>
+                        <th scope="col">Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {weaponsFormatted}
+                </tbody>
+            </table>
         </div>
     )
 }

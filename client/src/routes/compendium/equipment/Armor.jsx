@@ -1,4 +1,35 @@
+import { useState, useEffect } from 'react'
+
 export default function Armor(){
+
+    const [ armorList, setArmorList ] = useState([])
+
+    useEffect(() => {
+        fetch('http://127.0.0.1:8080/api/search/armor')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setArmorList(data)
+            })
+    }, [])
+
+    const armorFormatted = (type) => {
+        return armorList
+            .filter(item => item.type === type)
+            .map(item => {
+            return (
+                <tr key={item.id}>
+                    <td style={{ paddingLeft: '2rem' }}>{item.armor}</td>
+                    <td>{item.armor_class}</td>
+                    <td>{item.strength ? item.strength : "--"}</td>
+                    <td>{item.stealth ? item.stealth : "--"}</td>
+                    <td>{item.weight}</td>
+                    <td >{item.cost}</td>
+                </tr>
+            )
+        })
+    }
+
     return(
         <div>
             <h2>Armor</h2>
@@ -56,16 +87,23 @@ export default function Armor(){
                         <th scope="col">Cost</th>
                     </tr>
                 </thead>
-                {/* TODO: fill from DB */}
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td colspan="6"><i>Light Armor (1 Minute to Don or Doff)</i></td>
                     </tr>
+                    {armorFormatted("Light")}
+                    <tr>
+                        <td colspan="6"><i>Medium Armor (5 Minutes to Don and 1 Minute to Doff)</i></td>
+                    </tr>
+                    {armorFormatted("Medium")}
+                    <tr>
+                        <td colspan="6"><i>Heavy Armor (10 Minutes to Don and 5 Minutes to Doff)</i></td>
+                    </tr>
+                    {armorFormatted("Heavy")}
+                    <tr>
+                        <td colspan="6"><i>Shield (Utilize Action to Don or Doff)</i></td>
+                    </tr>
+                    {armorFormatted("Shield")}
                 </tbody>
             </table>
         </div>

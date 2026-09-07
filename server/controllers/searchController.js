@@ -415,6 +415,76 @@ export async function getTrinket(req, res) {
     } 
 }
 
+export async function getTools(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('tool')
+                .select()
+                .ilike('name', `%${term}%`)
+                .order('type', 'name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('tool')
+                .select()
+                .order('type', 'name')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}
+
+export async function getArmor(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific instance
+        if (term){
+            const { data, error } = await supabase
+                .from('armor')
+                .select()
+                .ilike('armor', `%${term}%`)
+                .order('type', 'armor')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all instances
+        else {
+            const { data, error } = await supabase
+                .from('armor')
+                .select()
+                .order('type', 'armor')
+
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }   
+}
+
 export async function getAlignment(req, res) {
     const { term } = req.query
 
@@ -694,6 +764,233 @@ export async function getFeats(req, res) {
         res.status(500).json({error: 'Failed to fetch: ', details: err.message})
     }
     
+}
+
+export async function getMulticlassSpellcaster(req, res) {
+    const { term } = req.query
+
+    try {
+        if (term){
+            const { data, error } = await supabase
+                .from('multiclass_spellcaster')
+                .select(`*`)
+                .ilike('level', `%${term}%`)
+                .order('level')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET ALL
+        else {
+            const { data, error } = await supabase
+                .from('multiclass_spellcaster')
+                .select('*')
+                .order('level')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch (err) {
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+export async function getSpellCastingService(req, res) {
+    const { term } = req.query
+
+    try {
+        if (term){
+            const { data, error } = await supabase
+                .from('spellcasting_service')
+                .select(`*`)
+                .ilike('spell_level', `%${term}%`)
+                .order('spell_level')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET ALL
+        else {
+            const { data, error } = await supabase
+                .from('spellcasting_service')
+                .select('*')
+                .order('spell_level')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch (err) {
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+export async function getHirelings(req, res) {
+    const { term } = req.query
+
+    try {
+        if (term){
+            const { data, error } = await supabase
+                .from('hireling')
+                .select(`*`)
+                .ilike('service', `%${term}%`)
+                .order('service')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET ALL
+        else {
+            const { data, error } = await supabase
+                .from('hireling')
+                .select('*')
+                .order('service')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch (err) {
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+export async function getFoodDrinkLodging(req, res) {
+    const { term } = req.query
+
+    try {
+        if (term){
+            const { data, error } = await supabase
+                .from('food_drink_lodging')
+                .select(`*`)
+                .ilike('item', `%${term}%`)
+                .order('item')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET ALL
+        else {
+            const { data, error } = await supabase
+                .from('food_drink_lodging')
+                .select('*')
+                .order('item')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch (err) {
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+export async function getAirborneWaterborneVehicles(req, res){
+    const { term } = req.query
+
+    try {
+        if (term){
+            const { data, error } = await supabase
+                .from('airborne_waterborne_vehicle')
+                .select(`*`)
+                .ilike('ship', `%${term}%`)
+                .order('ship')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET ALL
+        else {
+            const { data, error } = await supabase
+                .from('airborne_waterborne_vehicle')
+                .select('*')
+                .order('ship')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch (err) {
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+}
+
+export async function getTackHarnessVehicles(req, res){
+    const { term } = req.query
+
+    try{
+        // search for specific
+        if (term){
+            const { data, error } = await supabase
+                .from('tack_harness_vehicle')
+                .select(`*`)
+                .ilike('item', `%${term}%`)
+                .order('item')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all 
+        else {
+            const { data, error } = await supabase
+                .from('tack_harness_vehicle')
+                .select(`*`)
+                .order('item')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
+
+}
+
+export async function getMounts(req, res) {
+    const { term } = req.query
+
+    try{
+        // search for specific
+        if (term){
+            const { data, error } = await supabase
+                .from('mount')
+                .select(`*`)
+                .ilike('name', `%${term}%`)
+                .order('name')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+        // GET all 
+        else {
+            const { data, error } = await supabase
+                .from('mount')
+                .select(`*`)
+                .order('name')
+            if (error) {
+                throw error
+            }
+            res.status(200).json(data)
+        }
+    }
+    catch(err){
+        res.status(500).json({error: 'Failed to fetch: ', details: err.message})
+    }
 }
 
 export async function getAdventuringGear(req, res){
