@@ -9,7 +9,11 @@ export default function MonsterDetails(){
 
     useEffect(() => {
         const monsterObj = monsterList.find(monster => monster.id === Number(id))
-        console.log(monsterObj)
+        // console.log(monsterObj)
+        console.log("MONSTER OBJECT:", JSON.stringify(monsterObj, null, 2))
+        console.log("ALT SIZE:", monsterObj?.alt_size)
+        console.log("ALT SIZE VALUE:", monsterObj?.alt_size?.creature_size_alt)
+
         setMonster(monsterObj)
     }, [id])
 
@@ -21,30 +25,6 @@ export default function MonsterDetails(){
 
                 return <p><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</p>
             }
-            // if (el.includes('<table>')){
-            //     const index = el[7]
-            //     console.log(index)
-            //     const table = rule.rules_glossary_table.find(table => table.order_in_glossary === Number(index))
-            //     const rows = table.rows.map(row => {
-            //         const rowArray = row.split("|")
-            //         rowArray.map(item => { return (<tr>{item}</tr>)})
-            //     })
-            //     return (
-            //         <table>
-            //             <thead>
-            //                 <tr>{table.headers.map(el => <th>{el}</th>)}</tr>
-            //             </thead>
-            //             <tbody>
-            //                 {table.rows.map(row => {
-            //                     const rowArray = row.split("|")
-            //                     return (
-            //                         <tr>{rowArray.map(item => { return (<td>{item}</td>)})}</tr>
-            //                     )
-            //                 })}
-            //             </tbody>
-            //         </table>
-            //         )
-            // }
             else {
                 return <p>{el}</p>
             }
@@ -59,7 +39,7 @@ export default function MonsterDetails(){
             <div className="monster-color">
                 <h2 className="monster-name">{monster.name}</h2>
                 <div className="monster-divider"></div>
-                <span style={{fontStyle: "italic"}}>{monster.size.creature_size} {monster.type}, {monster.alignment.full_name}</span>
+                <span style={{fontStyle: "italic"}}>{monster.size.creature_size}{monster.alt_size ? ` or ${monster.alt_size.creature_size_alt}` : ""} {monster.type}, {monster.alignment.full_name}</span>
                 <p><strong>Armor Class</strong> {monster.ac}</p>
                 <p><strong>Hit Points</strong> {monster.hp}</p>
                 <p><strong>Speed</strong> {monster.speed}</p>
@@ -170,6 +150,13 @@ export default function MonsterDetails(){
                     <h3 className="monster-name">Bonus Actions</h3>
                     <div className="monster-divider"></div>
                     {formatted(monster.bonus_actions)}
+                </>
+                }
+                {monster.reactions &&
+                <>
+                    <h3 className="monster-name">Reactions</h3>
+                    <div className="monster-divider"></div>
+                    {formatted(monster.reactions)}
                 </>
                 }
                 {monster.legendary_actions &&

@@ -1102,6 +1102,7 @@ export async function getMonsters(req, res) {
                 .select(`
                     *,
                     size(creature_size:size),
+                    alt_size(creature_size_alt:size),
                     alignment(full_name)
                     `)
                 .ilike('name', `%${term}%`)
@@ -1119,6 +1120,7 @@ export async function getMonsters(req, res) {
                 .select(`
                     *,
                     size(creature_size:size),
+                    alt_size(creature_size_alt:size),
                     alignment(full_name)
                     `)
                 .eq('id', id)
@@ -1136,6 +1138,7 @@ export async function getMonsters(req, res) {
                 .select(`
                     *,
                     size(creature_size:size),
+                    alt_size(creature_size_alt:size),
                     alignment(full_name)
                     `)
                 .order('name')
