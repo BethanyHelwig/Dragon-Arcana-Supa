@@ -22,30 +22,6 @@ export default function AnimalDetails(){
 
                 return <p><strong><i>{el.substring(startIndex, endIndex)}</i></strong>{el.substring(endIndex + 9)}</p>
             }
-            // if (el.includes('<table>')){
-            //     const index = el[7]
-            //     console.log(index)
-            //     const table = rule.rules_glossary_table.find(table => table.order_in_glossary === Number(index))
-            //     const rows = table.rows.map(row => {
-            //         const rowArray = row.split("|")
-            //         rowArray.map(item => { return (<tr>{item}</tr>)})
-            //     })
-            //     return (
-            //         <table>
-            //             <thead>
-            //                 <tr>{table.headers.map(el => <th>{el}</th>)}</tr>
-            //             </thead>
-            //             <tbody>
-            //                 {table.rows.map(row => {
-            //                     const rowArray = row.split("|")
-            //                     return (
-            //                         <tr>{rowArray.map(item => { return (<td>{item}</td>)})}</tr>
-            //                     )
-            //                 })}
-            //             </tbody>
-            //         </table>
-            //         )
-            // }
             else {
                 return <p>{el}</p>
             }
@@ -148,7 +124,6 @@ export default function AnimalDetails(){
                 {animal.immunities && <p><strong>Immunities</strong> {animal.immunities}</p>}
                 {animal.senses && <p><strong>Senses</strong> {animal.senses}</p>}
                 {animal.languages && <p><strong>Languages</strong> {animal.languages}</p>}
-                {animal.gear && <p><strong>Gear</strong> {animal.gear}</p>}
                 {animal.cr && <p><strong>CR</strong> {animal.cr}</p>}
 
             </div>    
@@ -173,11 +148,11 @@ export default function AnimalDetails(){
                     {formatted(animal.bonus_actions)}
                 </>
                 }
-                {animal.legendary_actions &&
+                {animal.reactions &&
                 <>
-                    <h3 className="monster-name">Legendary Actions</h3>
+                    <h3 className="monster-name">Reactions</h3>
                     <div className="monster-divider"></div>
-                    {formatted(animal.legendary_actions)}
+                    {formatted(animal.reactions)}
                 </>
                 }
             </>
